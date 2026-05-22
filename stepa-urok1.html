@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степа учит литовский — Урок 1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f3ff; min-height: 100vh; padding: 12px; }
+  .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+
+  .hero { background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%); border-radius: 20px; padding: 24px 16px 20px; margin-bottom: 16px; text-align: center; }
+  .hero-emoji { font-size: 52px; margin-bottom: 8px; display: block; }
+  .hero h1 { color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .hero p { color: #CECBF6; font-size: 14px; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 99px; height: 8px; margin-top: 14px; }
+  .progress-bar-fill { background: #fff; border-radius: 99px; height: 8px; transition: width 0.5s ease; }
+  .progress-label { color: #EEEDFE; font-size: 12px; margin-top: 6px; }
+
+  .tabs { display: flex; background: #fff; border-radius: 12px; padding: 4px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(83,74,183,0.1); }
+  .tab { flex: 1; padding: 8px 4px; font-size: 13px; border: none; background: transparent; cursor: pointer; border-radius: 9px; color: #888; transition: all 0.2s; font-family: inherit; }
+  .tab.active { background: #534AB7; color: #fff; font-weight: 600; }
+
+  .section-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(83,74,183,0.08); }
+  .section-title { font-size: 15px; font-weight: 600; color: #2d2d2d; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+  .tip-box { background: #FFF8E1; border-left: 3px solid #F9A825; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #5D4037; margin-bottom: 12px; line-height: 1.5; }
+
+  .char-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .char-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .char-bubble { background: #f5f3ff; border-radius: 12px; padding: 10px 12px; flex: 1; }
+  .char-name { font-size: 12px; font-weight: 600; color: #7F77DD; margin-bottom: 3px; }
+  .char-text { font-size: 14px; color: #2d2d2d; line-height: 1.5; }
+  .char-text .ru-trans { font-size: 12px; color: #888; margin-top: 3px; display: block; }
+
+  .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .vocab-item { background: #f5f3ff; border-radius: 10px; padding: 8px 10px; }
+  .vocab-lt { font-size: 14px; font-weight: 600; color: #3C3489; }
+  .vocab-ru { font-size: 12px; color: #666; margin-top: 2px; }
+
+  .pronoun-table, .conj-table, .neg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .pronoun-table td, .conj-table td, .neg-table td { padding: 8px 8px; border-bottom: 1px solid #f0eeff; }
+  .pronoun-table tr:last-child td, .conj-table tr:last-child td, .neg-table tr:last-child td { border-bottom: none; }
+  .pronoun-table td:first-child { font-weight: 600; color: #3C3489; width: 50%; }
+  .pronoun-table td:last-child { color: #555; }
+  .highlight-row td { background: #f5f3ff; }
+  .highlight-row td:first-child { color: #534AB7; }
+
+  .conj-table td:first-child { font-weight: 600; color: #3C3489; width: 38%; }
+  .conj-table td:nth-child(2) { color: #2d2d2d; width: 32%; }
+  .conj-table td:nth-child(3) { color: #888; font-size: 12px; }
+  .conj-header td { background: #f5f3ff; font-weight: 600; color: #534AB7; font-size: 12px; }
+
+  .neg-table td:first-child { font-weight: 600; color: #c0392b; width: 40%; }
+  .neg-table td:last-child { color: #555; }
+  .neg-header td { background: #fff5f5; font-weight: 600; color: #c0392b; font-size: 12px; }
+
+  .sentence-card { background: #f5f3ff; border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+  .sentence-lt { font-size: 14px; color: #2d2d2d; font-weight: 500; }
+  .sentence-ru { font-size: 12px; color: #888; margin-top: 3px; }
+
+  .neg-example { background: #fff5f5; border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+  .neg-lt { font-size: 14px; font-weight: 600; color: #c0392b; }
+  .neg-ru { font-size: 12px; color: #e57373; margin-top: 3px; }
+
+  .fill-item { margin-bottom: 14px; }
+  .fill-sentence { font-size: 15px; color: #2d2d2d; margin-bottom: 8px; line-height: 1.6; }
+  .fill-options { display: flex; flex-wrap: wrap; gap: 7px; }
+  .fill-btn { border: 2px solid #d0c9f5; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; transition: all 0.15s; font-weight: 500; font-family: inherit; }
+  .fill-btn:active { transform: scale(0.96); }
+  .fill-btn.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .fill-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .fill-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .fill-btn:disabled { cursor: default; }
+
+  .match-container { display: flex; gap: 10px; }
+  .match-col { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+  .match-item { border: 2px solid #d0c9f5; border-radius: 10px; padding: 9px 8px; font-size: 13px; cursor: pointer; transition: all 0.15s; background: #fff; color: #2d2d2d; text-align: center; user-select: none; font-family: inherit; }
+  .match-item.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .match-item.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; cursor: default; }
+  .match-item.wrong { border-color: #e74c3c; background: #fdf0f0; }
+
+  .options-grid { display: flex; flex-direction: column; gap: 8px; }
+  .option-btn { border: 2px solid #d0c9f5; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; text-align: left; transition: all 0.15s; display: flex; align-items: center; gap: 10px; font-family: inherit; width: 100%; }
+  .option-btn.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .option-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .option-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .opt-letter { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+
+  .check-btn { background: #534AB7; color: #fff; border: none; border-radius: 12px; padding: 13px; font-size: 15px; cursor: pointer; width: 100%; margin-top: 14px; font-weight: 600; transition: all 0.2s; font-family: inherit; }
+  .check-btn:hover { background: #3C3489; }
+  .check-btn:active { transform: scale(0.98); }
+  .check-btn:disabled { background: #ddd; color: #999; cursor: default; }
+
+  .result-box { border-radius: 12px; padding: 12px 14px; margin-top: 10px; font-size: 14px; line-height: 1.5; display: none; }
+  .result-box.show { display: block; }
+  .result-box.success { background: #eafaf1; color: #1a7a45; border: 1px solid #27ae60; }
+  .result-box.partial { background: #FFF8E1; color: #5D4037; border: 1px solid #F9A825; }
+  .result-box.fail { background: #fdf0f0; color: #c0392b; border: 1px solid #e74c3c; }
+
+  .retry-btn { background: transparent; color: #534AB7; border: 2px solid #7F77DD; border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; margin-top: 10px; display: inline-block; font-family: inherit; }
+
+  .results-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .results-label { font-size: 13px; width: 130px; color: #666; flex-shrink: 0; }
+  .results-bar-wrap { flex: 1; background: #f0eeff; border-radius: 99px; height: 10px; overflow: hidden; }
+  .results-bar-fill { height: 10px; border-radius: 99px; transition: width 0.6s ease; }
+  .results-pct { font-size: 13px; font-weight: 600; width: 42px; text-align: right; flex-shrink: 0; }
+
+  .final-card { background: linear-gradient(135deg, #7F77DD, #534AB7); border-radius: 16px; padding: 24px; text-align: center; color: white; margin-top: 16px; }
+  .final-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .final-score { font-size: 42px; font-weight: 700; margin: 12px 0 4px; }
+  .stars { font-size: 30px; letter-spacing: 4px; margin: 8px 0; }
+  .final-card p { font-size: 14px; opacity: 0.9; }
+
+  .ex-title { font-size: 14px; color: #666; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="hero-emoji">🇱🇹</span>
+    <h1>Урок 1 — Kas tu esi?</h1>
+    <p>Привет, Степа! Сегодня учимся знакомиться по-литовски</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="mainProgress" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 из 5 упражнений выполнено</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('learn')">📖 Учимся</button>
+    <button class="tab" onclick="setTab('practice')">✏️ Практика</button>
+    <button class="tab" onclick="setTab('results')">🏆 Итоги</button>
+  </div>
+
+  <!-- УЧИМСЯ -->
+  <div id="tab-learn">
+
+    <div class="section-card">
+      <div class="section-title">📖 Tekstas — Читаем текст</div>
+      <div class="tip-box">🗣️ Читай вслух! Это поможет запомнить быстрее.</div>
+      <div class="char-row">
+        <div class="char-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="char-bubble">
+          <div class="char-name">Tomas</div>
+          <div class="char-text">Labas! Mano vardas yra Tomas.<span class="ru-trans">Привет! Моё имя — Томас.</span></div>
+        </div>
+      </div>
+      <div class="char-row">
+        <div class="char-avatar" style="background:#fce4ec;">👩‍🏫</div>
+        <div class="char-bubble">
+          <div class="char-name">Viktorija</div>
+          <div class="char-text">Labas, Tomai! Aš esu mokytoja.<span class="ru-trans">Привет, Томас! Я учительница.</span></div>
+        </div>
+      </div>
+      <div class="char-row">
+        <div class="char-avatar" style="background:#e8f5e9;">🧑‍🎓</div>
+        <div class="char-bubble">
+          <div class="char-name">Tomas</div>
+          <div class="char-text">Aš esu studentas. Čia yra Paulius.<span class="ru-trans">Я студент. Здесь Паулиус.</span></div>
+        </div>
+      </div>
+      <div class="char-row">
+        <div class="char-avatar" style="background:#e1f5fe;">👦</div>
+        <div class="char-bubble">
+          <div class="char-name">Paulius</div>
+          <div class="char-text">Labas! Mano pavardė yra Martinaitis. O tu?<span class="ru-trans">Привет! Моя фамилия — Мартинайтис. А ты?</span></div>
+        </div>
+      </div>
+      <div class="char-row">
+        <div class="char-avatar" style="background:#fff9c4;">👧</div>
+        <div class="char-bubble">
+          <div class="char-name">Inga</div>
+          <div class="char-text">Aš esu Inga. Aš nesu studentė — aš esu dėstytoja!<span class="ru-trans">Я — Инга. Я не студентка — я преподавательница!</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">📚 Žodynėlis — Словарик</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="vocab-lt">taip</div><div class="vocab-ru">да</div></div>
+        <div class="vocab-item"><div class="vocab-lt">ne</div><div class="vocab-ru">нет / не</div></div>
+        <div class="vocab-item"><div class="vocab-lt">čia</div><div class="vocab-ru">здесь</div></div>
+        <div class="vocab-item"><div class="vocab-lt">ir</div><div class="vocab-ru">и</div></div>
+        <div class="vocab-item"><div class="vocab-lt">vardas</div><div class="vocab-ru">имя</div></div>
+        <div class="vocab-item"><div class="vocab-lt">pavardė</div><div class="vocab-ru">фамилия</div></div>
+        <div class="vocab-item"><div class="vocab-lt">studentas</div><div class="vocab-ru">студент</div></div>
+        <div class="vocab-item"><div class="vocab-lt">studentė</div><div class="vocab-ru">студентка</div></div>
+        <div class="vocab-item"><div class="vocab-lt">mokytojas</div><div class="vocab-ru">учитель</div></div>
+        <div class="vocab-item"><div class="vocab-lt">mokytoja</div><div class="vocab-ru">учительница</div></div>
+        <div class="vocab-item"><div class="vocab-lt">dėstytojas</div><div class="vocab-ru">преподаватель</div></div>
+        <div class="vocab-item"><div class="vocab-lt">dėstytoja</div><div class="vocab-ru">преподавательница</div></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">👥 Įvardžiai — Местоимения</div>
+      <table class="pronoun-table">
+        <tr><td>aš</td><td>я</td></tr>
+        <tr><td>tu</td><td>ты</td></tr>
+        <tr class="highlight-row"><td>jis</td><td>он</td></tr>
+        <tr class="highlight-row"><td>ji</td><td>она</td></tr>
+        <tr><td>mes</td><td>мы</td></tr>
+        <tr><td>jūs</td><td>вы</td></tr>
+        <tr class="highlight-row"><td>jie</td><td>они (м. или смешанная группа)</td></tr>
+        <tr class="highlight-row"><td>jos</td><td>они (только женщины)</td></tr>
+      </table>
+      <div class="tip-box" style="margin-top:12px;">💡 jis = он, ji = она — всего одна буква разницы! Не перепутай.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">⚡ Veiksmažodis būti — Глагол "быть"</div>
+      <table class="conj-table">
+        <tr class="conj-header"><td>Местоим.</td><td>Литовский</td><td>Русский</td></tr>
+        <tr><td>aš</td><td>esu</td><td>я есть</td></tr>
+        <tr><td>tu</td><td>esi</td><td>ты есть</td></tr>
+        <tr><td>jis / ji</td><td>yra</td><td>он / она есть</td></tr>
+        <tr><td>mes</td><td>esame</td><td>мы есть</td></tr>
+        <tr><td>jūs</td><td>esate</td><td>вы есть</td></tr>
+        <tr><td>jie / jos</td><td>yra</td><td>они есть</td></tr>
+      </table>
+      <div style="margin-top:12px;">
+        <div class="sentence-card"><div class="sentence-lt">Aš esu Tomas.</div><div class="sentence-ru">Я — Томас.</div></div>
+        <div class="sentence-card"><div class="sentence-lt">Ji yra mokytoja.</div><div class="sentence-ru">Она учительница.</div></div>
+        <div class="sentence-card"><div class="sentence-lt">Jis yra studentas.</div><div class="sentence-ru">Он студент.</div></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">🚫 Nebūti — "Не быть"</div>
+      <table class="neg-table">
+        <tr class="neg-header"><td colspan="2">Отрицательная форма</td></tr>
+        <tr><td>aš nesu</td><td>я не являюсь</td></tr>
+        <tr><td>tu nesi</td><td>ты не являешься</td></tr>
+        <tr><td>jis / ji nėra</td><td>он / она не является</td></tr>
+        <tr><td>mes nesame</td><td>мы не являемся</td></tr>
+        <tr><td>jūs nesate</td><td>вы не являетесь</td></tr>
+        <tr><td>jie / jos nėra</td><td>они не являются</td></tr>
+      </table>
+      <div style="margin-top:12px;">
+        <div class="neg-example"><div class="neg-lt">Aš nesu mokytojas.</div><div class="neg-ru">Я не учитель.</div></div>
+        <div class="neg-example"><div class="neg-lt">Ji nėra dėstytoja.</div><div class="neg-ru">Она не преподавательница.</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ПРАКТИКА -->
+  <div id="tab-practice" style="display:none;">
+
+    <div class="section-card">
+      <div class="section-title">🔗 Упражнение 1 — Соедини слова</div>
+      <div class="ex-title">Нажми литовское слово, потом его перевод</div>
+      <div class="match-container">
+        <div class="match-col" id="ltCol">
+          <div class="match-item" data-id="1" onclick="selectMatch(this,'lt')">taip</div>
+          <div class="match-item" data-id="2" onclick="selectMatch(this,'lt')">čia</div>
+          <div class="match-item" data-id="3" onclick="selectMatch(this,'lt')">vardas</div>
+          <div class="match-item" data-id="4" onclick="selectMatch(this,'lt')">pavardė</div>
+          <div class="match-item" data-id="5" onclick="selectMatch(this,'lt')">studentas</div>
+          <div class="match-item" data-id="6" onclick="selectMatch(this,'lt')">mokytoja</div>
+        </div>
+        <div class="match-col" id="ruCol">
+          <div class="match-item" data-id="3" onclick="selectMatch(this,'ru')">имя</div>
+          <div class="match-item" data-id="1" onclick="selectMatch(this,'ru')">да</div>
+          <div class="match-item" data-id="6" onclick="selectMatch(this,'ru')">учительница</div>
+          <div class="match-item" data-id="2" onclick="selectMatch(this,'ru')">здесь</div>
+          <div class="match-item" data-id="5" onclick="selectMatch(this,'ru')">студент</div>
+          <div class="match-item" data-id="4" onclick="selectMatch(this,'ru')">фамилия</div>
+        </div>
+      </div>
+      <div class="result-box" id="res1"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">👤 Упражнение 2 — jis, ji, jie или jos?</div>
+      <div id="ex2container"></div>
+      <button class="check-btn" onclick="checkEx2()" id="checkEx2btn">Проверить ✓</button>
+      <div class="result-box" id="res2"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">✏️ Упражнение 3 — Вставь esu, esi или yra</div>
+      <div id="ex3container"></div>
+      <button class="check-btn" onclick="checkEx3()" id="checkEx3btn">Проверить ✓</button>
+      <div class="result-box" id="res3"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">🚫 Упражнение 4 — Отрицание</div>
+      <div class="ex-title">Выбери правильную форму</div>
+      <div id="ex4container"></div>
+      <button class="check-btn" onclick="checkEx4()" id="checkEx4btn">Проверить ✓</button>
+      <div class="result-box" id="res4"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">🎯 Упражнение 5 — Что это значит?</div>
+      <div class="ex-title">Выбери правильный перевод предложения</div>
+      <div id="ex5container"></div>
+      <button class="check-btn" onclick="checkEx5()" id="checkEx5btn">Проверить ✓</button>
+      <div class="result-box" id="res5"></div>
+    </div>
+
+  </div>
+
+  <!-- ИТОГИ -->
+  <div id="tab-results" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">🏆 Результаты Степы</div>
+      <div id="resultsContent">
+        <p style="font-size:14px;color:#888;text-align:center;padding:20px;">Сначала выполни упражнения на вкладке «Практика» ✏️</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var scores = {ex1:null,ex2:null,ex3:null,ex4:null,ex5:null};
+
+function setTab(t){
+  ['learn','practice','results'].forEach(function(id){
+    document.getElementById('tab-'+id).style.display = id===t?'block':'none';
+  });
+  document.querySelectorAll('.tab').forEach(function(el,i){
+    el.classList.toggle('active',['learn','practice','results'][i]===t);
+  });
+  if(t==='results') updateResults();
+}
+
+function updateProgress(){
+  var done = Object.values(scores).filter(function(v){return v!==null;}).length;
+  var pct = Math.round(done/5*100);
+  document.getElementById('mainProgress').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = done+' из 5 упражнений выполнено';
+}
+
+/* EX 1 — Match */
+var matchState = {lt:null,ltEl:null,ru:null,ruEl:null};
+function selectMatch(el,side){
+  if(el.classList.contains('correct')) return;
+  if(side==='lt'){
+    if(matchState.ltEl) matchState.ltEl.classList.remove('selected');
+    matchState.lt=el.dataset.id; matchState.ltEl=el; el.classList.add('selected');
+  } else {
+    if(matchState.ruEl) matchState.ruEl.classList.remove('selected');
+    matchState.ru=el.dataset.id; matchState.ruEl=el; el.classList.add('selected');
+  }
+  if(matchState.lt && matchState.ru){
+    if(matchState.lt===matchState.ru){
+      matchState.ltEl.classList.remove('selected'); matchState.ruEl.classList.remove('selected');
+      matchState.ltEl.classList.add('correct'); matchState.ruEl.classList.add('correct');
+      matchState.ltEl.onclick=null; matchState.ruEl.onclick=null;
+      var correctCount=document.querySelectorAll('#ltCol .correct').length;
+      if(correctCount===6){
+        var r=document.getElementById('res1');
+        r.textContent='🎉 Отлично! Все слова правильно!';
+        r.className='result-box success show';
+        scores.ex1=100; updateProgress();
+      }
+    } else {
+      matchState.ltEl.classList.add('wrong'); matchState.ruEl.classList.add('wrong');
+      setTimeout(function(){
+        if(matchState.ltEl) matchState.ltEl.classList.remove('selected','wrong');
+        if(matchState.ruEl) matchState.ruEl.classList.remove('selected','wrong');
+        matchState.lt=null; matchState.ru=null; matchState.ltEl=null; matchState.ruEl=null;
+      },700);
+      return;
+    }
+    matchState.lt=null; matchState.ru=null; matchState.ltEl=null; matchState.ruEl=null;
+  }
+}
+
+/* EX 2 */
+var ex2data=[
+  {q:'Tomas →',a:'jis',opts:['jis','ji','jie','jos']},
+  {q:'Viktorija →',a:'ji',opts:['jis','ji','jie','jos']},
+  {q:'Paulius →',a:'jis',opts:['jis','ji','jie','jos']},
+  {q:'Inga →',a:'ji',opts:['jis','ji','jie','jos']},
+  {q:'Tomas ir Paulius →',a:'jie',opts:['jis','ji','jie','jos']},
+  {q:'Viktorija ir Inga →',a:'jos',opts:['jis','ji','jie','jos']},
+  {q:'Tomas ir Inga →',a:'jie',opts:['jis','ji','jie','jos']},
+];
+var ex2sel={};
+function buildEx2(){
+  var c=document.getElementById('ex2container'); c.innerHTML='';
+  ex2sel={};
+  ex2data.forEach(function(d,i){
+    var div=document.createElement('div'); div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+d.q+'</div><div class="fill-options" id="ex2opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='fill-btn'; b.textContent=o;
+      b.dataset.val=o;
+      b.onclick=function(){
+        document.querySelectorAll('#ex2opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});
+        b.classList.add('selected'); ex2sel[i]=o;
+      };
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx2();
+function checkEx2(){
+  var correct=0;
+  ex2data.forEach(function(d,i){
+    document.querySelectorAll('#ex2opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.a) b.classList.add('correct');
+      else if(b.classList.contains('selected')) b.classList.add('wrong');
+    });
+    if(ex2sel[i]===d.a) correct++;
+  });
+  var r=document.getElementById('res2');
+  scores.ex2=Math.round(correct/ex2data.length*100);
+  if(correct===ex2data.length){r.textContent='🎉 Все верно! Ты отлично знаешь местоимения!';r.className='result-box success show';}
+  else if(correct>=4){r.textContent='👍 '+correct+' из '+ex2data.length+' правильно! Почти всё верно.';r.className='result-box partial show';}
+  else{r.textContent='💪 '+correct+' из '+ex2data.length+'. Загляни в раздел «Местоимения» и попробуй ещё!';r.className='result-box fail show';}
+  var rb=document.createElement('div'); rb.style.marginTop='10px';
+  rb.innerHTML='<button class="retry-btn" onclick="retryEx2()">🔄 Попробовать снова</button>';
+  r.appendChild(rb);
+  document.getElementById('checkEx2btn').disabled=true;
+  updateProgress();
+}
+function retryEx2(){buildEx2();document.getElementById('res2').className='result-box';document.getElementById('checkEx2btn').disabled=false;}
+
+/* EX 3 */
+var ex3data=[
+  {sentence:'Aš ___ Tomas.',blank:'esu',opts:['esu','esi','yra']},
+  {sentence:'Tu ___ Viktorija.',blank:'esi',opts:['esu','esi','yra']},
+  {sentence:'Jis ___ studentas.',blank:'yra',opts:['esu','esi','yra']},
+  {sentence:'Ji ___ mokytoja.',blank:'yra',opts:['esu','esi','yra']},
+  {sentence:'Čia ___ Paulius.',blank:'yra',opts:['esu','esi','yra']},
+  {sentence:'Mano vardas ___ Inga.',blank:'yra',opts:['esu','esi','yra']},
+  {sentence:'Jūs ___ mokytoja.',blank:'esate',opts:['esate','esame','yra']},
+];
+var ex3sel={};
+function buildEx3(){
+  var c=document.getElementById('ex3container'); c.innerHTML='';
+  ex3sel={};
+  ex3data.forEach(function(d,i){
+    var div=document.createElement('div'); div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+d.sentence+'</div><div class="fill-options" id="ex3opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='fill-btn'; b.textContent=o;
+      b.dataset.val=o;
+      b.onclick=function(){
+        document.querySelectorAll('#ex3opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});
+        b.classList.add('selected'); ex3sel[i]=o;
+      };
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx3();
+function checkEx3(){
+  var correct=0;
+  ex3data.forEach(function(d,i){
+    document.querySelectorAll('#ex3opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.blank) b.classList.add('correct');
+      else if(b.classList.contains('selected')) b.classList.add('wrong');
+    });
+    if(ex3sel[i]===d.blank) correct++;
+  });
+  var r=document.getElementById('res3');
+  scores.ex3=Math.round(correct/ex3data.length*100);
+  if(correct===ex3data.length){r.textContent='🎉 Идеально! Глагол būti покорён!';r.className='result-box success show';}
+  else if(correct>=5){r.textContent='👍 '+correct+' из '+ex3data.length+'. Отлично!';r.className='result-box partial show';}
+  else{r.textContent='💪 '+correct+' из '+ex3data.length+'. Загляни в таблицу глагола и попробуй ещё!';r.className='result-box fail show';}
+  var rb=document.createElement('div'); rb.style.marginTop='10px';
+  rb.innerHTML='<button class="retry-btn" onclick="retryEx3()">🔄 Попробовать снова</button>';
+  r.appendChild(rb);
+  document.getElementById('checkEx3btn').disabled=true;
+  updateProgress();
+}
+function retryEx3(){buildEx3();document.getElementById('res3').className='result-box';document.getElementById('checkEx3btn').disabled=false;}
+
+/* EX 4 */
+var ex4data=[
+  {sentence:'Aš ___ mokytojas.',correct:'nesu',opts:['nesu','nesi','nėra']},
+  {sentence:'Tu ___ studentas.',correct:'nesi',opts:['nesu','nesi','nėra']},
+  {sentence:'Jis ___ Paulius.',correct:'nėra',opts:['nesu','nesi','nėra']},
+  {sentence:'Ji ___ dėstytoja.',correct:'nėra',opts:['nesu','nesi','nėra']},
+  {sentence:'Mes ___ studentai.',correct:'nesame',opts:['nesame','nesate','nėra']},
+];
+var ex4sel={};
+function buildEx4(){
+  var c=document.getElementById('ex4container'); c.innerHTML='';
+  ex4sel={};
+  ex4data.forEach(function(d,i){
+    var div=document.createElement('div'); div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+d.sentence+'</div><div class="fill-options" id="ex4opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button'); b.className='fill-btn'; b.textContent=o;
+      b.dataset.val=o;
+      b.onclick=function(){
+        document.querySelectorAll('#ex4opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});
+        b.classList.add('selected'); ex4sel[i]=o;
+      };
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx4();
+function checkEx4(){
+  var correct=0;
+  ex4data.forEach(function(d,i){
+    document.querySelectorAll('#ex4opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct) b.classList.add('correct');
+      else if(b.classList.contains('selected')) b.classList.add('wrong');
+    });
+    if(ex4sel[i]===d.correct) correct++;
+  });
+  var r=document.getElementById('res4');
+  scores.ex4=Math.round(correct/ex4data.length*100);
+  if(correct===ex4data.length){r.textContent='🎉 Супер! Отрицание — не проблема!';r.className='result-box success show';}
+  else{r.textContent='💪 '+correct+' из '+ex4data.length+'. Зелёным отмечены правильные ответы.';r.className='result-box partial show';}
+  var rb=document.createElement('div'); rb.style.marginTop='10px';
+  rb.innerHTML='<button class="retry-btn" onclick="retryEx4()">🔄 Попробовать снова</button>';
+  r.appendChild(rb);
+  document.getElementById('checkEx4btn').disabled=true;
+  updateProgress();
+}
+function retryEx4(){buildEx4();document.getElementById('res4').className='result-box';document.getElementById('checkEx4btn').disabled=false;}
+
+/* EX 5 */
+var ex5data=[
+  {lt:'Aš esu studentas.',correct:'Я студент.',opts:['Я учитель.','Я студент.','Ты студент.']},
+  {lt:'Ji yra mokytoja.',correct:'Она учительница.',opts:['Он учитель.','Она студентка.','Она учительница.']},
+  {lt:'Jis nėra Paulius.',correct:'Он не Паулиус.',opts:['Он Паулиус.','Он не Паулиус.','Она не Паулиус.']},
+  {lt:'Mano vardas yra Tomas.',correct:'Моё имя — Томас.',opts:['Моя фамилия — Томас.','Твоё имя — Томас.','Моё имя — Томас.']},
+  {lt:'Tu nesi dėstytojas.',correct:'Ты не преподаватель.',opts:['Ты преподаватель.','Ты не студент.','Ты не преподаватель.']},
+];
+var ex5sel={};
+function buildEx5(){
+  var c=document.getElementById('ex5container'); c.innerHTML='';
+  ex5sel={};
+  var letters=['А','Б','В'];
+  ex5data.forEach(function(d,i){
+    var div=document.createElement('div'); div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence" style="font-weight:600;color:#3C3489;font-size:16px;">'+d.lt+'</div><div class="options-grid" id="ex5opts'+i+'" style="margin-top:10px;"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o,j){
+      var b=document.createElement('button'); b.className='option-btn';
+      b.innerHTML='<span class="opt-letter">'+letters[j]+'</span>'+o;
+      b.dataset.val=o;
+      b.onclick=function(){
+        document.querySelectorAll('#ex5opts'+i+' .option-btn').forEach(function(x){x.classList.remove('selected');});
+        b.classList.add('selected'); ex5sel[i]=o;
+      };
+      div.querySelector('.options-grid').appendChild(b);
+    });
+  });
+}
+buildEx5();
+function checkEx5(){
+  var correct=0;
+  ex5data.forEach(function(d,i){
+    document.querySelectorAll('#ex5opts'+i+' .option-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct) b.classList.add('correct');
+      else if(b.classList.contains('selected')) b.classList.add('wrong');
+    });
+    if(ex5sel[i]===d.correct) correct++;
+  });
+  var r=document.getElementById('res5');
+  scores.ex5=Math.round(correct/ex5data.length*100);
+  if(correct===ex5data.length){r.textContent='🎉 Браво, Степа! Урок 1 пройден на отлично!';r.className='result-box success show';}
+  else if(correct>=3){r.textContent='👍 '+correct+' из '+ex5data.length+'. Почти!';r.className='result-box partial show';}
+  else{r.textContent='💪 '+correct+' из '+ex5data.length+'. Прочитай текст ещё раз и попробуй!';r.className='result-box fail show';}
+  var rb=document.createElement('div'); rb.style.marginTop='10px';
+  rb.innerHTML='<button class="retry-btn" onclick="retryEx5()">🔄 Попробовать снова</button>';
+  r.appendChild(rb);
+  document.getElementById('checkEx5btn').disabled=true;
+  updateProgress();
+}
+function retryEx5(){buildEx5();document.getElementById('res5').className='result-box';document.getElementById('checkEx5btn').disabled=false;}
+
+/* Results */
+function updateResults(){
+  var c=document.getElementById('resultsContent');
+  var done=Object.values(scores).filter(function(v){return v!==null;}).length;
+  if(done===0){c.innerHTML='<p style="font-size:14px;color:#888;text-align:center;padding:20px;">Сначала выполни упражнения на вкладке «Практика» ✏️</p>';return;}
+  var names=['Соединить слова','Местоимения','Глагол быть','Отрицание','Перевод'];
+  var keys=['ex1','ex2','ex3','ex4','ex5'];
+  var html='<div style="margin-bottom:16px;">';
+  var total=0,count=0;
+  keys.forEach(function(k,i){
+    var v=scores[k];
+    var bar=v!==null?v:0;
+    var color=v===null?'#ddd':v>=80?'#27ae60':v>=50?'#F9A825':'#e74c3c';
+    var label=v===null?'—':v+'%';
+    html+='<div class="results-row">';
+    html+='<div class="results-label">'+names[i]+'</div>';
+    html+='<div class="results-bar-wrap"><div class="results-bar-fill" style="width:'+bar+'%;background:'+color+';"></div></div>';
+    html+='<div class="results-pct" style="color:'+color+';">'+label+'</div>';
+    html+='</div>';
+    if(v!==null){total+=v;count++;}
+  });
+  html+='</div>';
+  if(count>0){
+    var avg=Math.round(total/count);
+    var stars=avg>=90?'⭐⭐⭐':avg>=70?'⭐⭐':avg>=50?'⭐':'';
+    var msg=avg>=90?'Великолепно, Степа!':avg>=70?'Отличная работа!':avg>=50?'Хороший старт!':'Продолжай стараться!';
+    html+='<div class="final-card"><h3>Итог урока</h3><div class="final-score">'+avg+'%</div><div class="stars">'+stars+'</div><p>'+msg+'</p></div>';
+  }
+  c.innerHTML=html;
+}
+</script>
+</body>
+</html>
