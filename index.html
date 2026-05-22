@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степа учит литовский</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f3ff; min-height: 100vh; padding: 16px; }
+  .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+
+  .hero { background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%); border-radius: 24px; padding: 32px 20px 28px; margin-bottom: 24px; text-align: center; }
+  .hero-emoji { font-size: 64px; margin-bottom: 12px; display: block; }
+  .hero h1 { color: #fff; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+  .hero p { color: #CECBF6; font-size: 15px; }
+
+  .section-label { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-left: 4px; }
+
+  .lesson-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(83,74,183,0.08); display: flex; align-items: center; gap: 14px; text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+  .lesson-card:active { transform: scale(0.98); border-color: #7F77DD; }
+  .lesson-card.locked { opacity: 0.5; cursor: default; }
+  .lesson-card.locked:active { transform: none; border-color: transparent; }
+
+  .lesson-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+  .lesson-icon.purple { background: #f5f3ff; }
+  .lesson-icon.green { background: #e8f5e9; }
+  .lesson-icon.blue { background: #e3f2fd; }
+  .lesson-icon.orange { background: #fff8e1; }
+  .lesson-icon.pink { background: #fce4ec; }
+  .lesson-icon.locked-icon { background: #f5f5f5; }
+
+  .lesson-info { flex: 1; }
+  .lesson-number { font-size: 12px; color: #aaa; font-weight: 500; margin-bottom: 2px; }
+  .lesson-title { font-size: 16px; font-weight: 600; color: #2d2d2d; margin-bottom: 4px; }
+  .lesson-subtitle { font-size: 13px; color: #888; }
+
+  .lesson-status { flex-shrink: 0; }
+  .status-badge { border-radius: 20px; padding: 4px 10px; font-size: 12px; font-weight: 600; }
+  .status-done { background: #e8f5e9; color: #2e7d32; }
+  .status-new { background: #f5f3ff; color: #534AB7; }
+  .status-locked { background: #f5f5f5; color: #bbb; }
+
+  .lock-icon { font-size: 20px; }
+
+  .tip-card { background: #fff8e1; border-radius: 14px; padding: 14px 16px; margin-bottom: 24px; display: flex; gap: 10px; align-items: flex-start; }
+  .tip-card p { font-size: 14px; color: #5D4037; line-height: 1.5; }
+
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .stat-card { background: #fff; border-radius: 14px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(83,74,183,0.06); }
+  .stat-number { font-size: 28px; font-weight: 700; color: #534AB7; }
+  .stat-label { font-size: 12px; color: #aaa; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="hero-emoji">🇱🇹</span>
+    <h1>Степа учит литовский!</h1>
+    <p>Выбирай урок и вперёд к знаниям</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number" id="completedCount">0</div>
+      <div class="stat-label">уроков пройдено</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">5</div>
+      <div class="stat-label">уроков всего</div>
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <span style="font-size:20px;">💡</span>
+    <p>Начни с Урока 1 и двигайся по порядку. После каждого урока тебя ждут упражнения!</p>
+  </div>
+
+  <div class="section-label">Уроки</div>
+
+  <a class="lesson-card" href="stepa-urok1.html">
+    <div class="lesson-icon purple">👋</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 1</div>
+      <div class="lesson-title">Kas tu esi?</div>
+      <div class="lesson-subtitle">Знакомство, местоимения, глагол быть</div>
+    </div>
+    <div class="lesson-status">
+      <span class="status-badge status-new">Старт!</span>
+    </div>
+  </a>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 2</div>
+      <div class="lesson-title">Kur tu gyveni?</div>
+      <div class="lesson-subtitle">Где ты живёшь? Города и страны</div>
+    </div>
+    <div class="lesson-status">
+      <span class="status-badge status-locked">Скоро</span>
+    </div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 3</div>
+      <div class="lesson-title">Šeima</div>
+      <div class="lesson-subtitle">Семья и родственники</div>
+    </div>
+    <div class="lesson-status">
+      <span class="status-badge status-locked">Скоро</span>
+    </div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 4</div>
+      <div class="lesson-title">Skaičiai</div>
+      <div class="lesson-subtitle">Числа и счёт</div>
+    </div>
+    <div class="lesson-status">
+      <span class="status-badge status-locked">Скоро</span>
+    </div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 5</div>
+      <div class="lesson-title">Spalvos ir daiktai</div>
+      <div class="lesson-subtitle">Цвета и предметы</div>
+    </div>
+    <div class="lesson-status">
+      <span class="status-badge status-locked">Скоро</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
