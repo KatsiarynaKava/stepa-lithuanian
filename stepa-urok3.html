@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степа учит литовский — Урок 3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0fdf4; min-height: 100vh; padding: 12px; }
+  .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+  .hero { background: linear-gradient(135deg, #1E9E6B 0%, #0F6B45 100%); border-radius: 20px; padding: 24px 16px 20px; margin-bottom: 14px; text-align: center; }
+  .hero h1 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .hero p { color: #A8F0CC; font-size: 14px; }
+  .hero-emoji { font-size: 48px; margin-bottom: 8px; display: block; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.25); border-radius: 99px; height: 8px; margin-top: 12px; }
+  .progress-bar-fill { background: #fff; border-radius: 99px; height: 8px; transition: width 0.5s ease; }
+  .progress-label { color: #C8F5E0; font-size: 12px; margin-top: 5px; }
+  .tabs { display: flex; background: #fff; border-radius: 12px; padding: 4px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(15,107,69,0.12); }
+  .tab { flex: 1; padding: 8px 4px; font-size: 12px; border: none; background: transparent; cursor: pointer; border-radius: 9px; color: #888; transition: all 0.2s; font-family: inherit; font-weight: 500; }
+  .tab.active { background: #0F6B45; color: #fff; font-weight: 700; }
+  .section-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(15,107,69,0.08); }
+  .section-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .rule-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .rule-card.green-rule { border-left: 5px solid #27ae60; }
+  .rule-card.blue { border-left: 5px solid #4A90E2; }
+  .rule-card.orange-rule { border-left: 5px solid #e67e22; }
+  .rule-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .tip-box { background: #FFF8E1; border-left: 4px solid #F9A825; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #5D4037; margin-bottom: 12px; line-height: 1.5; }
+  .note-box { background: #E8F4FD; border-left: 4px solid #4A90E2; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #1a3a5c; margin-bottom: 10px; line-height: 1.5; }
+  .dialog-line { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .dialog-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .dialog-bubble { flex: 1; background: #f8f8f8; border-radius: 12px; padding: 10px 12px; }
+  .dialog-name { font-size: 11px; font-weight: 700; color: #1E9E6B; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .dialog-lt { font-size: 15px; color: #1a1a1a; font-weight: 500; line-height: 1.5; }
+  .dialog-ru { font-size: 12px; color: #999; margin-top: 3px; }
+  .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .vocab-item { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; border: 1px solid #C8F5DC; }
+  .vocab-item.wide { grid-column: span 2; }
+  .vocab-lt { font-size: 14px; font-weight: 700; color: #0F6B45; }
+  .vocab-ru { font-size: 12px; color: #666; margin-top: 2px; }
+  .country-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 8px; }
+  .country-table th { background: #f0fdf4; color: #0F6B45; font-weight: 700; padding: 6px 8px; text-align: left; border-bottom: 2px solid #C8F5DC; }
+  .country-table td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; color: #333; }
+  .country-table tr:last-child td { border-bottom: none; }
+  .country-table td:first-child { font-weight: 600; color: #0F6B45; }
+  .grammar-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
+  .grammar-table td { padding: 7px 8px; border-bottom: 1px solid #f0f0f0; }
+  .grammar-table tr:last-child td { border-bottom: none; }
+  .grammar-table td:first-child { font-weight: 700; color: #1E9E6B; width: 40%; }
+  .grammar-table td:last-child { color: #444; }
+  .grammar-table .hrow td { background: #f0fdf4; font-weight: 700; color: #0F6B45; font-size: 12px; }
+  .conj-card { background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 12px; border: 2px solid #C8F5DC; }
+  .conj-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .conj-cell { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; }
+  .conj-pro { font-size: 11px; color: #888; margin-bottom: 2px; }
+  .conj-form { font-size: 16px; font-weight: 700; color: #0F6B45; }
+  .conj-example { font-size: 11px; color: #aaa; margin-top: 3px; }
+  .conj-cell-wide { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; grid-column: span 2; }
+  .example-item { background: #f0fdf4; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
+  .example-lt { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .example-ru { font-size: 12px; color: #888; margin-top: 2px; }
+  .ex-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .ex-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .ex-number { background: #0F6B45; color: #fff; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .ex-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .ex-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
+  .fill-item { margin-bottom: 12px; }
+  .fill-sentence { font-size: 15px; color: #1a1a1a; margin-bottom: 7px; line-height: 1.6; font-weight: 500; }
+  .fill-options { display: flex; flex-wrap: wrap; gap: 7px; }
+  .fill-btn { border: 2px solid #C8F5DC; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #1a1a1a; transition: all 0.15s; font-weight: 600; font-family: inherit; }
+  .fill-btn.selected { border-color: #1E9E6B; background: #f0fdf4; color: #0F6B45; }
+  .fill-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .fill-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .fill-btn:disabled { cursor: default; }
+  .match-container { display: flex; gap: 10px; }
+  .match-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .match-item { border: 2px solid #C8F5DC; border-radius: 10px; padding: 8px 6px; font-size: 13px; cursor: pointer; background: #fff; color: #1a1a1a; text-align: center; user-select: none; font-family: inherit; transition: all 0.15s; }
+  .match-item.selected { border-color: #1E9E6B; background: #f0fdf4; color: #0F6B45; }
+  .match-item.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; cursor: default; }
+  .match-item.wrong { border-color: #e74c3c; background: #fdf0f0; }
+  .option-btn { border: 2px solid #C8F5DC; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #1a1a1a; text-align: left; display: flex; align-items: center; gap: 10px; font-family: inherit; width: 100%; margin-bottom: 8px; transition: all 0.15s; }
+  .option-btn.selected { border-color: #1E9E6B; background: #f0fdf4; color: #0F6B45; }
+  .option-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .option-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .opt-letter { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .drag-pool { display: flex; flex-wrap: wrap; gap: 7px; padding: 12px; background: #f0fdf4; border-radius: 12px; min-height: 50px; margin-bottom: 14px; border: 2px dashed #A8D5BC; }
+  .drag-chip { background: #fff; border: 2px solid #1E9E6B; border-radius: 20px; padding: 5px 10px; font-size: 12px; font-weight: 600; color: #0F6B45; cursor: grab; user-select: none; touch-action: none; }
+  .drag-chip.placed { opacity: 0.25; cursor: default; pointer-events: none; background: #f0f0f0; border-color: #ccc; color: #aaa; }
+  .drop-zones-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .drop-zone { background: #f9f9f9; border: 2px dashed #ccc; border-radius: 12px; padding: 8px; min-height: 100px; transition: all 0.2s; }
+  .drop-zone-title { font-size: 11px; font-weight: 700; color: #555; margin-bottom: 6px; text-align: center; line-height: 1.3; }
+  .drop-zone.drag-over { border-color: #1E9E6B; background: #f0fdf4; }
+  .dropped-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .dropped-chip { background: #fff; border: 2px solid #1E9E6B; border-radius: 12px; padding: 3px 7px; font-size: 11px; font-weight: 600; color: #0F6B45; cursor: pointer; }
+  .dropped-chip.correct-placed { border-color: #27ae60; background: #eafaf1; color: #1a7a45; pointer-events: none; }
+  .dropped-chip.wrong-placed { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .carousel-card { background: linear-gradient(135deg, #1E9E6B, #0F6B45); border-radius: 16px; padding: 20px; text-align: center; color: #fff; margin-bottom: 12px; }
+  .carousel-name { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .carousel-flag { font-size: 36px; margin-bottom: 8px; display: block; }
+  .carousel-nav { display: flex; justify-content: center; gap: 8px; margin-bottom: 14px; }
+  .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #C8F5DC; cursor: pointer; transition: all 0.2s; }
+  .carousel-dot.active { background: #0F6B45; transform: scale(1.3); }
+  .carousel-arrows { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .arrow-btn { background: #f0fdf4; border: 2px solid #C8F5DC; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; font-family: inherit; color: #0F6B45; font-weight: 700; }
+  .check-btn { background: linear-gradient(135deg, #1E9E6B, #0F6B45); color: #fff; border: none; border-radius: 12px; padding: 13px; font-size: 15px; cursor: pointer; width: 100%; margin-top: 12px; font-weight: 700; font-family: inherit; transition: all 0.2s; }
+  .check-btn:active { transform: scale(0.98); opacity: 0.9; }
+  .check-btn:disabled { background: #ddd; color: #999; cursor: default; }
+  .result-box { border-radius: 12px; padding: 12px 14px; margin-top: 10px; font-size: 14px; line-height: 1.5; display: none; }
+  .result-box.show { display: block; }
+  .result-box.success { background: #eafaf1; color: #1a7a45; border: 1px solid #27ae60; }
+  .result-box.partial { background: #FFF8E1; color: #5D4037; border: 1px solid #F9A825; }
+  .result-box.fail { background: #fdf0f0; color: #c0392b; border: 1px solid #e74c3c; }
+  .retry-btn { background: transparent; color: #0F6B45; border: 2px solid #1E9E6B; border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; margin-top: 10px; display: inline-block; font-family: inherit; font-weight: 600; }
+  .homework-card { background: linear-gradient(135deg, #FF9A3C, #F06A1A); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+  .homework-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .homework-item { background: rgba(255,255,255,0.85); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .homework-lt { font-size: 14px; color: #1a1a1a; font-weight: 600; }
+  .homework-hint { font-size: 12px; color: #666; margin-top: 3px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; background: #0F6B45; color: #fff; border-radius: 10px; padding: 8px 14px; font-size: 13px; text-decoration: none; margin-bottom: 12px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+  <a href="index.html" class="back-link">← Все уроки</a>
+  <div class="hero">
+    <span class="hero-emoji">🌍</span>
+    <h1>Урок 3 — Kur tu gyveni?</h1>
+    <p>Привет, Степа! Сегодня учимся говорить где живём</p>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="mainProgress" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">0 из 12 упражнений выполнено</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('lesson')">📖 Урок</button>
+    <button class="tab" onclick="setTab('vocab')">📚 Словарь</button>
+    <button class="tab" onclick="setTab('grammar')">📝 Грамматика</button>
+  </div>
+  <div id="tab-lesson">
+    <div class="section-card">
+      <div class="section-title">💬 Tekstas — Читаем диалог</div>
+      <div class="tip-box">🗣️ Читай вслух! Перевод — серым под каждой репликой.</div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Labas! Mano vardas yra Tomas. Aš gyvenu Lietuvoje, Vilniuje.</div>
+          <div class="dialog-ru">Привет! Меня зовут Томас. Я живу в Литве, в Вильнюсе.</div>
+          <div class="dialog-lt" style="margin-top:6px;">Vilnius yra miestas. Aš kalbu lietuviškai ir truputį angliškai.</div>
+          <div class="dialog-ru">Вильнюс — это город. Я говорю по-литовски и немного по-английски.</div>
+          <div class="dialog-lt" style="margin-top:6px;">Čia yra mano draugė Laura. Labas, Laura!</div>
+          <div class="dialog-ru">Здесь моя подруга Лаура. Привет, Лаура!</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Laura</div>
+          <div class="dialog-lt">Labas, Tomai! Mano vardas yra Laura. Aš gyvenu Prancūzijoje, Paryžiuje.</div>
+          <div class="dialog-ru">Привет, Томас! Меня зовут Лаура. Я живу во Франции, в Париже.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Paryžius taip pat yra miestas. Ar tu kalbi lietuviškai?</div>
+          <div class="dialog-ru">Париж тоже город. Ты говоришь по-литовски?</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Laura</div>
+          <div class="dialog-lt">Taip, aš kalbu truputį lietuviškai. Bet aš kalbu prancūziškai gerai.</div>
+          <div class="dialog-ru">Да, я немного говорю по-литовски. Но я хорошо говорю по-французски.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Ar tu supranti angliškai?</div>
+          <div class="dialog-ru">Ты понимаешь по-английски?</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Laura</div>
+          <div class="dialog-lt">Taip, suprantu. Bet prašom kalbėti lėčiau.</div>
+          <div class="dialog-ru">Да, понимаю. Но, пожалуйста, говори медленнее.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Gerai. Dabar aišku?</div>
+          <div class="dialog-ru">Хорошо. Теперь понятно?</div>
+          <div class="dialog-lt" style="margin-top:6px;">Čia yra Flavijus. Jis gyvena Italijoje, Romoje.</div>
+          <div class="dialog-ru">Здесь Флавиюс. Он живёт в Италии, в Риме.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Laura</div>
+          <div class="dialog-lt">Taip, dabar aišku.</div>
+          <div class="dialog-ru">Да, теперь понятно.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e1f5fe;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Flavijus</div>
+          <div class="dialog-lt">Labas! Aš kalbu itališkai ir truputį lietuviškai.</div>
+          <div class="dialog-ru">Привет! Я говорю по-итальянски и немного по-литовски.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Ar jūs suprantate lietuviškai?</div>
+          <div class="dialog-ru">Вы понимаете по-литовски?</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f0f4ff;">👫</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Laura ir Flavijus</div>
+          <div class="dialog-lt">Taip, mes truputį suprantame. Bet kartais mums neaišku.</div>
+          <div class="dialog-ru">Да, мы немного понимаем. Но иногда нам непонятно.</div>
+        </div>
+      </div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble">
+          <div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Gerai. Prašom pakartoti: aš gyvenu, tu gyveni, jis gyvena.</div>
+          <div class="dialog-ru">Хорошо. Пожалуйста, повторите: я живу, ты живёшь, он живёт.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">1</div><div class="ex-title">Выбери правильный перевод</div></div>
+      <div class="ex-desc">Один правильный вариант</div>
+      <div id="ex1container"></div>
+      <button class="check-btn" id="checkEx1btn" onclick="checkEx1()">Проверить ✓</button>
+      <div class="result-box" id="res1"></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">3</div><div class="ex-title">Раздели слова на три группы</div></div>
+      <div class="ex-desc">Перетащи каждое слово в правильную колонку</div>
+      <div class="drag-pool" id="ex3pool"></div>
+      <div class="drop-zones-3">
+        <div class="drop-zone" id="zone-salis" ondragover="allowDrop3(event)" ondrop="dropChip3(event,'salis')"><div class="drop-zone-title">🌍 Šalis<br><small style="color:#888;font-weight:400;">страна</small></div><div class="dropped-chips" id="chips-salis"></div></div>
+        <div class="drop-zone" id="zone-tauta" ondragover="allowDrop3(event)" ondrop="dropChip3(event,'tauta')"><div class="drop-zone-title">👤 Tautybė<br><small style="color:#888;font-weight:400;">нац.</small></div><div class="dropped-chips" id="chips-tauta"></div></div>
+        <div class="drop-zone" id="zone-kalba" ondragover="allowDrop3(event)" ondrop="dropChip3(event,'kalba')"><div class="drop-zone-title">🗣️ Kalba<br><small style="color:#888;font-weight:400;">язык</small></div><div class="dropped-chips" id="chips-kalba"></div></div>
+      </div>
+      <button class="check-btn" id="checkEx3btn" onclick="checkEx3A()">Проверить ✓</button>
+      <div class="result-box" id="res3"></div>
+    </div>
+
+    <div class="rule-card green-rule">
+      <div class="rule-title">🏠 Veiksmažodis gyventi — Глагол "жить"</div>
+      <div class="tip-box">jis/ji/jie/jos — все используют <b style="color:#27ae60;">gyvena</b>!</div>
+      <div class="conj-grid2">
+        <div class="conj-cell"><div class="conj-pro">aš</div><div class="conj-form">gyvenu</div><div class="conj-example">Aš gyvenu Vilniuje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">mes</div><div class="conj-form">gyvename</div><div class="conj-example">Mes gyvename Lietuvoje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">tu</div><div class="conj-form">gyveni</div><div class="conj-example">Tu gyveni Paryžiuje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">jūs</div><div class="conj-form">gyvenate</div><div class="conj-example">Jūs gyvenate Berlyne.</div></div>
+        <div class="conj-cell-wide"><div class="conj-pro">jis / ji / jie / jos</div><div class="conj-form">gyvena</div><div class="conj-example">Jis gyvena Romoje. · Ji gyvena Prahoje.</div></div>
+      </div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">4</div><div class="ex-title">Вставь форму gyventi</div></div>
+      <div class="ex-desc">gyvenu, gyveni, gyvena, gyvename или gyvenate?</div>
+      <div id="ex4container"></div>
+      <button class="check-btn" id="checkEx4btn" onclick="checkFill('ex4')">Проверить ✓</button>
+      <div class="result-box" id="res4"></div>
+    </div>
+
+    <div class="rule-card orange-rule">
+      <div class="rule-title">📍 Vietininkas — Местный падеж (где?)</div>
+      <div class="tip-box">Чтобы сказать <b>где</b> живёшь — окончание места меняется! Смотри на последние буквы слова:</div>
+      <table class="grammar-table">
+        <tr class="hrow"><td>Форма</td><td>Оконч.</td><td>Где?</td><td>Оконч.</td></tr>
+        <tr><td>Kaun<b style="color:#e67e22;">as</b></td><td style="color:#e67e22;font-weight:700;">-as</td><td>Kaun<b style="color:#27ae60;">e</b></td><td style="color:#27ae60;font-weight:700;">→ -e</td></tr>
+        <tr><td>Antakaln<b style="color:#e67e22;">is</b></td><td style="color:#e67e22;font-weight:700;">-is</td><td>Antakaln<b style="color:#27ae60;">yje</b></td><td style="color:#27ae60;font-weight:700;">→ -yje</td></tr>
+        <tr><td>Panevėž<b style="color:#e67e22;">ys</b></td><td style="color:#e67e22;font-weight:700;">-ys</td><td>Panevėž<b style="color:#27ae60;">yje</b></td><td style="color:#27ae60;font-weight:700;">→ -yje</td></tr>
+        <tr><td>Lietuv<b style="color:#e67e22;">a</b></td><td style="color:#e67e22;font-weight:700;">-a</td><td>Lietuv<b style="color:#27ae60;">oje</b></td><td style="color:#27ae60;font-weight:700;">→ -oje</td></tr>
+        <tr><td>Zagarė</td><td style="color:#e67e22;font-weight:700;">-ė</td><td>Zagarė<b style="color:#27ae60;">je</b></td><td style="color:#27ae60;font-weight:700;">→ -je</td></tr>
+        <tr><td>Vilni<b style="color:#e67e22;">us</b></td><td style="color:#e67e22;font-weight:700;">-us</td><td>Vilni<b style="color:#27ae60;">uje</b></td><td style="color:#27ae60;font-weight:700;">→ -uje</td></tr>
+      </table>
+      <div class="note-box" style="margin-top:10px;">💡 Формула: <b>Aš gyvenu + где?</b><br>
+      Lietuva → Lietuv<b style="color:#27ae60;">oje</b> &nbsp;·&nbsp; Vilnius → Vilni<b style="color:#27ae60;">uje</b></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Выбери правильную форму: где?</div></div>
+      <div id="ex5container"></div>
+      <button class="check-btn" id="checkEx5btn" onclick="checkFill('ex5')">Проверить ✓</button>
+      <div class="result-box" id="res5"></div>
+    </div>
+
+    <div class="rule-card blue">
+      <div class="rule-title">❓ Вопросы: ar, kur, kaip</div>
+      <div class="note-box">💡 <b>Ar</b> — вопрос да/нет. <b>Kur</b> — где. <b>Kaip</b> — как.</div>
+      <div class="example-item"><div class="example-lt">Ar tu kalbi lietuviškai?</div><div class="example-ru">Ты говоришь по-литовски?</div></div>
+      <div class="example-item"><div class="example-lt">Kur tu gyveni?</div><div class="example-ru">Где ты живёшь?</div></div>
+      <div class="example-item"><div class="example-lt">Kaip sekasi?</div><div class="example-ru">Как дела?</div></div>
+      <div class="example-item"><div class="example-lt">Ar ji gyvena Prancūzijoje?</div><div class="example-ru">Она живёт во Франции?</div></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Вставь правильное слово</div></div>
+      <div class="ex-desc">kalbu / gyvenu / suprantu и другие формы</div>
+      <div id="ex7container"></div>
+      <button class="check-btn" id="checkEx7btn" onclick="checkFill('ex7')">Проверить ✓</button>
+      <div class="result-box" id="res7"></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">9</div><div class="ex-title">Составь пары предложений</div></div>
+      <div class="ex-desc">Нажми левое, потом правильный ответ</div>
+      <div class="match-container">
+        <div class="match-col" id="ltCol9"></div>
+        <div class="match-col" id="ruCol9"></div>
+      </div>
+      <div class="result-box" id="res9"></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">10</div><div class="ex-title">Что это значит?</div></div>
+      <div class="ex-desc">Литовский → русский</div>
+      <div id="ex10container"></div>
+      <button class="check-btn" id="checkEx10btn" onclick="checkEx10()">Проверить ✓</button>
+      <div class="result-box" id="res10"></div>
+    </div>
+
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">11</div><div class="ex-title">Переведи на литовский</div></div>
+      <div class="ex-desc">Русский → литовский</div>
+      <div id="ex11container"></div>
+      <button class="check-btn" id="checkEx11btn" onclick="checkEx11()">Проверить ✓</button>
+      <div class="result-box" id="res11"></div>
+    </div>
+
+    <!-- EX 5: Mixed verbs -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Вставь правильную форму глагола</div></div>
+      <div class="ex-desc">gyventi, kalbėti, suprasti, būti или nebūti?</div>
+      <div id="ex5container"></div>
+      <button class="check-btn" id="checkEx5btn" onclick="checkFill('ex5')">Проверить ✓</button>
+      <div class="result-box" id="res5"></div>
+    </div>
+
+    <!-- EX 6: Vietininkas choice -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">6</div><div class="ex-title">Выбери правильную форму: где?</div></div>
+      <div class="ex-desc">Именительный или местный падеж?</div>
+      <div id="ex6container"></div>
+      <button class="check-btn" id="checkEx6btn" onclick="checkFill('ex6')">Проверить ✓</button>
+      <div class="result-box" id="res6"></div>
+    </div>
+
+    <!-- EX 7: Fix the error -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Исправь ошибку!</div></div>
+      <div class="ex-desc">В каждом предложении есть ошибка — выбери правильный вариант</div>
+      <div id="ex7container"></div>
+      <button class="check-btn" id="checkEx7btn" onclick="checkEx7()">Проверить ✓</button>
+      <div class="result-box" id="res7"></div>
+    </div>
+
+    <!-- EX 9: Match pairs -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">8</div><div class="ex-title">Составь пары предложений</div></div>
+      <div class="ex-desc">Нажми левое, потом правильный ответ</div>
+      <div class="match-container">
+        <div class="match-col" id="ltCol8"></div>
+        <div class="match-col" id="ruCol8"></div>
+      </div>
+      <div class="result-box" id="res8"></div>
+    </div>
+
+    <!-- EX 10: LT->RU -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">9</div><div class="ex-title">Что это значит?</div></div>
+      <div class="ex-desc">Литовский → русский</div>
+      <div id="ex9container"></div>
+      <button class="check-btn" id="checkEx9btn" onclick="checkEx9()">Проверить ✓</button>
+      <div class="result-box" id="res9"></div>
+    </div>
+
+    <!-- EX 11: RU->LT -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">10</div><div class="ex-title">Переведи на литовский</div></div>
+      <div class="ex-desc">Русский → литовский</div>
+      <div id="ex10container"></div>
+      <button class="check-btn" id="checkEx10btn" onclick="checkEx10()">Проверить ✓</button>
+      <div class="result-box" id="res10"></div>
+    </div>
+
+    <!-- EX 11: Word order -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">11</div><div class="ex-title">Составь предложение</div></div>
+      <div class="ex-desc">Нажимай слова в правильном порядке</div>
+      <div id="ex11container"></div>
+      <div class="result-box" id="res11"></div>
+    </div>
+
+    <div class="homework-card">
+      <div class="homework-title">🏠 Домашнее задание — Расскажи о себе</div>
+      <div style="background:rgba(255,255,255,0.2);border-radius:8px;padding:10px 12px;font-size:13px;color:#fff;margin-bottom:12px;">Читай и готовься отвечать устно 🗣️</div>
+      <div class="homework-item"><div class="homework-lt">Mano vardas yra __________________.</div><div class="homework-hint">Как тебя зовут?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš gyvenu __________________.</div><div class="homework-hint">Где ты живёшь?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš kalbu __________________.</div><div class="homework-hint">На каком языке говоришь?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš truputį suprantu __________________.</div><div class="homework-hint">Что немного понимаешь?</div></div>
+      <div class="homework-item"><div class="homework-lt">Mano draugas / draugė gyvena __________________.</div><div class="homework-hint">Где живёт друг/подруга?</div></div>
+      <div class="homework-item"><div class="homework-lt">Jis / ji kalba __________________.</div><div class="homework-hint">На каком языке говорит?</div></div>
+      <div class="homework-item"><div class="homework-lt">Dabar man __________________.</div><div class="homework-hint">aišku / neaišku / gerai / šiaip sau</div></div>
+    </div>
+  </div>
+
+  <div id="tab-vocab" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">📚 Новые слова урока 3</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="vocab-lt">gyventi</div><div class="vocab-ru">жить</div></div>
+        <div class="vocab-item"><div class="vocab-lt">kur?</div><div class="vocab-ru">где?</div></div>
+        <div class="vocab-item"><div class="vocab-lt">ar?</div><div class="vocab-ru">ли? (вопрос да/нет)</div></div>
+        <div class="vocab-item"><div class="vocab-lt">šalis</div><div class="vocab-ru">страна</div></div>
+        <div class="vocab-item"><div class="vocab-lt">miestas</div><div class="vocab-ru">город</div></div>
+        <div class="vocab-item"><div class="vocab-lt">kalba</div><div class="vocab-ru">язык / говорит</div></div>
+        <div class="vocab-item"><div class="vocab-lt">dabar</div><div class="vocab-ru">сейчас / теперь</div></div>
+        <div class="vocab-item"><div class="vocab-lt">aišku</div><div class="vocab-ru">понятно</div></div>
+        <div class="vocab-item"><div class="vocab-lt">neaišku</div><div class="vocab-ru">непонятно</div></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">🌍 Šalys — Страны</div>
+      <table class="country-table">
+        <tr><th>Šalis</th><th>Kur?</th><th>Tautybė</th><th>Kalba</th></tr>
+        <tr><td>Lietuva</td><td>Lietuvoje</td><td>lietuvis / lietuvė</td><td>lietuviškai</td></tr>
+        <tr><td>Prancūzija</td><td>Prancūzijoje</td><td>prancūzas / prancūzė</td><td>prancūziškai</td></tr>
+        <tr><td>Italija</td><td>Italijoje</td><td>italas / italė</td><td>itališkai</td></tr>
+        <tr><td>Vokietija</td><td>Vokietijoje</td><td>vokietis / vokietė</td><td>vokiškai</td></tr>
+        <tr><td>Lenkija</td><td>Lenkijoje</td><td>lenkas / lenkė</td><td>lenkiškai</td></tr>
+        <tr><td>Čekija</td><td>Čekijoje</td><td>čekas / čekė</td><td>čekiškai</td></tr>
+        <tr><td>Ispanija</td><td>Ispanijoje</td><td>ispanas / ispanė</td><td>ispaniškai</td></tr>
+        <tr><td>Airija</td><td>Airijoje</td><td>airis / airė</td><td>angliškai</td></tr>
+        <tr><td>Ukraina</td><td>Ukrainoje</td><td>ukrainietis / ukrainietė</td><td>ukrainietiškai</td></tr>
+        <tr><td>Portugalija</td><td>Portugalijoje</td><td>portugalas / portugalė</td><td>portugališkai</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="tab-grammar" style="display:none;">
+    <div class="rule-card green-rule">
+      <div class="rule-title">🏠 gyventi — жить</div>
+      <div class="conj-grid2">
+        <div class="conj-cell"><div class="conj-pro">aš</div><div class="conj-form">gyvenu</div><div class="conj-example">Aš gyvenu Vilniuje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">mes</div><div class="conj-form">gyvename</div><div class="conj-example">Mes gyvename Lietuvoje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">tu</div><div class="conj-form">gyveni</div><div class="conj-example">Tu gyveni Paryžiuje.</div></div>
+        <div class="conj-cell"><div class="conj-pro">jūs</div><div class="conj-form">gyvenate</div><div class="conj-example">Jūs gyvenate Berlyne.</div></div>
+        <div class="conj-cell-wide"><div class="conj-pro">jis / ji / jie / jos</div><div class="conj-form">gyvena</div><div class="conj-example">Jis gyvena Romoje. · Ji gyvena Prahoje.</div></div>
+      </div>
+    </div>
+    <div class="rule-card orange-rule">
+      <div class="rule-title">📍 Vietininkas — где? (местный падеж)</div>
+      <div class="tip-box">Окончание слова меняется в зависимости от того, на что оно заканчивается!</div>
+      <table class="grammar-table">
+        <tr class="hrow"><td>Форма</td><td>Оконч.</td><td>Где? (vietininkas)</td><td>Оконч.</td></tr>
+        <tr><td>Kaun<b style="color:#e67e22;">as</b></td><td style="color:#e67e22;">-as</td><td>Kaun<b style="color:#27ae60;">e</b></td><td style="color:#27ae60;">-e</td></tr>
+        <tr><td>Antakaln<b style="color:#e67e22;">is</b></td><td style="color:#e67e22;">-is</td><td>Antakaln<b style="color:#27ae60;">yje</b></td><td style="color:#27ae60;">-yje</td></tr>
+        <tr><td>Panevėž<b style="color:#e67e22;">ys</b></td><td style="color:#e67e22;">-ys</td><td>Panevėž<b style="color:#27ae60;">yje</b></td><td style="color:#27ae60;">-yje</td></tr>
+        <tr><td>Lietuv<b style="color:#e67e22;">a</b></td><td style="color:#e67e22;">-a</td><td>Lietuv<b style="color:#27ae60;">oje</b></td><td style="color:#27ae60;">-oje</td></tr>
+        <tr><td>Zagarė</td><td style="color:#e67e22;">-ė</td><td>Zagarė<b style="color:#27ae60;">je</b></td><td style="color:#27ae60;">-je</td></tr>
+        <tr><td>Vilni<b style="color:#e67e22;">us</b></td><td style="color:#e67e22;">-us</td><td>Vilni<b style="color:#27ae60;">uje</b></td><td style="color:#27ae60;">-uje</td></tr>
+      </table>
+    </div>
+    <div class="rule-card blue">
+      <div class="rule-title">❓ Ar, Kur, Kaip</div>
+      <div class="example-item"><div class="example-lt">Ar tu kalbi lietuviškai?</div><div class="example-ru">Ты говоришь по-литовски?</div></div>
+      <div class="example-item"><div class="example-lt">Kur tu gyveni?</div><div class="example-ru">Где ты живёшь?</div></div>
+      <div class="example-item"><div class="example-lt">Kaip sekasi?</div><div class="example-ru">Как дела?</div></div>
+    </div>
+  </div>
+</div>
+<script>
+var scores={};
+var totalEx=11;
+function setTab(t){
+  ['lesson','vocab','grammar'].forEach(function(id){document.getElementById('tab-'+id).style.display=id===t?'block':'none';});
+  document.querySelectorAll('.tab').forEach(function(el,i){el.classList.toggle('active',['lesson','vocab','grammar'][i]===t);});
+}
+function saveScoreToIndex(){
+  var total=Object.values(scores).filter(function(v){return v!==null;});
+  if(total.length===0)return;
+  var avg=Math.round(total.reduce(function(a,b){return a+b;},0)/total.length);
+  try{var profiles=JSON.parse(localStorage.getItem('lt_profiles')||'{}');var names=Object.keys(profiles);if(names.length>0){var s=names[names.length-1];profiles[s]=profiles[s]||{};profiles[s]['lesson3']=avg;localStorage.setItem('lt_profiles',JSON.stringify(profiles));}}catch(e){}
+}
+function updateProgress(){
+  var done=Object.keys(scores).length;
+  var pct=Math.round(done/totalEx*100);
+  document.getElementById('mainProgress').style.width=pct+'%';
+  document.getElementById('progressLabel').textContent=done+' из '+totalEx+' упражнений выполнено';
+  saveScoreToIndex();
+}
+var matchStates={};
+function selectMatch(el,side,exId){
+  if(el.classList.contains('correct'))return;
+  var ms=matchStates[exId]||{lt:null,ltEl:null,ru:null,ruEl:null};matchStates[exId]=ms;
+  if(side==='lt'){if(ms.ltEl)ms.ltEl.classList.remove('selected');ms.lt=el.dataset.id;ms.ltEl=el;el.classList.add('selected');}
+  else{if(ms.ruEl)ms.ruEl.classList.remove('selected');ms.ru=el.dataset.id;ms.ruEl=el;el.classList.add('selected');}
+  if(ms.lt&&ms.ru){
+    if(ms.lt===ms.ru){
+      ms.ltEl.classList.remove('selected');ms.ruEl.classList.remove('selected');
+      ms.ltEl.classList.add('correct');ms.ruEl.classList.add('correct');ms.ltEl.onclick=null;ms.ruEl.onclick=null;
+      var ltId=exId==='3b'?'ltCol3b':(exId===9?'ltCol9':'ltCol'+exId);
+      var total=document.querySelectorAll('#'+ltId+' .match-item').length;
+      if(document.querySelectorAll('#'+ltId+' .correct').length===total){
+        var r=document.getElementById('res'+exId);
+        r.textContent='🎉 Все пары правильно!';r.className='result-box success show';
+        scores['ex'+exId]=100;updateProgress();
+      }
+    } else {
+      ms.ltEl.classList.add('wrong');ms.ruEl.classList.add('wrong');
+      setTimeout(function(){if(ms.ltEl)ms.ltEl.classList.remove('selected','wrong');if(ms.ruEl)ms.ruEl.classList.remove('selected','wrong');ms.lt=null;ms.ru=null;ms.ltEl=null;ms.ruEl=null;},700);return;
+    }
+    ms.lt=null;ms.ru=null;ms.ltEl=null;ms.ruEl=null;
+  }
+}
+var ex1data=[
+  {q:'gyventi',correct:'жить',opts:['жить','говорить']},
+  {q:'kur?',correct:'где?',opts:['где?','как?']},
+  {q:'kaip?',correct:'как?',opts:['как?','где?']},
+  {q:'aišku',correct:'понятно',opts:['понятно','непонятно']},
+  {q:'miestas',correct:'город',opts:['город','страна']},
+  {q:'taip pat',correct:'тоже',opts:['тоже','но']},
+  {q:'truputį',correct:'немного',opts:['немного','хорошо']},
+  {q:'lėčiau',correct:'медленнее',opts:['медленнее','быстрее']},
+  {q:'kartais',correct:'иногда',opts:['иногда','всегда']},
+  {q:'pakartoti',correct:'повторить',opts:['повторить','понять']},
+];
+var ex1sel={};
+function buildEx1(){
+  ex1sel={};var c=document.getElementById('ex1container');c.innerHTML='';
+  ex1data.forEach(function(d,i){
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence" style="color:#0F6B45;font-weight:700;">'+d.q+'</div><div class="fill-options" id="ex1opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#ex1opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');ex1sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx1();
+function checkEx1(){
+  var correct=0;
+  ex1data.forEach(function(d,i){
+    document.querySelectorAll('#ex1opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex1sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById('res1');scores['ex1']=Math.round(correct/ex1data.length*100);
+  r.textContent=correct===ex1data.length?'🎉 Все верно!':'👍 '+correct+' из '+ex1data.length+'.';
+  r.className='result-box '+(correct===ex1data.length?'success':'partial')+' show';
+  var rb81=document.createElement('div');rb81.style.marginTop='10px';rb81.innerHTML='<button class="retry-btn" onclick="retryEx1()">🔄 Попробовать снова</button>';r.appendChild(rb81);
+  document.getElementById('checkEx1btn').disabled=true;updateProgress();
+}
+function retryEx1(){buildEx1();document.getElementById('res1').className='result-box';document.getElementById('checkEx1btn').disabled=false;}
+var ex3aWords=[
+  {word:'Lietuva',group:'salis'},{word:'Prancūzija',group:'salis'},{word:'Italija',group:'salis'},
+  {word:'Vokietija',group:'salis'},{word:'Lenkija',group:'salis'},{word:'Čekija',group:'salis'},
+  {word:'Ispanija',group:'salis'},{word:'Airija',group:'salis'},{word:'Ukraina',group:'salis'},{word:'Portugalija',group:'salis'},
+  {word:'lietuvis',group:'tauta'},{word:'prancūzas',group:'tauta'},{word:'italas',group:'tauta'},
+  {word:'vokietis',group:'tauta'},{word:'lenkas',group:'tauta'},{word:'čekas',group:'tauta'},
+  {word:'ispanas',group:'tauta'},{word:'airis',group:'tauta'},{word:'ukrainietis',group:'tauta'},{word:'portugalas',group:'tauta'},
+  {word:'lietuviškai',group:'kalba'},{word:'prancūziškai',group:'kalba'},{word:'itališkai',group:'kalba'},
+  {word:'vokiškai',group:'kalba'},{word:'lenkiškai',group:'kalba'},{word:'čekiškai',group:'kalba'},
+  {word:'ispaniškai',group:'kalba'},{word:'angliškai',group:'kalba'},{word:'ukrainietiškai',group:'kalba'},{word:'portugališkai',group:'kalba'},
+];
+var draggedEx3=null;
+function buildEx3pool(){
+  var pool=document.getElementById('ex3pool');pool.innerHTML='';
+  ex3aWords.forEach(function(d){
+    var chip=document.createElement('div');chip.className='drag-chip';chip.textContent=d.word;
+    chip.dataset.word=d.word;chip.dataset.group=d.group;chip.draggable=true;
+    chip.addEventListener('dragstart',function(){draggedEx3=chip;chip.style.opacity='0.5';});
+    chip.addEventListener('dragend',function(){chip.style.opacity='1';});
+    chip.addEventListener('touchstart',function(){draggedEx3=chip;},{passive:true});
+    chip.addEventListener('touchend',function(e){
+      var touch=e.changedTouches[0];
+      var el=document.elementFromPoint(touch.clientX,touch.clientY);
+      var zone=el?el.closest('.drop-zone'):null;
+      if(zone){dropChip3({preventDefault:function(){}},zone.id.replace('zone-',''));}
+      draggedEx3=null;
+    });
+    pool.appendChild(chip);
+  });
+}
+buildEx3pool();
+function allowDrop3(e){e.preventDefault();e.currentTarget.classList.add('drag-over');}
+document.addEventListener('dragover',function(){});
+function dropChip3(e,group){
+  e.preventDefault();
+  var zone=document.getElementById('zone-'+group);if(zone)zone.classList.remove('drag-over');
+  if(!draggedEx3||draggedEx3.classList.contains('placed'))return;
+  draggedEx3.classList.add('placed');
+  var word=draggedEx3.dataset.word;var origGroup=draggedEx3.dataset.group;
+  var chip=document.createElement('div');chip.className='dropped-chip';chip.textContent=word;
+  chip.dataset.word=word;chip.dataset.group=group;chip.dataset.origGroup=origGroup;
+  chip.addEventListener('click',function(){
+    if(chip.classList.contains('correct-placed'))return;
+    var orig=document.querySelector('#ex3pool .drag-chip[data-word="'+word+'"]');
+    if(orig)orig.classList.remove('placed');chip.remove();
+  });
+  document.getElementById('chips-'+group).appendChild(chip);
+}
+function checkEx3A(){
+  var allChips=document.querySelectorAll('#chips-salis .dropped-chip,#chips-tauta .dropped-chip,#chips-kalba .dropped-chip');
+  var correct=0;var total=ex3aWords.length;
+  allChips.forEach(function(chip){
+    if(chip.dataset.group===chip.dataset.origGroup){chip.classList.add('correct-placed');correct++;}
+    else chip.classList.add('wrong-placed');
+  });
+  var r=document.getElementById('res3');scores['ex3']=Math.round(correct/total*100);
+  r.textContent=correct===total?'🎉 Все слова правильно!':'👍 '+correct+' из '+total+'.';
+  r.className='result-box '+(correct===total?'success':'partial')+' show';
+  var rb143=document.createElement('div');rb143.style.marginTop='10px';rb143.innerHTML='<button class="retry-btn" onclick="retryEx3A()">🔄 Попробовать снова</button>';r.appendChild(rb143);
+  document.getElementById('checkEx3btn').disabled=true;updateProgress();
+}
+function retryEx3A(){
+  ['salis','tauta','kalba'].forEach(function(g){document.getElementById('chips-'+g).innerHTML='';});
+  buildEx3pool();document.getElementById('res3').className='result-box';document.getElementById('checkEx3btn').disabled=false;
+}
+
+function buildFill(key){
+  var d=fillData[key];var c=document.getElementById(key+'container');c.innerHTML='';d.sel={};
+  d.items.forEach(function(item,i){
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+item.sentence+'</div><div class="fill-options" id="'+key+'opts'+i+'"></div>';
+    c.appendChild(div);
+    item.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#'+key+'opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');d.sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+function checkFill(key){
+  var d=fillData[key];var correct=0;
+  d.items.forEach(function(item,i){
+    document.querySelectorAll('#'+key+'opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===item.blank) b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==item.blank){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(d.sel[i]===item.blank) correct++;
+  });
+  var r=document.getElementById('res'+d.exNum);
+  scores['ex'+d.exNum]=Math.round(correct/d.items.length*100);
+  var cls=correct===d.items.length?'success':correct>=Math.ceil(d.items.length*0.6)?'partial':'fail';
+  var msg=correct===d.items.length?'🎉 Идеально!':correct>=Math.ceil(d.items.length*0.6)?'👍 '+correct+' из '+d.items.length+'. Хорошо!':'💪 '+correct+' из '+d.items.length+'.';
+  r.textContent=msg;r.className='result-box '+cls+' show';
+  var rb=document.createElement('div');rb.style.marginTop='10px';
+  var btn=document.createElement('button');btn.className='retry-btn';btn.textContent='🔄 Попробовать снова';
+  btn.onclick=function(){buildFill(key);document.getElementById('res'+d.exNum).className='result-box';var b2=key.charAt(0).toUpperCase()+key.slice(1);document.getElementById('check'+b2+'btn').disabled=false;};
+  rb.appendChild(btn);r.appendChild(rb);
+  var b2=key.charAt(0).toUpperCase()+key.slice(1);
+  document.getElementById('check'+b2+'btn').disabled=true;
+  updateProgress();
+}
+var fillData={
+  ex4:{items:[
+    {sentence:'Aš ___ Lietuvoje.',blank:'gyvenu',opts:['gyvenu','gyveni','gyvena']},
+    {sentence:'Tu ___ Vilniuje.',blank:'gyveni',opts:['gyvenu','gyveni','gyvena']},
+    {sentence:'Jis ___ Italijoje.',blank:'gyvena',opts:['gyvenu','gyveni','gyvena']},
+    {sentence:'Ji ___ Prancūzijoje.',blank:'gyvena',opts:['gyvenu','gyveni','gyvena']},
+    {sentence:'Mes ___ Vokietijoje.',blank:'gyvename',opts:['gyvename','gyvenate','gyvena']},
+    {sentence:'Jūs ___ Čekijoje.',blank:'gyvenate',opts:['gyvename','gyvenate','gyvena']},
+    {sentence:'Laura ___ Paryžiuje.',blank:'gyvena',opts:['gyvenu','gyveni','gyvena']},
+    {sentence:'Tomas ___ Dubline.',blank:'gyvena',opts:['gyvenu','gyveni','gyvena']},
+  ],sel:{},exNum:4},
+  ex5:{items:[
+    {sentence:'Aš ___ lietuviškai ir truputį angliškai.',blank:'kalbu',opts:['kalbu','gyvenu','suprantu','esu']},
+    {sentence:'Ji ___ Prancūzijoje, Paryžiuje.',blank:'gyvena',opts:['gyvena','kalba','supranta','yra']},
+    {sentence:'Ar jūs ___ lietuviškai?',blank:'suprantate',opts:['suprantate','gyvenate','kalbate','esate']},
+    {sentence:'Mes ___ studentai.',blank:'esame',opts:['esame','kalbame','gyvename','suprantame']},
+    {sentence:'Jis ___ itališkai gerai.',blank:'kalba',opts:['kalba','gyvena','supranta','yra']},
+    {sentence:'Aš ___ Vilniuje.',blank:'gyvenu',opts:['gyvenu','kalbu','suprantu','esu']},
+    {sentence:'Flavijus ___ truputį lietuviškai.',blank:'supranta',opts:['supranta','gyvena','kalba','yra']},
+    {sentence:'Aš ___ mokytoja.',blank:'nesu',opts:['nesu','nesi','nėra','nesame']},
+  ],sel:{},exNum:5},
+  ex6:{items:[
+    {sentence:'Aš gyvenu ___.',blank:'Lietuvoje',opts:['Lietuva','Lietuvoje']},
+    {sentence:'Ji gyvena ___.',blank:'Prancūzijoje',opts:['Prancūzijoje','Prancūzija']},
+    {sentence:'Čia yra miestas ___.',blank:'Vilnius',opts:['Vilnius','Vilniuje']},
+    {sentence:'Jis gyvena ___.',blank:'Italijoje',opts:['Italija','Italijoje']},
+    {sentence:'Mes gyvename ___.',blank:'Vilniuje',opts:['Vilniuje','Vilnius']},
+    {sentence:'Laura gyvena ___.',blank:'Paryžiuje',opts:['Paryžius','Paryžiuje']},
+    {sentence:'Čia yra šalis ___.',blank:'Lietuva',opts:['Lietuva','Lietuvoje']},
+    {sentence:'Sabina gyvena ___.',blank:'Berlyne',opts:['Berlyne','Berlynas']},
+  ],sel:{},exNum:6},
+};
+['ex4','ex5','ex6'].forEach(buildFill);
+
+var ex7data=[
+  {wrong:'Aš gyvena Vilniuje.',correct:'gyvenu',opts:['gyvenu','gyveni','gyvename']},
+  {wrong:'Tu kalbu lietuviškai.',correct:'kalbi',opts:['kalbi','kalba','kalbate']},
+  {wrong:'Ji supranti angliškai.',correct:'supranta',opts:['supranta','suprantu','suprantame']},
+  {wrong:'Mes gyvenu Lietuvoje.',correct:'gyvename',opts:['gyvename','gyvenate','gyvena']},
+  {wrong:'Aš gyvenu Lietuva.',correct:'Lietuvoje',opts:['Lietuvoje','Lietuvos','Lietuva']},
+  {wrong:'Kur tu gyvena?',correct:'gyveni',opts:['gyveni','gyvenu','gyvename']},
+  {wrong:'Vilnius yra šalis.',correct:'miestas',opts:['miestas','kalba','draugas']},
+];
+var ex7sel={};
+function buildEx7(){
+  ex7sel={};var c=document.getElementById('ex7container');c.innerHTML='';
+  ex7data.forEach(function(d,i){
+    var div=document.createElement('div');div.style.marginBottom='14px';
+    div.innerHTML='<div style="background:#fdf0f0;border-radius:10px;padding:10px 12px;margin-bottom:8px;"><div style="font-size:11px;color:#e74c3c;margin-bottom:4px;">⚠️ Найди ошибку:</div><div style="font-size:15px;color:#c0392b;font-weight:600;">'+d.wrong+'</div></div><div class="fill-options" id="ex7opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#ex7opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');ex7sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx7();
+function checkEx7(){
+  var correct=0;
+  ex7data.forEach(function(d,i){
+    document.querySelectorAll('#ex7opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct) b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex7sel[i]===d.correct) correct++;
+  });
+  var r=document.getElementById('res7');
+  scores['ex7']=Math.round(correct/ex7data.length*100);
+  r.textContent=correct===ex7data.length?'🎉 Все ошибки найдены!':'👍 '+correct+' из '+ex7data.length+'.';
+  r.className='result-box '+(correct===ex7data.length?'success':'partial')+' show';
+  var rb=document.createElement('div');rb.style.marginTop='10px';
+  var btn=document.createElement('button');btn.className='retry-btn';btn.textContent='🔄 Попробовать снова';
+  btn.onclick=function(){buildEx7();document.getElementById('res7').className='result-box';document.getElementById('checkEx7btn').disabled=false;};
+  rb.appendChild(btn);r.appendChild(rb);
+  document.getElementById('checkEx7btn').disabled=true;updateProgress();
+}
+
+/* EX8 match pairs */
+
+
+function buildTransOptions(cId,data,selObj,prefix){
+  var c=document.getElementById(cId);c.innerHTML='';
+  var letters=['A','B','C'];
+  data.forEach(function(d,i){
+    var div=document.createElement('div');div.style.marginBottom='12px';
+    div.innerHTML='<div class="fill-sentence" style="color:#0F6B45;font-weight:700;">'+d.lt+'</div><div id="'+prefix+'opts'+i+'" style="margin-top:8px;"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o,j){
+      var b=document.createElement('button');b.className='option-btn';
+      b.innerHTML='<span class="opt-letter">'+letters[j]+'</span>'+o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#'+prefix+'opts'+i+' .option-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');selObj[i]=o;};
+      div.querySelector('#'+prefix+'opts'+i).appendChild(b);
+    });
+  });
+}
+function checkTrans(data,sel,resId,exKey,btnId,retryFn){
+  var correct=0;
+  data.forEach(function(d,i){
+    document.querySelectorAll('#'+exKey+'opts'+i+' .option-btn').forEach(function(b){
+      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById(resId);
+  scores[exKey]=Math.round(correct/data.length*100);
+  var cls=correct===data.length?'success':correct>=Math.ceil(data.length*0.6)?'partial':'fail';
+  r.textContent=correct===data.length?'🎉 Отлично!':'👍 '+correct+' из '+data.length+'.';
+  r.className='result-box '+cls+' show';
+  var rb=document.createElement('div');rb.style.marginTop='10px';
+  var btn=document.createElement('button');btn.className='retry-btn';btn.textContent='🔄 Попробовать снова';
+  btn.onclick=retryFn;rb.appendChild(btn);r.appendChild(rb);
+  document.getElementById(btnId).disabled=true;updateProgress();
+}
+
+var ex9data=[
+  {lt:'Aš gyvenu Lietuvoje.',correct:'Я живу в Литве.',opts:['Я живу в Литве.','Я говорю по-литовски.','Я понимаю Литву.']},
+  {lt:'Ji gyvena Prancūzijoje.',correct:'Она живёт во Франции.',opts:['Она живёт во Франции.','Она говорит по-французски.','Она из Франции.']},
+  {lt:'Jis kalba itališkai.',correct:'Он говорит по-итальянски.',opts:['Он говорит по-итальянски.','Он живёт в Италии.','Он понимает итальянский.']},
+  {lt:'Ar jūs suprantate angliškai?',correct:'Вы понимаете по-английски?',opts:['Вы понимаете по-английски?','Вы живёте в Англии?','Вы говорите по-английски?']},
+  {lt:'Taip, dabar aišku.',correct:'Да, теперь понятно.',opts:['Да, теперь понятно.','Нет, непонятно.','Да, я живу здесь.']},
+];
+var ex9sel={};
+buildTransOptions('ex9container',ex9data,ex9sel,'ex9');
+function retryEx9(){
+  ex9sel={};
+  buildTransOptions('ex9container',ex9data,ex9sel,'ex9');
+  document.getElementById('res9').className='result-box';
+  document.getElementById('checkEx9btn').disabled=false;
+}
+function checkEx9(){
+  checkTrans(ex9data,ex9sel,'res9','ex9','checkEx9btn',retryEx9);
+}
+
+var ex10data=[
+  {lt:'Я живу в Литве.',correct:'Aš gyvenu Lietuvoje.',opts:['Aš gyvenu Lietuvoje.','Aš kalbu lietuviškai.','Mes gyvename Lietuvoje.']},
+  {lt:'Она живёт в Париже.',correct:'Ji gyvena Paryžiuje.',opts:['Ji gyvena Paryžiuje.','Ji kalba prancūziškai.','Jis gyvena Paryžiuje.']},
+  {lt:'Он говорит по-итальянски.',correct:'Jis kalba itališkai.',opts:['Jis kalba itališkai.','Jis gyvena Italijoje.','Ji kalba itališkai.']},
+  {lt:'Вы понимаете по-французски?',correct:'Ar jūs suprantate prancūziškai?',opts:['Ar jūs suprantate prancūziškai?','Ar jūs gyvenate Prancūzijoje?','Ar tu supranti prancūziškai?']},
+  {lt:'Я не понимаю по-французски.',correct:'Aš nesuprantu prancūziškai.',opts:['Aš nesuprantu prancūziškai.','Aš negyvenu Prancūzijoje.','Aš nekalbu prancūziškai.']},
+  {lt:'Мы немного говорим по-литовски.',correct:'Mes truputį kalbame lietuviškai.',opts:['Mes truputį kalbame lietuviškai.','Mes gyvename Lietuvoje.','Mes truputį suprantame lietuviškai.']},
+];
+var ex10sel={};
+buildTransOptions('ex10container',ex10data,ex10sel,'ex10');
+function retryEx10(){
+  ex10sel={};
+  buildTransOptions('ex10container',ex10data,ex10sel,'ex10');
+  document.getElementById('res10').className='result-box';
+  document.getElementById('checkEx10btn').disabled=false;
+}
+function checkEx10(){
+  checkTrans(ex10data,ex10sel,'res10','ex10','checkEx10btn',retryEx10);
+}
+
+/* EX11 word order */
+var ex11sentences=[
+  {words:['Kur','tu','gyveni,','Tomai','?'],correct:['Kur','tu','gyveni,','Tomai','?']},
+  {words:['Aš','gyvenu','Lietuvoje,','Vilniuje','.'],correct:['Aš','gyvenu','Lietuvoje,','Vilniuje','.']},
+  {words:['Ji','kalba','prancūziškai','gerai','.'],correct:['Ji','kalba','prancūziškai','gerai','.']},
+  {words:['Ar','jūs','suprantate','lietuviškai','?'],correct:['Ar','jūs','suprantate','lietuviškai','?']},
+  {words:['Mes','truputį','suprantame',',','bet','neaišku','.'],correct:['Mes','truputį','suprantame',',','bet','neaišku','.']},
+];
+var ex11state=[];
+function shuffle(arr){return arr.slice().sort(function(){return Math.random()-0.5;});}
+function buildEx11(){
+  ex11state=[];
+  var c=document.getElementById('ex11container');c.innerHTML='';
+  ex11sentences.forEach(function(s,si){
+    ex11state.push({selected:[],correct:s.correct});
+    var div=document.createElement('div');div.style.marginBottom='16px';
+    var num=document.createElement('div');num.style.cssText='font-size:13px;font-weight:700;color:#0F6B45;margin-bottom:6px;';num.textContent=(si+1)+'.';
+    div.appendChild(num);
+    var selectedDiv=document.createElement('div');
+    selectedDiv.id='ex11sel'+si;
+    selectedDiv.style.cssText='min-height:38px;border:2px solid #C8F5DC;border-radius:10px;padding:6px 8px;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;background:#f8fffe;';
+    div.appendChild(selectedDiv);
+    var wordsDiv=document.createElement('div');wordsDiv.id='ex11words'+si;
+    wordsDiv.style.cssText='display:flex;flex-wrap:wrap;gap:6px;';
+    var scrambled=shuffle(s.words);
+    scrambled.forEach(function(w){
+      var btn=document.createElement('button');btn.className='fill-btn';btn.textContent=w;btn.dataset.word=w;
+      btn.onclick=function(){
+        if(btn.disabled)return;
+        btn.disabled=true;btn.style.opacity='0.3';
+        ex11state[si].selected.push(w);
+        var chip=document.createElement('button');chip.className='fill-btn selected';chip.textContent=w;
+        chip.style.cursor='pointer';
+        chip.onclick=function(){
+          chip.remove();
+          ex11state[si].selected.splice(ex11state[si].selected.indexOf(w),1);
+          btn.disabled=false;btn.style.opacity='1';
+        };
+        selectedDiv.appendChild(chip);
+      };
+      wordsDiv.appendChild(btn);
+    });
+    div.appendChild(wordsDiv);
+    c.appendChild(div);
+  });
+  var checkBtn=document.createElement('button');checkBtn.className='check-btn';checkBtn.textContent='Проверить ✓';checkBtn.id='checkEx11btn';
+  checkBtn.onclick=checkEx11;
+  c.appendChild(checkBtn);
+  var res=document.createElement('div');res.className='result-box';res.id='res11inner';
+  c.appendChild(res);
+}
+buildEx11();
+function checkEx11(){
+  var correct=0;
+  ex11sentences.forEach(function(s,si){
+    var sel=ex11state[si].selected;
+    var isCorrect=sel.length===s.correct.length&&s.correct.every(function(w,i){return sel[i]===w;});
+    if(isCorrect)correct++;
+    var selDiv=document.getElementById('ex11sel'+si);
+    Array.from(selDiv.children).forEach(function(chip){
+      var idx=Array.from(selDiv.children).indexOf(chip);
+      if(s.correct[idx]===chip.textContent){chip.classList.remove('selected');chip.classList.add('correct');}
+      else{chip.classList.remove('selected');chip.classList.add('wrong');}
+      chip.onclick=null;
+    });
+    document.querySelectorAll('#ex11words'+si+' .fill-btn').forEach(function(b){b.disabled=true;b.style.opacity='0.3';});
+  });
+  scores['ex11']=Math.round(correct/ex11sentences.length*100);
+  var r=document.getElementById('res11inner');
+  r.textContent=correct===ex11sentences.length?'🎉 Все предложения правильно!':'👍 '+correct+' из '+ex11sentences.length+'. Зелёным — правильные слова.';
+  r.className='result-box '+(correct===ex11sentences.length?'success':'partial')+' show';
+  var rb=document.createElement('div');rb.style.marginTop='10px';
+  var btn=document.createElement('button');btn.className='retry-btn';btn.textContent='🔄 Попробовать снова';
+  btn.onclick=function(){buildEx11();};rb.appendChild(btn);r.appendChild(rb);
+  document.getElementById('checkEx11btn').disabled=true;updateProgress();
+  document.getElementById('checkEx11btn').disabled=true;updateProgress();
+}
+</script>
+</body>
+</html>
