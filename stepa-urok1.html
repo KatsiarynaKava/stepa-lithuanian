@@ -6,92 +6,118 @@
 <title>Степа учит литовский — Урок 1</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f3ff; min-height: 100vh; padding: 12px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0fdf4; min-height: 100vh; padding: 12px; }
   .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
 
-  .hero { background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%); border-radius: 20px; padding: 24px 16px 20px; margin-bottom: 14px; text-align: center; }
+  /* HERO - мятный */
+  .hero { background: linear-gradient(135deg, #52C788 0%, #2EA86B 100%); border-radius: 20px; padding: 24px 16px 20px; margin-bottom: 14px; text-align: center; }
   .hero h1 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-  .hero p { color: #CECBF6; font-size: 14px; }
+  .hero p { color: #C8F5DC; font-size: 14px; }
   .hero-emoji { font-size: 48px; margin-bottom: 8px; display: block; }
-  .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 99px; height: 8px; margin-top: 12px; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.25); border-radius: 99px; height: 8px; margin-top: 12px; }
   .progress-bar-fill { background: #fff; border-radius: 99px; height: 8px; transition: width 0.5s ease; }
-  .progress-label { color: #EEEDFE; font-size: 12px; margin-top: 5px; }
+  .progress-label { color: #D8FAE8; font-size: 12px; margin-top: 5px; }
 
-  .tabs { display: flex; background: #fff; border-radius: 12px; padding: 4px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(83,74,183,0.1); }
+  /* TABS */
+  .tabs { display: flex; background: #fff; border-radius: 12px; padding: 4px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(46,168,107,0.12); }
   .tab { flex: 1; padding: 8px 4px; font-size: 12px; border: none; background: transparent; cursor: pointer; border-radius: 9px; color: #888; transition: all 0.2s; font-family: inherit; font-weight: 500; }
-  .tab.active { background: #534AB7; color: #fff; font-weight: 600; }
+  .tab.active { background: #2EA86B; color: #fff; font-weight: 700; }
 
-  .section-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(83,74,183,0.08); }
-  .section-title { font-size: 15px; font-weight: 700; color: #2d2d2d; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  /* CARDS */
+  .section-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(46,168,107,0.08); }
+  .section-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 
-  .tip-box { background: #FFF8E1; border-left: 3px solid #F9A825; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #5D4037; margin-bottom: 12px; line-height: 1.5; }
+  /* RULE CARDS with colored left border */
+  .rule-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .rule-card.blue { border-left: 5px solid #4A90E2; }
+  .rule-card.green-rule { border-left: 5px solid #27ae60; }
+  .rule-card.red-rule { border-left: 5px solid #e74c3c; }
+  .rule-title { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
+  /* TIP / NOTE boxes */
+  .tip-box { background: #FFF8E1; border-left: 4px solid #F9A825; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #5D4037; margin-bottom: 12px; line-height: 1.5; }
+  .note-box { background: #E8F4FD; border-left: 4px solid #4A90E2; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #1a3a5c; margin-bottom: 10px; line-height: 1.5; }
+
+  /* DIALOG */
   .dialog-line { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
   .dialog-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-  .dialog-bubble { flex: 1; }
-  .dialog-name { font-size: 11px; font-weight: 700; color: #7F77DD; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .dialog-lt { font-size: 15px; color: #2d2d2d; font-weight: 500; line-height: 1.5; }
-  .dialog-ru { font-size: 12px; color: #999; margin-top: 3px; line-height: 1.4; }
+  .dialog-bubble { flex: 1; background: #f8f8f8; border-radius: 12px; padding: 10px 12px; }
+  .dialog-name { font-size: 11px; font-weight: 700; color: #2EA86B; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .dialog-lt { font-size: 15px; color: #1a1a1a; font-weight: 500; line-height: 1.5; }
+  .dialog-ru { font-size: 12px; color: #999; margin-top: 3px; }
 
+  /* VOCAB */
   .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .vocab-item { background: #f5f3ff; border-radius: 10px; padding: 8px 10px; }
-  .vocab-lt { font-size: 14px; font-weight: 700; color: #3C3489; }
+  .vocab-item { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; border: 1px solid #C8F5DC; }
+  .vocab-lt { font-size: 14px; font-weight: 700; color: #1E7A4A; }
   .vocab-ru { font-size: 12px; color: #666; margin-top: 2px; }
 
-  .grammar-block { margin-bottom: 16px; }
-  .grammar-subtitle { font-size: 13px; font-weight: 700; color: #534AB7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; padding: 6px 10px; background: #f5f3ff; border-radius: 8px; }
+  /* GRAMMAR TABLES */
   .grammar-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
-  .grammar-table td { padding: 7px 8px; border-bottom: 1px solid #f0eeff; }
+  .grammar-table td { padding: 7px 8px; border-bottom: 1px solid #f0f0f0; }
   .grammar-table tr:last-child td { border-bottom: none; }
-  .grammar-table td:first-child { font-weight: 700; color: #3C3489; width: 40%; }
-  .grammar-table td:last-child { color: #555; }
-  .grammar-table .header-row td { background: #f5f3ff; font-weight: 700; color: #534AB7; font-size: 12px; }
-  .grammar-table .highlight td { background: #fafafe; }
-  .neg-table td:first-child { color: #c0392b !important; }
-  .neg-header td { background: #fff5f5 !important; color: #c0392b !important; }
+  .grammar-table td:first-child { font-weight: 700; color: #2EA86B; width: 40%; }
+  .grammar-table td:last-child { color: #444; }
+  .grammar-table .hrow td { background: #f0fdf4; font-weight: 700; color: #1E7A4A; font-size: 12px; text-transform: uppercase; }
+  .neg-col td:first-child { color: #e74c3c !important; }
+  .neg-hrow td { background: #fff5f5 !important; color: #e74c3c !important; }
 
-  .example-list { margin-top: 8px; }
-  .example-item { background: #f5f3ff; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
-  .example-lt { font-size: 14px; font-weight: 600; color: #2d2d2d; }
+  /* Highlighted endings */
+  .end-hi { color: #e74c3c; font-weight: 700; }
+
+  /* CONJ CARD */
+  .conj-card { background: #fff; border-radius: 14px; padding: 14px; margin-bottom: 12px; border: 2px solid #C8F5DC; }
+  .conj-card-title { font-size: 14px; font-weight: 700; color: #1E7A4A; margin-bottom: 12px; }
+  .conj-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .conj-cell { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; }
+  .conj-pro { font-size: 11px; color: #888; margin-bottom: 2px; }
+  .conj-form { font-size: 16px; font-weight: 700; color: #1E7A4A; }
+  .conj-example { font-size: 11px; color: #aaa; margin-top: 3px; }
+  .conj-cell-wide { background: #f0fdf4; border-radius: 10px; padding: 8px 10px; grid-column: span 2; }
+
+  /* EXAMPLES */
+  .example-item { background: #f0fdf4; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
+  .example-lt { font-size: 14px; font-weight: 600; color: #1a1a1a; }
   .example-ru { font-size: 12px; color: #888; margin-top: 2px; }
-  .neg-example-item { background: #fff5f5; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
-  .neg-example-item .example-lt { color: #c0392b; }
+  .neg-ex { background: #fff5f5; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
+  .neg-ex .example-lt { color: #e74c3c; }
 
-  .ex-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(83,74,183,0.08); }
+  /* EXERCISES */
+  .ex-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
   .ex-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-  .ex-number { background: #534AB7; color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
-  .ex-title { font-size: 15px; font-weight: 700; color: #2d2d2d; }
+  .ex-number { background: #2EA86B; color: #fff; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .ex-title { font-size: 15px; font-weight: 700; color: #1a1a1a; }
   .ex-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
 
+  /* BUTTONS */
   .fill-item { margin-bottom: 12px; }
-  .fill-sentence { font-size: 15px; color: #2d2d2d; margin-bottom: 7px; line-height: 1.6; }
+  .fill-sentence { font-size: 15px; color: #1a1a1a; margin-bottom: 7px; line-height: 1.6; font-weight: 500; }
   .fill-options { display: flex; flex-wrap: wrap; gap: 7px; }
-  .fill-btn { border: 2px solid #d0c9f5; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; transition: all 0.15s; font-weight: 600; font-family: inherit; }
-  .fill-btn.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .fill-btn { border: 2px solid #C8F5DC; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #1a1a1a; transition: all 0.15s; font-weight: 600; font-family: inherit; }
+  .fill-btn.selected { border-color: #2EA86B; background: #f0fdf4; color: #1E7A4A; }
   .fill-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
   .fill-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
   .fill-btn:disabled { cursor: default; }
 
   .match-container { display: flex; gap: 10px; }
   .match-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
-  .match-item { border: 2px solid #d0c9f5; border-radius: 10px; padding: 8px 6px; font-size: 13px; cursor: pointer; transition: all 0.15s; background: #fff; color: #2d2d2d; text-align: center; user-select: none; font-family: inherit; line-height: 1.3; }
-  .match-item.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .match-item { border: 2px solid #C8F5DC; border-radius: 10px; padding: 8px 6px; font-size: 13px; cursor: pointer; background: #fff; color: #1a1a1a; text-align: center; user-select: none; font-family: inherit; transition: all 0.15s; }
+  .match-item.selected { border-color: #2EA86B; background: #f0fdf4; color: #1E7A4A; }
   .match-item.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; cursor: default; }
   .match-item.wrong { border-color: #e74c3c; background: #fdf0f0; }
 
-  .option-btn { border: 2px solid #d0c9f5; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; text-align: left; transition: all 0.15s; display: flex; align-items: center; gap: 10px; font-family: inherit; width: 100%; margin-bottom: 8px; }
-  .option-btn.selected { border-color: #7F77DD; background: #f5f3ff; color: #3C3489; }
+  .option-btn { border: 2px solid #C8F5DC; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #1a1a1a; text-align: left; display: flex; align-items: center; gap: 10px; font-family: inherit; width: 100%; margin-bottom: 8px; transition: all 0.15s; }
+  .option-btn.selected { border-color: #2EA86B; background: #f0fdf4; color: #1E7A4A; }
   .option-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
   .option-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
   .opt-letter { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
 
-  .error-sentence { background: #fdf0f0; border-radius: 10px; padding: 12px; margin-bottom: 8px; }
-  .error-lt { font-size: 15px; color: #c0392b; font-weight: 600; margin-bottom: 4px; }
-  .error-label { font-size: 11px; color: #e74c3c; margin-bottom: 6px; }
+  .error-sentence { background: #fdf0f0; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .error-lt { font-size: 15px; color: #c0392b; font-weight: 600; }
+  .error-label { font-size: 11px; color: #e74c3c; margin-bottom: 4px; }
 
-  .check-btn { background: #534AB7; color: #fff; border: none; border-radius: 12px; padding: 13px; font-size: 15px; cursor: pointer; width: 100%; margin-top: 12px; font-weight: 700; transition: all 0.2s; font-family: inherit; }
-  .check-btn:hover { background: #3C3489; }
-  .check-btn:active { transform: scale(0.98); }
+  .check-btn { background: linear-gradient(135deg, #52C788, #2EA86B); color: #fff; border: none; border-radius: 12px; padding: 13px; font-size: 15px; cursor: pointer; width: 100%; margin-top: 12px; font-weight: 700; font-family: inherit; transition: all 0.2s; }
+  .check-btn:active { transform: scale(0.98); opacity: 0.9; }
   .check-btn:disabled { background: #ddd; color: #999; cursor: default; }
 
   .result-box { border-radius: 12px; padding: 12px 14px; margin-top: 10px; font-size: 14px; line-height: 1.5; display: none; }
@@ -99,14 +125,20 @@
   .result-box.success { background: #eafaf1; color: #1a7a45; border: 1px solid #27ae60; }
   .result-box.partial { background: #FFF8E1; color: #5D4037; border: 1px solid #F9A825; }
   .result-box.fail { background: #fdf0f0; color: #c0392b; border: 1px solid #e74c3c; }
-  .retry-btn { background: transparent; color: #534AB7; border: 2px solid #7F77DD; border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; margin-top: 10px; display: inline-block; font-family: inherit; }
+  .retry-btn { background: transparent; color: #2EA86B; border: 2px solid #2EA86B; border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; margin-top: 10px; display: inline-block; font-family: inherit; font-weight: 600; }
 
-  .back-link { display: inline-flex; align-items: center; gap: 6px; background: #534AB7; color: #fff; border-radius: 10px; padding: 8px 14px; font-size: 13px; text-decoration: none; margin-bottom: 12px; font-weight: 600; }
+  /* HOMEWORK */
+  .homework-card { background: linear-gradient(135deg, #FF9A3C, #F06A1A); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+  .homework-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .homework-item { background: rgba(255,255,255,0.85); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .homework-lt { font-size: 14px; color: #1a1a1a; font-weight: 600; }
+  .homework-hint { font-size: 12px; color: #666; margin-top: 3px; }
+
+  .back-link { display: inline-flex; align-items: center; gap: 6px; background: #2EA86B; color: #fff; border-radius: 10px; padding: 8px 14px; font-size: 13px; text-decoration: none; margin-bottom: 12px; font-weight: 700; }
 </style>
 </head>
 <body>
 <div class="page">
-
   <a href="index.html" class="back-link">← Все уроки</a>
 
   <div class="hero">
@@ -125,61 +157,44 @@
     <button class="tab" onclick="setTab('grammar')">📝 Грамматика</button>
   </div>
 
+  <!-- УРОК -->
   <div id="tab-lesson">
 
     <div class="section-card">
       <div class="section-title">💬 Tekstas — Читаем диалог</div>
-      <div class="tip-box">🗣️ Читай вслух каждое предложение! Перевод — мелким шрифтом под литовским.</div>
+      <div class="tip-box">🗣️ Читай вслух! Перевод — серым под каждой репликой.</div>
       <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
         <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
-          <div class="dialog-lt">Labas! Aš esu Tomas.</div>
-          <div class="dialog-ru">Привет! Я Томас.</div></div>
+          <div class="dialog-lt">Labas! Mano vardas yra Tomas.</div>
+          <div class="dialog-ru">Привет! Моё имя — Томас.</div></div>
       </div>
       <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-avatar" style="background:#fce4ec;">👩‍🏫</div>
         <div class="dialog-bubble"><div class="dialog-name">Viktorija</div>
-          <div class="dialog-lt">Labas, Tomai! Aš esu Viktorija.</div>
-          <div class="dialog-ru">Привет, Томас! Я Виктория.</div></div>
-      </div>
-      <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
-        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
-          <div class="dialog-lt">Ar tu esi studentė?</div>
-          <div class="dialog-ru">Ты студентка?</div></div>
-      </div>
-      <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
-        <div class="dialog-bubble"><div class="dialog-name">Viktorija</div>
-          <div class="dialog-lt">Ne, aš nesu studentė. Aš esu mokytoja.</div>
-          <div class="dialog-ru">Нет, я не студентка. Я учительница.</div></div>
-      </div>
-      <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
-        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
-          <div class="dialog-lt">Čia yra Paulius. Jis yra studentas.</div>
-          <div class="dialog-ru">Здесь Паулиус. Он студент.</div></div>
+          <div class="dialog-lt">Labas, Tomai! Aš esu mokytoja.</div>
+          <div class="dialog-ru">Привет, Томас! Я учительница.</div></div>
       </div>
       <div class="dialog-line">
         <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Aš esu studentas. Čia yra Paulius.</div>
+          <div class="dialog-ru">Я студент. Здесь Паулиус.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e1f5fe;">👦</div>
         <div class="dialog-bubble"><div class="dialog-name">Paulius</div>
-          <div class="dialog-lt">Taip, mes esame studentai.</div>
-          <div class="dialog-ru">Да, мы студенты.</div></div>
+          <div class="dialog-lt">Labas! Mano pavardė yra Martinaitis. O tu?</div>
+          <div class="dialog-ru">Привет! Моя фамилия — Мартинайтис. А ты?</div></div>
       </div>
       <div class="dialog-line">
         <div class="dialog-avatar" style="background:#fff9c4;">👧</div>
         <div class="dialog-bubble"><div class="dialog-name">Inga</div>
-          <div class="dialog-lt">Čia yra ir Inga. Ji yra studentė.</div>
-          <div class="dialog-ru">Здесь и Инга. Она студентка.</div></div>
+          <div class="dialog-lt">Aš esu Inga. Aš nesu studentė — aš esu dėstytoja!</div>
+          <div class="dialog-ru">Я — Инга. Я не студентка — я преподавательница!</div></div>
       </div>
       <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
-        <div class="dialog-bubble"><div class="dialog-name">Paulius</div>
-          <div class="dialog-lt">Mes esame studentai ir studentės.</div>
-          <div class="dialog-ru">Мы студенты и студентки.</div></div>
-      </div>
-      <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-avatar" style="background:#fce4ec;">👩‍🏫</div>
         <div class="dialog-bubble"><div class="dialog-name">Viktorija</div>
           <div class="dialog-lt">Čia yra mūsų mokytoja. Ji yra mokytoja, o ne studentė.</div>
           <div class="dialog-ru">Здесь наша учительница. Она учительница, а не студентка.</div></div>
@@ -191,19 +206,14 @@
           <div class="dialog-ru">Здесь преподаватель. Он преподаватель, а она учительница.</div></div>
       </div>
       <div class="dialog-line">
-        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
-        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
-          <div class="dialog-lt">Ne, mes nesame mokytojai.</div>
-          <div class="dialog-ru">Нет, мы не учителя.</div></div>
-      </div>
-      <div class="dialog-line">
         <div class="dialog-avatar" style="background:#e8f5e9;">👦</div>
-        <div class="dialog-bubble"><div class="dialog-name">Paulius</div>
-          <div class="dialog-lt">Taip, aš esu studentas. O tu?</div>
-          <div class="dialog-ru">Да, я студент. А ты?</div></div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Ne, mes nesame mokytojai. Taip, aš esu studentas. O tu?</div>
+          <div class="dialog-ru">Нет, мы не учителя. Да, я студент. А ты?</div></div>
       </div>
     </div>
 
+    <!-- EX 1 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">1</div><div class="ex-title">Соедини слова</div></div>
       <div class="ex-desc">Нажми литовское слово, потом его перевод</div>
@@ -228,30 +238,33 @@
       <div class="result-box" id="res1"></div>
     </div>
 
+    <!-- EX 2 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">2</div><div class="ex-title">Вставь пропущенное слово</div></div>
-      <div class="ex-desc">Выбери нужное слово из вариантов</div>
+      <div class="ex-desc">Выбери правильный вариант</div>
       <div id="ex2container"></div>
       <button class="check-btn" id="checkEx2btn" onclick="checkFill('ex2')">Проверить ✓</button>
       <div class="result-box" id="res2"></div>
     </div>
 
-    <div class="section-card" style="border-left:4px solid #7F77DD;">
-      <div class="section-title">👥 Įvardžiai — Местоимения</div>
-      <div class="tip-box">jie — если есть хотя бы один мужчина. jos — только если все женщины.</div>
+    <!-- RULE: Местоимения -->
+    <div class="rule-card blue">
+      <div class="rule-title">👥 Įvardžiai — Местоимения</div>
+      <div class="note-box">💡 <b>jie</b> — если есть хотя бы один мужчина. <b>jos</b> — только если все женщины.</div>
       <table class="grammar-table">
-        <tr class="header-row"><td>Литовский</td><td>Русский</td></tr>
+        <tr class="hrow"><td>Литовский</td><td>Русский</td></tr>
         <tr><td>aš</td><td>я</td></tr>
         <tr><td>tu</td><td>ты</td></tr>
-        <tr class="highlight"><td>jis</td><td>он</td></tr>
-        <tr class="highlight"><td>ji</td><td>она</td></tr>
+        <tr><td>jis</td><td>он</td></tr>
+        <tr><td>ji</td><td>она</td></tr>
         <tr><td>mes</td><td>мы</td></tr>
         <tr><td>jūs</td><td>вы</td></tr>
-        <tr class="highlight"><td>jie</td><td>они (м. или смешанная группа)</td></tr>
-        <tr class="highlight"><td>jos</td><td>они (только женщины)</td></tr>
+        <tr><td>jie</td><td>они (м. или смешанная группа)</td></tr>
+        <tr><td>jos</td><td>они (только женщины)</td></tr>
       </table>
     </div>
 
+    <!-- EX 3 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">3</div><div class="ex-title">Выбери правильное местоимение</div></div>
       <div class="ex-desc">jis, ji, jie или jos?</div>
@@ -260,25 +273,22 @@
       <div class="result-box" id="res3"></div>
     </div>
 
-    <div class="section-card" style="border-left:4px solid #27ae60;">
-      <div class="section-title">⚡ Veiksmažodis būti — Глагол "быть"</div>
-      <div class="tip-box">Главное правило: aš esu, tu esi — и запомни! Все остальные (jis/ji/jie/jos) — yra.</div>
-      <table class="grammar-table">
-        <tr class="header-row"><td>Местоимение</td><td>Форма</td></tr>
-        <tr><td>aš</td><td>esu</td></tr>
-        <tr><td>tu</td><td>esi</td></tr>
-        <tr><td>jis / ji</td><td>yra</td></tr>
-        <tr><td>mes</td><td>esame</td></tr>
-        <tr><td>jūs</td><td>esate</td></tr>
-        <tr><td>jie / jos</td><td>yra</td></tr>
-      </table>
-      <div class="example-list">
-        <div class="example-item"><div class="example-lt">Aš esu Tomas.</div><div class="example-ru">Я Томас.</div></div>
-        <div class="example-item"><div class="example-lt">Ji yra mokytoja.</div><div class="example-ru">Она учительница.</div></div>
-        <div class="example-item"><div class="example-lt">Mes esame studentai.</div><div class="example-ru">Мы студенты.</div></div>
+    <!-- RULE: Būti -->
+    <div class="rule-card green-rule">
+      <div class="rule-title">⚡ Veiksmažodis būti — Глагол "быть"</div>
+      <div class="tip-box">В русском мы не говорим «я есть», а в литовском глагол всегда нужен! <b>aš esu, tu esi</b> — запомни особо!</div>
+      <div class="conj-card" style="border:none;padding:0;margin-bottom:10px;">
+        <div class="conj-grid2">
+          <div class="conj-cell"><div class="conj-pro">aš</div><div class="conj-form">esu</div><div class="conj-example">Aš esu Tomas.</div></div>
+          <div class="conj-cell"><div class="conj-pro">mes</div><div class="conj-form">esame</div><div class="conj-example">Mes esame studentai.</div></div>
+          <div class="conj-cell"><div class="conj-pro">tu</div><div class="conj-form">esi</div><div class="conj-example">Tu esi mokytoja.</div></div>
+          <div class="conj-cell"><div class="conj-pro">jūs</div><div class="conj-form">esate</div><div class="conj-example">Jūs esate dėstytojas.</div></div>
+          <div class="conj-cell-wide"><div class="conj-pro">jis / ji / jie / jos</div><div class="conj-form">yra</div><div class="conj-example">Jis yra studentas. &nbsp;·&nbsp; Ji yra mokytoja.</div></div>
+        </div>
       </div>
     </div>
 
+    <!-- EX 4 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">4</div><div class="ex-title">Вставь форму глагола būti</div></div>
       <div class="ex-desc">esu, esi, yra, esame или esate?</div>
@@ -287,25 +297,22 @@
       <div class="result-box" id="res4"></div>
     </div>
 
-    <div class="section-card" style="border-left:4px solid #e74c3c;">
-      <div class="section-title">🚫 Nebūti — Глагол "не быть"</div>
-      <div class="tip-box">Добавляем ne- в начало: esu → nesu, esi → nesi. Особый случай: yra → nėra (обрати внимание на ė!).</div>
-      <table class="grammar-table neg-table">
-        <tr class="header-row neg-header"><td>Местоимение</td><td>Форма</td></tr>
-        <tr><td>aš</td><td>nesu</td></tr>
-        <tr><td>tu</td><td>nesi</td></tr>
-        <tr><td>jis / ji</td><td>nėra</td></tr>
-        <tr><td>mes</td><td>nesame</td></tr>
-        <tr><td>jūs</td><td>nesate</td></tr>
-        <tr><td>jie / jos</td><td>nėra</td></tr>
-      </table>
-      <div class="example-list">
-        <div class="neg-example-item"><div class="example-lt">Aš nesu mokytojas.</div><div class="example-ru">Я не учитель.</div></div>
-        <div class="neg-example-item"><div class="example-lt">Ji nėra dėstytoja.</div><div class="example-ru">Она не преподавательница.</div></div>
-        <div class="neg-example-item"><div class="example-lt">Mes nesame mokytojai.</div><div class="example-ru">Мы не учителя.</div></div>
+    <!-- RULE: Nebūti -->
+    <div class="rule-card red-rule">
+      <div class="rule-title">🚫 Nebūti — Глагол "не быть"</div>
+      <div class="tip-box">Добавляем <b style="color:#e74c3c;">ne-</b> в начало: esu → <b style="color:#e74c3c;">ne</b>su, esi → <b style="color:#e74c3c;">ne</b>si. Особый случай: yra → <b style="color:#e74c3c;">nė</b>ra (обрати внимание на <b style="color:#e74c3c;">ė</b>!)</div>
+      <div class="conj-card" style="border:none;padding:0;margin-bottom:10px;">
+        <div class="conj-grid2">
+          <div class="conj-cell" style="background:#fff5f5;"><div class="conj-pro">aš</div><div class="conj-form" style="color:#e74c3c;">nesu</div><div class="conj-example">Aš nesu mokytojas.</div></div>
+          <div class="conj-cell" style="background:#fff5f5;"><div class="conj-pro">mes</div><div class="conj-form" style="color:#e74c3c;">nesame</div><div class="conj-example">Mes nesame studentai.</div></div>
+          <div class="conj-cell" style="background:#fff5f5;"><div class="conj-pro">tu</div><div class="conj-form" style="color:#e74c3c;">nesi</div><div class="conj-example">Tu nesi studentas.</div></div>
+          <div class="conj-cell" style="background:#fff5f5;"><div class="conj-pro">jūs</div><div class="conj-form" style="color:#e74c3c;">nesate</div><div class="conj-example">Jūs nesate mokytoja.</div></div>
+          <div class="conj-cell-wide" style="background:#fff5f5;"><div class="conj-pro">jis / ji / jie / jos</div><div class="conj-form" style="color:#e74c3c;">nėra</div><div class="conj-example">Ji nėra dėstytoja. &nbsp;·&nbsp; Jis nėra Paulius.</div></div>
+        </div>
       </div>
     </div>
 
+    <!-- EX 5 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Отрицание</div></div>
       <div class="ex-desc">Выбери правильную отрицательную форму</div>
@@ -314,6 +321,7 @@
       <div class="result-box" id="res5"></div>
     </div>
 
+    <!-- EX 6 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">6</div><div class="ex-title">Исправь ошибку!</div></div>
       <div class="ex-desc">В каждом предложении есть ошибка — найди правильный вариант</div>
@@ -322,6 +330,7 @@
       <div class="result-box" id="res6"></div>
     </div>
 
+    <!-- EX 7 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Что это значит?</div></div>
       <div class="ex-desc">Выбери правильный перевод с литовского на русский</div>
@@ -330,6 +339,7 @@
       <div class="result-box" id="res7"></div>
     </div>
 
+    <!-- EX 8 -->
     <div class="ex-card">
       <div class="ex-header"><div class="ex-number">8</div><div class="ex-title">Переведи на литовский</div></div>
       <div class="ex-desc">Выбери правильный перевод с русского на литовский</div>
@@ -340,6 +350,7 @@
 
   </div>
 
+  <!-- СЛОВАРЬ -->
   <div id="tab-vocab" style="display:none;">
     <div class="section-card">
       <div class="section-title">📚 Новые слова урока 1</div>
@@ -362,61 +373,46 @@
     </div>
   </div>
 
+  <!-- ГРАММАТИКА -->
   <div id="tab-grammar" style="display:none;">
-    <div class="section-card">
-      <div class="grammar-block">
-        <div class="grammar-subtitle">👥 Įvardžiai — Местоимения</div>
-        <div class="tip-box">jie — если есть хотя бы один мужчина. jos — только если все женщины.</div>
-        <table class="grammar-table">
-          <tr class="header-row"><td>Литовский</td><td>Русский</td></tr>
-          <tr><td>aš</td><td>я</td></tr>
-          <tr><td>tu</td><td>ты</td></tr>
-          <tr class="highlight"><td>jis</td><td>он</td></tr>
-          <tr class="highlight"><td>ji</td><td>она</td></tr>
-          <tr><td>mes</td><td>мы</td></tr>
-          <tr><td>jūs</td><td>вы</td></tr>
-          <tr class="highlight"><td>jie</td><td>они (м. или смешанная группа)</td></tr>
-          <tr class="highlight"><td>jos</td><td>они (только женщины)</td></tr>
-        </table>
-      </div>
-      <div class="grammar-block">
-        <div class="grammar-subtitle">⚡ Veiksmažodis būti — Глагол "быть"</div>
-        <div class="tip-box">aš esu, tu esi — запомни особо! Все остальные (jis/ji/jie/jos) — yra.</div>
-        <table class="grammar-table">
-          <tr class="header-row"><td>Местоимение</td><td>Форма</td><td>Русский</td></tr>
-          <tr><td>aš</td><td>esu</td><td>я есть</td></tr>
-          <tr><td>tu</td><td>esi</td><td>ты есть</td></tr>
-          <tr><td>jis / ji</td><td>yra</td><td>он/она есть</td></tr>
-          <tr><td>mes</td><td>esame</td><td>мы есть</td></tr>
-          <tr><td>jūs</td><td>esate</td><td>вы есть</td></tr>
-          <tr><td>jie / jos</td><td>yra</td><td>они есть</td></tr>
-        </table>
-        <div class="example-list">
-          <div class="example-item"><div class="example-lt">Aš esu Tomas.</div><div class="example-ru">Я Томас.</div></div>
-          <div class="example-item"><div class="example-lt">Ji yra mokytoja.</div><div class="example-ru">Она учительница.</div></div>
-          <div class="example-item"><div class="example-lt">Mes esame studentai.</div><div class="example-ru">Мы студенты.</div></div>
-          <div class="example-item"><div class="example-lt">Jūs esate dėstytojas.</div><div class="example-ru">Вы преподаватель.</div></div>
-        </div>
-      </div>
-      <div class="grammar-block">
-        <div class="grammar-subtitle">🚫 Nebūti — Глагол "не быть"</div>
-        <div class="tip-box">Добавляем ne-: esu → nesu, esi → nesi. Особый случай: yra → nėra (с буквой ė!).</div>
-        <table class="grammar-table neg-table">
-          <tr class="header-row neg-header"><td>Местоимение</td><td>Форма</td><td>Русский</td></tr>
-          <tr><td>aš</td><td>nesu</td><td>я не являюсь</td></tr>
-          <tr><td>tu</td><td>nesi</td><td>ты не являешься</td></tr>
-          <tr><td>jis / ji</td><td>nėra</td><td>он/она не является</td></tr>
-          <tr><td>mes</td><td>nesame</td><td>мы не являемся</td></tr>
-          <tr><td>jūs</td><td>nesate</td><td>вы не являетесь</td></tr>
-          <tr><td>jie / jos</td><td>nėra</td><td>они не являются</td></tr>
-        </table>
-        <div class="example-list">
-          <div class="neg-example-item"><div class="example-lt">Aš nesu mokytojas.</div><div class="example-ru">Я не учитель.</div></div>
-          <div class="neg-example-item"><div class="example-lt">Tu nesi studentas.</div><div class="example-ru">Ты не студент.</div></div>
-          <div class="neg-example-item"><div class="example-lt">Ji nėra dėstytoja.</div><div class="example-ru">Она не преподавательница.</div></div>
-          <div class="neg-example-item"><div class="example-lt">Mes nesame mokytojai.</div><div class="example-ru">Мы не учителя.</div></div>
-        </div>
-      </div>
+    <div class="rule-card blue">
+      <div class="rule-title">👥 Įvardžiai — Местоимения</div>
+      <div class="note-box">jie — если есть хотя бы один мужчина. jos — только если все женщины.</div>
+      <table class="grammar-table">
+        <tr class="hrow"><td>Литовский</td><td>Русский</td></tr>
+        <tr><td>aš</td><td>я</td></tr>
+        <tr><td>tu</td><td>ты</td></tr>
+        <tr><td>jis</td><td>он</td></tr>
+        <tr><td>ji</td><td>она</td></tr>
+        <tr><td>mes</td><td>мы</td></tr>
+        <tr><td>jūs</td><td>вы</td></tr>
+        <tr><td>jie</td><td>они (м. или смешанная группа)</td></tr>
+        <tr><td>jos</td><td>они (только женщины)</td></tr>
+      </table>
+    </div>
+    <div class="rule-card green-rule">
+      <div class="rule-title">⚡ Veiksmažodis būti — Глагол "быть"</div>
+      <div class="tip-box">aš esu, tu esi — запомни особо! Все остальные (jis/ji/jie/jos) — yra.</div>
+      <table class="grammar-table">
+        <tr class="hrow"><td>Местоимение</td><td>Форма</td><td>Пример</td></tr>
+        <tr><td>aš</td><td>esu</td><td style="font-size:12px;color:#888;">Aš esu Tomas.</td></tr>
+        <tr><td>tu</td><td>esi</td><td style="font-size:12px;color:#888;">Tu esi mokytoja.</td></tr>
+        <tr><td>jis / ji / jie / jos</td><td>yra</td><td style="font-size:12px;color:#888;">Jis yra studentas.</td></tr>
+        <tr><td>mes</td><td>esame</td><td style="font-size:12px;color:#888;">Mes esame draugai.</td></tr>
+        <tr><td>jūs</td><td>esate</td><td style="font-size:12px;color:#888;">Jūs esate mokytoja.</td></tr>
+      </table>
+    </div>
+    <div class="rule-card red-rule">
+      <div class="rule-title">🚫 Nebūti — Глагол "не быть"</div>
+      <div class="tip-box">Добавляем <b style="color:#e74c3c;">ne-</b>: esu → <b style="color:#e74c3c;">ne</b>su. Особый случай: yra → <b style="color:#e74c3c;">nė</b>ra!</div>
+      <table class="grammar-table">
+        <tr class="hrow neg-hrow"><td>Местоимение</td><td>Форма</td><td>Пример</td></tr>
+        <tr><td class="neg-col">aš</td><td style="color:#e74c3c;font-weight:700;">nesu</td><td style="font-size:12px;color:#888;">Aš nesu mokytojas.</td></tr>
+        <tr><td class="neg-col">tu</td><td style="color:#e74c3c;font-weight:700;">nesi</td><td style="font-size:12px;color:#888;">Tu nesi studentas.</td></tr>
+        <tr><td class="neg-col">jis / ji / jie / jos</td><td style="color:#e74c3c;font-weight:700;">nėra</td><td style="font-size:12px;color:#888;">Ji nėra dėstytoja.</td></tr>
+        <tr><td class="neg-col">mes</td><td style="color:#e74c3c;font-weight:700;">nesame</td><td style="font-size:12px;color:#888;">Mes nesame mokytojai.</td></tr>
+        <tr><td class="neg-col">jūs</td><td style="color:#e74c3c;font-weight:700;">nesate</td><td style="font-size:12px;color:#888;">Jūs nesate studentai.</td></tr>
+      </table>
     </div>
   </div>
 
@@ -428,45 +424,35 @@ function setTab(t){
   ['lesson','vocab','grammar'].forEach(function(id){document.getElementById('tab-'+id).style.display=id===t?'block':'none';});
   document.querySelectorAll('.tab').forEach(function(el,i){el.classList.toggle('active',['lesson','vocab','grammar'][i]===t);});
 }
-
-function saveScoreToIndex() {
-  var done = Object.keys(scores).length;
-  var total = Object.values(scores).filter(function(v){return v!==null;});
-  if (total.length === 0) return;
-  var avg = Math.round(total.reduce(function(a,b){return a+b;}, 0) / total.length);
-  try {
-    var profiles = JSON.parse(localStorage.getItem('lt_profiles') || '{}');
-    var names = Object.keys(profiles);
-    if (names.length > 0) {
-      var student = names[names.length - 1];
-      profiles[student] = profiles[student] || {};
-      profiles[student]['lesson1'] = avg;
-      localStorage.setItem('lt_profiles', JSON.stringify(profiles));
-    }
-  } catch(e) {}
+function saveScoreToIndex(){
+  var total=Object.values(scores).filter(function(v){return v!==null;});
+  if(total.length===0)return;
+  var avg=Math.round(total.reduce(function(a,b){return a+b;},0)/total.length);
+  try{
+    var profiles=JSON.parse(localStorage.getItem('lt_profiles')||'{}');
+    var names=Object.keys(profiles);
+    if(names.length>0){var s=names[names.length-1];profiles[s]=profiles[s]||{};profiles[s]['lesson1']=avg;localStorage.setItem('lt_profiles',JSON.stringify(profiles));}
+  }catch(e){}
 }
 function updateProgress(){
   var done=Object.keys(scores).length;
   var pct=Math.round(done/totalEx*100);
   document.getElementById('mainProgress').style.width=pct+'%';
   document.getElementById('progressLabel').textContent=done+' из '+totalEx+' упражнений выполнено';
+  saveScoreToIndex();
 }
 var matchStates={};
 function selectMatch(el,side,exId){
-  if(el.classList.contains('correct')) return;
-  var ms=matchStates[exId]||{lt:null,ltEl:null,ru:null,ruEl:null};
-  matchStates[exId]=ms;
+  if(el.classList.contains('correct'))return;
+  var ms=matchStates[exId]||{lt:null,ltEl:null,ru:null,ruEl:null};matchStates[exId]=ms;
   if(side==='lt'){if(ms.ltEl)ms.ltEl.classList.remove('selected');ms.lt=el.dataset.id;ms.ltEl=el;el.classList.add('selected');}
   else{if(ms.ruEl)ms.ruEl.classList.remove('selected');ms.ru=el.dataset.id;ms.ruEl=el;el.classList.add('selected');}
   if(ms.lt&&ms.ru){
     if(ms.lt===ms.ru){
       ms.ltEl.classList.remove('selected');ms.ruEl.classList.remove('selected');
-      ms.ltEl.classList.add('correct');ms.ruEl.classList.add('correct');
-      ms.ltEl.onclick=null;ms.ruEl.onclick=null;
+      ms.ltEl.classList.add('correct');ms.ruEl.classList.add('correct');ms.ltEl.onclick=null;ms.ruEl.onclick=null;
       if(document.querySelectorAll('#ltCol'+exId+' .correct').length===6){
-        var r=document.getElementById('res'+exId);
-        r.textContent='🎉 Отлично! Все слова правильно!';r.className='result-box success show';
-        scores['ex'+exId]=100;updateProgress();
+        var r=document.getElementById('res'+exId);r.textContent='🎉 Отлично! Все слова правильно!';r.className='result-box success show';scores['ex'+exId]=100;updateProgress();
       }
     } else {
       ms.ltEl.classList.add('wrong');ms.ruEl.classList.add('wrong');
@@ -526,8 +512,8 @@ function checkFill(key){
   d.items.forEach(function(item,i){
     document.querySelectorAll('#'+key+'opts'+i+' .fill-btn').forEach(function(b){
       b.disabled=true;
-      if(b.dataset.val===item.blank){b.classList.add('correct');}
-      else if(b.classList.contains('selected') && b.dataset.val!==item.blank){b.classList.remove('selected');b.classList.add('wrong');}
+      if(b.dataset.val===item.blank)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==item.blank){b.classList.remove('selected');b.classList.add('wrong');}
     });
     if(d.sel[i]===item.blank)correct++;
   });
@@ -538,17 +524,15 @@ function checkFill(key){
   r.textContent=msg;r.className='result-box '+cls+' show';
   r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryFill(\''+key+'\')">🔄 Попробовать снова</button></div>';
   var btn=key.charAt(0).toUpperCase()+key.slice(1);
-  document.getElementById('check'+btn+'btn').disabled=true;
-  updateProgress();
+  document.getElementById('check'+btn+'btn').disabled=true;updateProgress();
 }
 function retryFill(key){
-  buildFill(key);
-  var d=fillData[key];
+  buildFill(key);var d=fillData[key];
   document.getElementById('res'+d.exNum).className='result-box';
   var btn=key.charAt(0).toUpperCase()+key.slice(1);
   document.getElementById('check'+btn+'btn').disabled=false;
 }
-buildFill('ex2');buildFill('ex3');buildFill('ex4');buildFill('ex5');
+['ex2','ex3','ex4','ex5'].forEach(buildFill);
 var ex6data=[
   {wrong:'Aš yra studentas.',correct:'esu',opts:['esu','esi','esame']},
   {wrong:'Tu esu Viktorija.',correct:'esi',opts:['esi','yra','esate']},
@@ -575,25 +559,24 @@ function checkEx6(){
   var correct=0;
   ex6data.forEach(function(d,i){
     document.querySelectorAll('#ex6opts'+i+' .fill-btn').forEach(function(b){
-      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong');
+      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
     });
     if(ex6sel[i]===d.correct)correct++;
   });
-  var r=document.getElementById('res6');
-  scores['ex6']=Math.round(correct/ex6data.length*100);
-  var cls=correct===ex6data.length?'success':'partial';
-  r.textContent=correct===ex6data.length?'🎉 Супер! Все ошибки найдены!':'💪 '+correct+' из '+ex6data.length+'. Зелёным — правильные ответы.';
-  r.className='result-box '+cls+' show';
+  var r=document.getElementById('res6');scores['ex6']=Math.round(correct/ex6data.length*100);
+  r.textContent=correct===ex6data.length?'🎉 Все ошибки найдены!':'💪 '+correct+' из '+ex6data.length+'.';
+  r.className='result-box '+(correct===ex6data.length?'success':'partial')+' show';
   r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx6()">🔄 Попробовать снова</button></div>';
   document.getElementById('checkEx6btn').disabled=true;updateProgress();
 }
 function retryEx6(){buildEx6();document.getElementById('res6').className='result-box';document.getElementById('checkEx6btn').disabled=false;}
-function buildOptions(containerId,data,selObj,prefix){
-  var c=document.getElementById(containerId);c.innerHTML='';
+function buildOptions(cId,data,selObj,prefix){
+  var c=document.getElementById(cId);c.innerHTML='';
   var letters=['А','Б','В'];
   data.forEach(function(d,i){
     var div=document.createElement('div');div.style.marginBottom='14px';
-    div.innerHTML='<div class="fill-sentence" style="font-weight:700;color:#3C3489;">'+d.lt+'</div><div id="'+prefix+'opts'+i+'" style="margin-top:8px;"></div>';
+    div.innerHTML='<div class="fill-sentence" style="color:#1E7A4A;font-weight:700;">'+d.lt+'</div><div id="'+prefix+'opts'+i+'" style="margin-top:8px;"></div>';
     c.appendChild(div);
     d.opts.forEach(function(o,j){
       var b=document.createElement('button');b.className='option-btn';
@@ -612,24 +595,6 @@ var ex7data=[
 ];
 var ex7sel={};
 buildOptions('ex7container',ex7data,ex7sel,'ex7');
-function checkTranslation(data,sel,resId,exKey,btnId,retryName){
-  var correct=0;
-  data.forEach(function(d,i){
-    document.querySelectorAll('#'+exKey+'opts'+i+' .option-btn').forEach(function(b){
-      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');else if(b.classList.contains('selected'))b.classList.add('wrong');
-    });
-    if(sel[i]===d.correct)correct++;
-  });
-  var r=document.getElementById(resId);
-  scores[exKey]=Math.round(correct/data.length*100);
-  var cls=correct===data.length?'success':correct>=Math.ceil(data.length*0.6)?'partial':'fail';
-  var msg=correct===data.length?'🎉 Браво!':correct>=Math.ceil(data.length*0.6)?'👍 '+correct+' из '+data.length+'. Почти!':'💪 '+correct+' из '+data.length+'. Попробуй ещё!';
-  r.textContent=msg;r.className='result-box '+cls+' show';
-  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="'+retryName+'()">🔄 Попробовать снова</button></div>';
-  document.getElementById(btnId).disabled=true;updateProgress();
-}
-function checkEx7(){checkTranslation(ex7data,ex7sel,'res7','ex7','checkEx7btn','retryEx7');}
-function retryEx7(){ex7sel={};buildOptions('ex7container',ex7data,ex7sel,'ex7');document.getElementById('res7').className='result-box';document.getElementById('checkEx7btn').disabled=false;}
 var ex8data=[
   {lt:'Я учительница.',correct:'Aš esu mokytoja.',opts:['Tu esi mokytoja.','Aš esu mokytoja.','Ji yra mokytoja.']},
   {lt:'Он не студент.',correct:'Jis nėra studentas.',opts:['Jis nėra studentas.','Jis nesu studentas.','Tu nesi studentas.']},
@@ -639,7 +604,25 @@ var ex8data=[
 ];
 var ex8sel={};
 buildOptions('ex8container',ex8data,ex8sel,'ex8');
-function checkEx8(){checkTranslation(ex8data,ex8sel,'res8','ex8','checkEx8btn','retryEx8');}
+function checkTrans(data,sel,resId,exKey,btnId,retryFn){
+  var correct=0;
+  data.forEach(function(d,i){
+    document.querySelectorAll('#'+exKey+'opts'+i+' .option-btn').forEach(function(b){
+      b.disabled=true;if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById(resId);scores[exKey]=Math.round(correct/data.length*100);
+  var cls=correct===data.length?'success':correct>=Math.ceil(data.length*0.6)?'partial':'fail';
+  r.textContent=correct===data.length?'🎉 Браво!':'👍 '+correct+' из '+data.length+'.';
+  r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="'+retryFn+'()">🔄 Попробовать снова</button></div>';
+  document.getElementById(btnId).disabled=true;updateProgress();
+}
+function checkEx7(){checkTrans(ex7data,ex7sel,'res7','ex7','checkEx7btn','retryEx7');}
+function retryEx7(){ex7sel={};buildOptions('ex7container',ex7data,ex7sel,'ex7');document.getElementById('res7').className='result-box';document.getElementById('checkEx7btn').disabled=false;}
+function checkEx8(){checkTrans(ex8data,ex8sel,'res8','ex8','checkEx8btn','retryEx8');}
 function retryEx8(){ex8sel={};buildOptions('ex8container',ex8data,ex8sel,'ex8');document.getElementById('res8').className='result-box';document.getElementById('checkEx8btn').disabled=false;}
 </script>
 </body>
