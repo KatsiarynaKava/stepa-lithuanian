@@ -643,11 +643,28 @@ function setTab(t){
   ['lesson','vocab','grammar'].forEach(function(id){document.getElementById('tab-'+id).style.display=id===t?'block':'none';});
   document.querySelectorAll('.tab').forEach(function(el,i){el.classList.toggle('active',['lesson','vocab','grammar'][i]===t);});
 }
+
+function saveScoreToIndex() {
+  var total = Object.values(scores).filter(function(v){return v!==null;});
+  if (total.length === 0) return;
+  var avg = Math.round(total.reduce(function(a,b){return a+b;}, 0) / total.length);
+  try {
+    var profiles = JSON.parse(localStorage.getItem('lt_profiles') || '{}');
+    var names = Object.keys(profiles);
+    if (names.length > 0) {
+      var student = names[names.length - 1];
+      profiles[student] = profiles[student] || {};
+      profiles[student]['lesson2'] = avg;
+      localStorage.setItem('lt_profiles', JSON.stringify(profiles));
+    }
+  } catch(e) {}
+}
 function updateProgress(){
   var done=Object.keys(scores).length;
   var pct=Math.round(done/totalEx*100);
   document.getElementById('mainProgress').style.width=pct+'%';
   document.getElementById('progressLabel').textContent=done+' из '+totalEx+' упражнений выполнено';
+  saveScoreToIndex();
 }
 
 /* MATCH */

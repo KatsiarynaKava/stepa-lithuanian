@@ -9,96 +9,117 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f3ff; min-height: 100vh; padding: 16px; }
   .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
 
-  .hero { background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%); border-radius: 24px; padding: 32px 20px 28px; margin-bottom: 24px; text-align: center; }
-  .hero-emoji { font-size: 64px; margin-bottom: 12px; display: block; }
-  .hero h1 { color: #fff; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
-  .hero p { color: #CECBF6; font-size: 15px; }
+  .hero { background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%); border-radius: 24px; padding: 32px 20px 28px; margin-bottom: 20px; text-align: center; }
+  .hero-emoji { font-size: 56px; margin-bottom: 10px; display: block; }
+  .hero h1 { color: #fff; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .hero-level { color: #CECBF6; font-size: 14px; margin-bottom: 16px; }
+  .hero-student { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: inherit; }
+  .hero-student:active { background: rgba(255,255,255,0.25); }
+
+  /* LOGIN SCREEN */
+  .login-screen { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(83,74,183,0.95); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+  .login-screen.show { display: flex; }
+  .login-box { background: #fff; border-radius: 24px; padding: 28px 24px; width: 100%; max-width: 380px; text-align: center; }
+  .login-title { font-size: 20px; font-weight: 700; color: #2d2d2d; margin-bottom: 6px; }
+  .login-sub { font-size: 14px; color: #888; margin-bottom: 20px; }
+  .login-profiles { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .profile-btn { background: #f5f3ff; border: 2px solid #d0c9f5; border-radius: 14px; padding: 12px 16px; font-size: 15px; font-weight: 600; color: #534AB7; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s; }
+  .profile-btn:active { background: #eeedfe; border-color: #7F77DD; }
+  .profile-stars { font-size: 13px; color: #888; font-weight: 400; }
+  .login-divider { font-size: 13px; color: #ccc; margin: 4px 0 12px; }
+  .new-profile { display: flex; gap: 8px; }
+  .new-profile input { flex: 1; border: 2px solid #d0c9f5; border-radius: 12px; padding: 10px 14px; font-size: 15px; font-family: inherit; outline: none; color: #2d2d2d; }
+  .new-profile input:focus { border-color: #7F77DD; }
+  .new-profile button { background: #534AB7; color: #fff; border: none; border-radius: 12px; padding: 10px 16px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; }
+
+  /* DIAMONDS */
+  .diamonds-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(83,74,183,0.08); }
+  .diamonds-title { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .diamonds-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .diamond { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 24px; filter: grayscale(1) opacity(0.3); transition: all 0.4s; }
+  .diamond.earned { filter: none; }
+  .diamond-label { font-size: 10px; color: #bbb; text-align: center; margin-top: 2px; font-weight: 600; }
+  .diamond-wrap { display: flex; flex-direction: column; align-items: center; }
 
   .section-label { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding-left: 4px; }
 
   .lesson-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(83,74,183,0.08); display: flex; align-items: center; gap: 14px; text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
   .lesson-card:active { transform: scale(0.98); border-color: #7F77DD; }
-  .lesson-card.locked { opacity: 0.5; cursor: default; }
-  .lesson-card.locked:active { transform: none; border-color: transparent; }
-
+  .lesson-card.locked { opacity: 0.5; cursor: default; pointer-events: none; }
   .lesson-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
   .lesson-icon.purple { background: #f5f3ff; }
   .lesson-icon.green { background: #e8f5e9; }
-  .lesson-icon.blue { background: #e3f2fd; }
-  .lesson-icon.orange { background: #fff8e1; }
-  .lesson-icon.pink { background: #fce4ec; }
   .lesson-icon.locked-icon { background: #f5f5f5; }
-
   .lesson-info { flex: 1; }
   .lesson-number { font-size: 12px; color: #aaa; font-weight: 500; margin-bottom: 2px; }
   .lesson-title { font-size: 16px; font-weight: 600; color: #2d2d2d; margin-bottom: 4px; }
   .lesson-subtitle { font-size: 13px; color: #888; }
+  .lesson-score { flex-shrink: 0; text-align: center; }
+  .score-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .score-done { background: #eafaf1; color: #27ae60; border: 2px solid #27ae60; }
+  .score-new { background: #f5f3ff; color: #534AB7; border: 2px solid #d0c9f5; }
+  .score-locked { background: #f5f5f5; color: #bbb; border: 2px solid #eee; }
 
-  .lesson-status { flex-shrink: 0; }
-  .status-badge { border-radius: 20px; padding: 4px 10px; font-size: 12px; font-weight: 600; }
-  .status-done { background: #e8f5e9; color: #2e7d32; }
-  .status-new { background: #f5f3ff; color: #534AB7; }
-  .status-locked { background: #f5f5f5; color: #bbb; }
-
-  .lock-icon { font-size: 20px; }
-
-  .tip-card { background: #fff8e1; border-radius: 14px; padding: 14px 16px; margin-bottom: 24px; display: flex; gap: 10px; align-items: flex-start; }
-  .tip-card p { font-size: 14px; color: #5D4037; line-height: 1.5; }
-
-  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
-  .stat-card { background: #fff; border-radius: 14px; padding: 14px; text-align: center; box-shadow: 0 2px 8px rgba(83,74,183,0.06); }
-  .stat-number { font-size: 28px; font-weight: 700; color: #534AB7; }
-  .stat-label { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .reset-btn { background: transparent; color: #e74c3c; border: 2px solid #e74c3c; border-radius: 12px; padding: 10px; font-size: 14px; cursor: pointer; width: 100%; margin-top: 8px; font-family: inherit; font-weight: 600; }
+  .reset-btn:active { background: #fdf0f0; }
 </style>
 </head>
 <body>
 <div class="page">
 
+  <!-- LOGIN -->
+  <div class="login-screen show" id="loginScreen">
+    <div class="login-box">
+      <div style="font-size:48px;margin-bottom:12px;">🇱🇹</div>
+      <div class="login-title">Кто занимается?</div>
+      <div class="login-sub">Выбери своё имя или добавь новое</div>
+      <div class="login-profiles" id="profileList"></div>
+      <div class="login-divider">или</div>
+      <div class="new-profile">
+        <input type="text" id="newNameInput" placeholder="Введи своё имя..." maxlength="20">
+        <button onclick="addProfile()">Войти</button>
+      </div>
+    </div>
+  </div>
+
   <div class="hero">
     <span class="hero-emoji">🇱🇹</span>
-    <h1>Степа учит литовский!</h1>
-    <p>Выбирай урок и вперёд к знаниям</p>
+    <h1 id="heroTitle">Учим литовский!</h1>
+    <div class="hero-level">Начальный уровень</div>
+    <button class="hero-student" onclick="showLogin()">
+      <span id="currentStudentName">—</span>
+      <span style="opacity:0.7;font-size:12px;">сменить</span>
+    </button>
   </div>
 
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-number" id="completedCount">0</div>
-      <div class="stat-label">уроков пройдено</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">5</div>
-      <div class="stat-label">уроков всего</div>
-    </div>
-  </div>
-
-  <div class="tip-card">
-    <span style="font-size:20px;">💡</span>
-    <p>Начни с Урока 1 и двигайся по порядку. После каждого урока тебя ждут упражнения!</p>
+  <div class="diamonds-card">
+    <div class="diamonds-title">💎 Прогресс</div>
+    <div class="diamonds-row" id="diamondsRow"></div>
   </div>
 
   <div class="section-label">Уроки</div>
 
-  <a class="lesson-card" href="stepa-urok1.html">
+  <a class="lesson-card" href="stepa-urok1.html" id="lesson1card">
     <div class="lesson-icon purple">👋</div>
     <div class="lesson-info">
       <div class="lesson-number">Урок 1</div>
       <div class="lesson-title">Kas tu esi?</div>
       <div class="lesson-subtitle">Знакомство, местоимения, глагол быть</div>
     </div>
-    <div class="lesson-status">
-      <span class="status-badge status-new">Старт!</span>
+    <div class="lesson-score">
+      <div class="score-circle score-new" id="score1">—</div>
     </div>
   </a>
 
-  <a class="lesson-card" href="stepa-urok2.html">
+  <a class="lesson-card" href="stepa-urok2.html" id="lesson2card">
     <div class="lesson-icon green">👫</div>
     <div class="lesson-info">
       <div class="lesson-number">Урок 2</div>
       <div class="lesson-title">Mano draugas</div>
       <div class="lesson-subtitle">Друзья, приветствия, глаголы говорить и понимать</div>
     </div>
-    <div class="lesson-status">
-      <span class="status-badge status-new">Старт!</span>
+    <div class="lesson-score">
+      <div class="score-circle score-new" id="score2">—</div>
     </div>
   </a>
 
@@ -109,9 +130,7 @@
       <div class="lesson-title">Šeima</div>
       <div class="lesson-subtitle">Семья и родственники</div>
     </div>
-    <div class="lesson-status">
-      <span class="status-badge status-locked">Скоро</span>
-    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
   </div>
 
   <div class="lesson-card locked">
@@ -121,23 +140,219 @@
       <div class="lesson-title">Skaičiai</div>
       <div class="lesson-subtitle">Числа и счёт</div>
     </div>
-    <div class="lesson-status">
-      <span class="status-badge status-locked">Скоро</span>
-    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
   </div>
 
   <div class="lesson-card locked">
     <div class="lesson-icon locked-icon">🔒</div>
     <div class="lesson-info">
       <div class="lesson-number">Урок 5</div>
-      <div class="lesson-title">Spalvos ir daiktai</div>
+      <div class="lesson-title">Spalvos</div>
       <div class="lesson-subtitle">Цвета и предметы</div>
     </div>
-    <div class="lesson-status">
-      <span class="status-badge status-locked">Скоро</span>
-    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
   </div>
 
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 6</div>
+      <div class="lesson-title">Скоро</div>
+      <div class="lesson-subtitle">—</div>
+    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 7</div>
+      <div class="lesson-title">Скоро</div>
+      <div class="lesson-subtitle">—</div>
+    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 8</div>
+      <div class="lesson-title">Скоро</div>
+      <div class="lesson-subtitle">—</div>
+    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 9</div>
+      <div class="lesson-title">Скоро</div>
+      <div class="lesson-subtitle">—</div>
+    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
+  </div>
+
+  <div class="lesson-card locked">
+    <div class="lesson-icon locked-icon">🔒</div>
+    <div class="lesson-info">
+      <div class="lesson-number">Урок 10</div>
+      <div class="lesson-title">Скоро</div>
+      <div class="lesson-subtitle">—</div>
+    </div>
+    <div class="lesson-score"><div class="score-circle score-locked">—</div></div>
+  </div>
+
+  <button class="reset-btn" onclick="resetProgress()">🔄 Сбросить мой прогресс</button>
+
 </div>
+
+<script>
+var TOTAL_LESSONS = 10;
+var currentStudent = null;
+
+function getProfiles() {
+  try { return JSON.parse(localStorage.getItem('lt_profiles') || '{}'); } catch(e) { return {}; }
+}
+function saveProfiles(p) {
+  localStorage.setItem('lt_profiles', JSON.stringify(p));
+}
+function getProgress(name) {
+  var profiles = getProfiles();
+  return profiles[name] || {};
+}
+function saveProgress(name, progress) {
+  var profiles = getProfiles();
+  profiles[name] = progress;
+  saveProfiles(profiles);
+}
+
+function showLogin() {
+  renderProfileList();
+  document.getElementById('loginScreen').classList.add('show');
+}
+function hideLogin() {
+  document.getElementById('loginScreen').classList.remove('show');
+}
+
+function renderProfileList() {
+  var profiles = getProfiles();
+  var list = document.getElementById('profileList');
+  list.innerHTML = '';
+  var names = Object.keys(profiles);
+  if (names.length === 0) {
+    list.innerHTML = '<div style="font-size:13px;color:#aaa;text-align:center;padding:8px;">Пока нет профилей</div>';
+    return;
+  }
+  names.forEach(function(name) {
+    var progress = profiles[name];
+    var done = Object.keys(progress).length;
+    var btn = document.createElement('button');
+    btn.className = 'profile-btn';
+    btn.innerHTML = '<span>👤 ' + name + '</span><span class="profile-stars">' + done + ' из ' + TOTAL_LESSONS + ' уроков</span>';
+    btn.onclick = function() { selectStudent(name); };
+    list.appendChild(btn);
+  });
+}
+
+function addProfile() {
+  var input = document.getElementById('newNameInput');
+  var name = input.value.trim();
+  if (!name) return;
+  var profiles = getProfiles();
+  if (!profiles[name]) profiles[name] = {};
+  saveProfiles(profiles);
+  input.value = '';
+  selectStudent(name);
+}
+
+document.getElementById('newNameInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') addProfile();
+});
+
+function selectStudent(name) {
+  currentStudent = name;
+  document.getElementById('currentStudentName').textContent = name;
+  document.getElementById('heroTitle').textContent = name + ' учит литовский!';
+  hideLogin();
+  renderDiamonds();
+  renderScores();
+}
+
+function renderDiamonds() {
+  var row = document.getElementById('diamondsRow');
+  row.innerHTML = '';
+  var progress = currentStudent ? getProgress(currentStudent) : {};
+  for (var i = 1; i <= TOTAL_LESSONS; i++) {
+    var wrap = document.createElement('div');
+    wrap.className = 'diamond-wrap';
+    var d = document.createElement('div');
+    d.className = 'diamond' + (progress['lesson'+i] ? ' earned' : '');
+    d.textContent = '💎';
+    var lbl = document.createElement('div');
+    lbl.className = 'diamond-label';
+    lbl.textContent = i;
+    wrap.appendChild(d);
+    wrap.appendChild(lbl);
+    row.appendChild(wrap);
+  }
+}
+
+function renderScores() {
+  var progress = currentStudent ? getProgress(currentStudent) : {};
+  [1, 2].forEach(function(i) {
+    var el = document.getElementById('score' + i);
+    var p = progress['lesson' + i];
+    if (p !== undefined) {
+      el.textContent = p + '%';
+      el.className = 'score-circle score-done';
+    } else {
+      el.textContent = '—';
+      el.className = 'score-circle score-new';
+    }
+  });
+}
+
+function resetProgress() {
+  if (!currentStudent) return;
+  if (!confirm('Сбросить весь прогресс для ' + currentStudent + '?')) return;
+  var profiles = getProfiles();
+  profiles[currentStudent] = {};
+  saveProfiles(profiles);
+  renderDiamonds();
+  renderScores();
+}
+
+// Check if coming back from a lesson with score
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var lesson = params.get('lesson');
+  var score = params.get('score');
+  var student = params.get('student');
+  if (lesson && score && student) {
+    currentStudent = student;
+    var profiles = getProfiles();
+    if (!profiles[student]) profiles[student] = {};
+    profiles[student]['lesson' + lesson] = parseInt(score);
+    saveProfiles(profiles);
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+})();
+
+// Init
+(function() {
+  var profiles = getProfiles();
+  var names = Object.keys(profiles);
+  if (names.length === 1) {
+    selectStudent(names[0]);
+  } else if (names.length > 1) {
+    showLogin();
+    renderDiamonds();
+  } else {
+    showLogin();
+    renderDiamonds();
+  }
+})();
+</script>
 </body>
 </html>
