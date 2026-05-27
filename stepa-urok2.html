@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Степа учит литовский — Урок 2</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0faf4; min-height: 100vh; padding: 12px; }
+  .page { max-width: 480px; margin: 0 auto; padding-bottom: 40px; }
+
+  .hero { background: linear-gradient(135deg, #3DAA6E 0%, #1E7A4A 100%); border-radius: 20px; padding: 24px 16px 20px; margin-bottom: 14px; text-align: center; }
+  .hero h1 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .hero p { color: #B8F0D0; font-size: 14px; }
+  .hero-emoji { font-size: 48px; margin-bottom: 8px; display: block; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 99px; height: 8px; margin-top: 12px; }
+  .progress-bar-fill { background: #fff; border-radius: 99px; height: 8px; transition: width 0.5s ease; }
+  .progress-label { color: #D0F5E4; font-size: 12px; margin-top: 5px; }
+
+  .tabs { display: flex; background: #fff; border-radius: 12px; padding: 4px; margin-bottom: 14px; box-shadow: 0 1px 4px rgba(30,122,74,0.1); }
+  .tab { flex: 1; padding: 8px 4px; font-size: 12px; border: none; background: transparent; cursor: pointer; border-radius: 9px; color: #888; transition: all 0.2s; font-family: inherit; font-weight: 500; }
+  .tab.active { background: #1E7A4A; color: #fff; font-weight: 600; }
+
+  .section-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(30,122,74,0.08); }
+  .section-title { font-size: 15px; font-weight: 700; color: #2d2d2d; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .tip-box { background: #FFF8E1; border-left: 3px solid #F9A825; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #5D4037; margin-bottom: 12px; line-height: 1.5; }
+  .info-box { background: #E8F5E9; border-left: 3px solid #3DAA6E; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #1B5E20; margin-bottom: 12px; line-height: 1.5; }
+
+  .dialog-line { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .dialog-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .dialog-bubble { flex: 1; }
+  .dialog-name { font-size: 11px; font-weight: 700; color: #3DAA6E; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .dialog-lt { font-size: 15px; color: #2d2d2d; font-weight: 500; line-height: 1.5; }
+  .dialog-ru { font-size: 12px; color: #999; margin-top: 3px; line-height: 1.4; }
+
+  .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .vocab-item { background: #f0faf4; border-radius: 10px; padding: 8px 10px; }
+  .vocab-lt { font-size: 14px; font-weight: 700; color: #1E7A4A; }
+  .vocab-ru { font-size: 12px; color: #666; margin-top: 2px; }
+  .vocab-item.wide { grid-column: span 2; }
+
+  .grammar-block { margin-bottom: 16px; }
+  .grammar-subtitle { font-size: 13px; font-weight: 700; color: #1E7A4A; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; padding: 6px 10px; background: #E8F5E9; border-radius: 8px; }
+  .grammar-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
+  .grammar-table td { padding: 7px 8px; border-bottom: 1px solid #E8F5E9; }
+  .grammar-table tr:last-child td { border-bottom: none; }
+  .grammar-table td:first-child { font-weight: 700; color: #1E7A4A; width: 40%; }
+  .grammar-table td:last-child { color: #555; }
+  .grammar-table .header-row td { background: #E8F5E9; font-weight: 700; color: #1E7A4A; font-size: 12px; }
+  .neg-table td:first-child { color: #c0392b !important; }
+  .neg-header td { background: #fff5f5 !important; color: #c0392b !important; }
+
+  /* Ending highlight */
+  .end-change { color: #e67e22; font-weight: 700; }
+  .end-orig { color: #c0392b; text-decoration: line-through; font-size: 12px; margin-left: 4px; opacity: 0.7; }
+
+  /* Ending rules table */
+  .ending-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 10px; }
+  .ending-table td { padding: 7px 10px; border-bottom: 1px solid #E8F5E9; vertical-align: middle; }
+  .ending-table tr:last-child td { border-bottom: none; }
+  .ending-table .ending-orig { font-weight: 700; color: #c0392b; font-size: 15px; width: 25%; }
+  .ending-table .arrow { color: #888; width: 10%; text-align: center; }
+  .ending-table .ending-new { font-weight: 700; color: #1E7A4A; font-size: 15px; width: 25%; }
+  .ending-table .ending-ex { color: #666; font-size: 12px; }
+  .ending-table .header-row td { background: #E8F5E9; font-weight: 700; color: #1E7A4A; font-size: 11px; text-transform: uppercase; }
+
+  /* Conjugation card 2x2 */
+  .conj-card { background: #fff; border: 2px solid #3DAA6E; border-radius: 14px; padding: 14px; margin-bottom: 12px; }
+  .conj-card-title { font-size: 14px; font-weight: 700; color: #1E7A4A; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .conj-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; }
+  .conj-cell { background: #f0faf4; border-radius: 10px; padding: 8px 10px; }
+  .conj-pro { font-size: 11px; color: #888; margin-bottom: 2px; }
+  .conj-form { font-size: 16px; font-weight: 700; color: #1E7A4A; }
+  .conj-example { font-size: 11px; color: #aaa; margin-top: 3px; line-height: 1.4; }
+  .conj-cell-wide { background: #f0faf4; border-radius: 10px; padding: 8px 10px; grid-column: span 2; }
+
+  .example-item { background: #f0faf4; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
+  .example-lt { font-size: 14px; font-weight: 600; color: #2d2d2d; }
+  .example-ru { font-size: 12px; color: #888; margin-top: 2px; }
+  .neg-example-item { background: #fff5f5; border-radius: 8px; padding: 8px 10px; margin-bottom: 5px; }
+  .neg-example-item .example-lt { color: #c0392b; }
+
+  .ex-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(30,122,74,0.08); }
+  .ex-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .ex-number { background: #1E7A4A; color: #fff; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .ex-title { font-size: 15px; font-weight: 700; color: #2d2d2d; }
+  .ex-desc { font-size: 13px; color: #888; margin-bottom: 12px; }
+
+  .fill-item { margin-bottom: 12px; }
+  .fill-sentence { font-size: 15px; color: #2d2d2d; margin-bottom: 7px; line-height: 1.6; }
+  .fill-options { display: flex; flex-wrap: wrap; gap: 7px; }
+  .fill-btn { border: 2px solid #A8D5BC; border-radius: 8px; padding: 7px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; transition: all 0.15s; font-weight: 600; font-family: inherit; }
+  .fill-btn.selected { border-color: #3DAA6E; background: #f0faf4; color: #1E7A4A; }
+  .fill-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .fill-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .fill-btn:disabled { cursor: default; }
+
+  .option-btn { border: 2px solid #A8D5BC; border-radius: 10px; padding: 10px 14px; font-size: 14px; cursor: pointer; background: #fff; color: #2d2d2d; text-align: left; transition: all 0.15s; display: flex; align-items: center; gap: 10px; font-family: inherit; width: 100%; margin-bottom: 8px; }
+  .option-btn.selected { border-color: #3DAA6E; background: #f0faf4; color: #1E7A4A; }
+  .option-btn.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; }
+  .option-btn.wrong { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+  .opt-letter { width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
+  .match-container { display: flex; gap: 10px; }
+  .match-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .match-item { border: 2px solid #A8D5BC; border-radius: 10px; padding: 8px 6px; font-size: 13px; cursor: pointer; transition: all 0.15s; background: #fff; color: #2d2d2d; text-align: center; user-select: none; font-family: inherit; line-height: 1.3; }
+  .match-item.selected { border-color: #3DAA6E; background: #f0faf4; color: #1E7A4A; }
+  .match-item.correct { border-color: #27ae60; background: #eafaf1; color: #1a7a45; cursor: default; }
+  .match-item.wrong { border-color: #e74c3c; background: #fdf0f0; }
+
+  /* DRAG DROP */
+  .drag-pool { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; background: #f0faf4; border-radius: 12px; min-height: 50px; margin-bottom: 14px; border: 2px dashed #A8D5BC; }
+  .drag-chip { background: #fff; border: 2px solid #3DAA6E; border-radius: 20px; padding: 6px 14px; font-size: 14px; font-weight: 600; color: #1E7A4A; cursor: grab; user-select: none; touch-action: none; transition: all 0.15s; }
+  .drag-chip.placed { opacity: 0.3; cursor: default; pointer-events: none; }
+  .drop-zones { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .drop-zone { background: #f9f9f9; border: 2px dashed #ccc; border-radius: 12px; padding: 10px; min-height: 130px; transition: all 0.2s; }
+  .drop-zone-title { font-size: 13px; font-weight: 700; color: #555; margin-bottom: 8px; text-align: center; line-height: 1.4; }
+  .drop-zone.drag-over { border-color: #3DAA6E; background: #f0faf4; }
+  .dropped-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dropped-chip { background: #fff; border: 2px solid #3DAA6E; border-radius: 20px; padding: 5px 10px; font-size: 13px; font-weight: 600; color: #1E7A4A; cursor: pointer; transition: all 0.15s; }
+  .dropped-chip.correct-placed { border-color: #27ae60; background: #eafaf1; color: #1a7a45; pointer-events: none; }
+  .dropped-chip.wrong-placed { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+
+  .check-btn { background: #1E7A4A; color: #fff; border: none; border-radius: 12px; padding: 13px; font-size: 15px; cursor: pointer; width: 100%; margin-top: 12px; font-weight: 700; transition: all 0.2s; font-family: inherit; }
+  .check-btn:hover { background: #155c37; }
+  .check-btn:active { transform: scale(0.98); }
+  .check-btn:disabled { background: #ddd; color: #999; cursor: default; }
+
+  .result-box { border-radius: 12px; padding: 12px 14px; margin-top: 10px; font-size: 14px; line-height: 1.5; display: none; }
+  .result-box.show { display: block; }
+  .result-box.success { background: #eafaf1; color: #1a7a45; border: 1px solid #27ae60; }
+  .result-box.partial { background: #FFF8E1; color: #5D4037; border: 1px solid #F9A825; }
+  .result-box.fail { background: #fdf0f0; color: #c0392b; border: 1px solid #e74c3c; }
+  .retry-btn { background: transparent; color: #1E7A4A; border: 2px solid #3DAA6E; border-radius: 10px; padding: 8px 14px; font-size: 13px; cursor: pointer; margin-top: 10px; display: inline-block; font-family: inherit; }
+
+  .homework-card { background: linear-gradient(135deg, #FFF8E1, #FFF3CD); border: 2px solid #F9A825; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+  .homework-title { font-size: 15px; font-weight: 700; color: #E65100; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .homework-item { background: rgba(255,255,255,0.7); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+  .homework-lt { font-size: 14px; color: #2d2d2d; font-weight: 500; }
+  .homework-hint { font-size: 12px; color: #888; margin-top: 3px; }
+
+  .back-link { display: inline-flex; align-items: center; gap: 6px; background: #1E7A4A; color: #fff; border-radius: 10px; padding: 8px 14px; font-size: 13px; text-decoration: none; margin-bottom: 12px; font-weight: 600; }
+
+  .calling-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .calling-table td { padding: 6px 8px; border-bottom: 1px solid #E8F5E9; }
+  .calling-table tr:last-child td { border-bottom: none; }
+  .calling-table td:first-child { color: #555; width: 50%; }
+  .calling-table td:last-child { font-weight: 700; color: #1E7A4A; }
+  .calling-table .header-row td { background: #E8F5E9; font-weight: 700; color: #1E7A4A; font-size: 12px; }
+
+  .multi-hint { font-size: 12px; color: #e67e22; font-weight: 600; margin-bottom: 6px; }
+  .pro-row { height: 44px; display: flex; align-items: center; }
+  .pro-lt { background: #f0faf4; border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 700; color: #1E7A4A; text-align: center; width: 100%; height: 44px; display: flex; align-items: center; justify-content: center; }
+  .pro-ru { background: #fff; border: 2px solid #A8D5BC; border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 600; color: #2d2d2d; text-align: center; cursor: grab; user-select: none; width: 100%; height: 44px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .pro-ru:active { cursor: grabbing; opacity: 0.7; }
+  .pro-ru.dragging { opacity: 0.4; }
+  .pro-ru.correct-pro { border-color: #27ae60; background: #eafaf1; color: #1a7a45; cursor: default; }
+  .pro-ru.wrong-pro { border-color: #e74c3c; background: #fdf0f0; color: #c0392b; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a href="index.html" class="back-link">← Все уроки</a>
+
+  <div class="hero">
+    <span class="hero-emoji">👋</span>
+    <h1>Урок 2 — Mano draugas</h1>
+    <p>Привет, Степа! Сегодня учимся общаться и знакомить друзей</p>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="mainProgress" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 из 13 упражнений выполнено</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setTab('lesson')">📖 Урок</button>
+    <button class="tab" onclick="setTab('vocab')">📚 Словарь</button>
+    <button class="tab" onclick="setTab('grammar')">📝 Грамматика</button>
+  </div>
+
+  <!-- ===== УРОК ===== -->
+  <div id="tab-lesson">
+
+    <div class="section-card">
+      <div class="section-title">💬 Dialogas — Читаем диалог</div>
+      <div class="tip-box">🗣️ Читай вслух! Перевод — мелким шрифтом под каждой репликой.</div>
+
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Labas, Rūta!</div>
+          <div class="dialog-ru">Привет, Рута!</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble"><div class="dialog-name">Rūta</div>
+          <div class="dialog-lt">Labas, Tomai! Kaip sekasi?</div>
+          <div class="dialog-ru">Привет, Томас! Как дела?</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Ačiū, gerai. O kaip tau?</div>
+          <div class="dialog-ru">Спасибо, хорошо. А у тебя?</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble"><div class="dialog-name">Rūta</div>
+          <div class="dialog-lt">Šiaip sau. Aš truputį kalbu lietuviškai.</div>
+          <div class="dialog-ru">Так себе. Я немного говорю по-литовски.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Gerai! Aš <b>irgi</b> kalbu truputį lietuviškai.</div>
+          <div class="dialog-ru">Хорошо! Я <b>тоже</b> немного говорю по-литовски.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Ar tu supranti?</div>
+          <div class="dialog-ru">Ты понимаешь?</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble"><div class="dialog-name">Rūta</div>
+          <div class="dialog-lt">Taip, suprantu. Bet prašom kalbėti lėčiau.</div>
+          <div class="dialog-ru">Да, понимаю. Но, пожалуйста, говори медленнее.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Gerai. Čia yra mano draugas Andrius, o čia yra mano draugė Lina.</div>
+          <div class="dialog-ru">Хорошо. Здесь мой друг Андрюс, а здесь моя подруга Лина.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble"><div class="dialog-name">Rūta</div>
+          <div class="dialog-lt">Prašom pakartoti.</div>
+          <div class="dialog-ru">Пожалуйста, повтори.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#f5f3ff;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Tomas</div>
+          <div class="dialog-lt">Gerai. Čia yra Andrius. Čia yra Lina. Mes esame draugai.</div>
+          <div class="dialog-ru">Хорошо. Здесь Андрюс. Здесь Лина. Мы друзья.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fce4ec;">👩</div>
+        <div class="dialog-bubble"><div class="dialog-name">Rūta</div>
+          <div class="dialog-lt">Labas, Andriau! Labas, Lina!</div>
+          <div class="dialog-ru">Привет, Андрюс! Привет, Лина!</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e1f5fe;">👦</div>
+        <div class="dialog-bubble"><div class="dialog-name">Andrius</div>
+          <div class="dialog-lt">Labas, Rūta! Malonu.</div>
+          <div class="dialog-ru">Привет, Рута! Приятно познакомиться.</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#fff9c4;">👧</div>
+        <div class="dialog-bubble"><div class="dialog-name">Lina</div>
+          <div class="dialog-lt">Labas, Rūta!</div>
+          <div class="dialog-ru">Привет, Рута!</div></div>
+      </div>
+      <div class="dialog-line">
+        <div class="dialog-avatar" style="background:#e8f5e9;">👫</div>
+        <div class="dialog-bubble"><div class="dialog-name">Andrius ir Lina</div>
+          <div class="dialog-lt">Mes <b>irgi</b> kalbame truputį lietuviškai ir truputį suprantame.</div>
+          <div class="dialog-ru">Мы <b>тоже</b> немного говорим по-литовски и немного понимаем.</div></div>
+      </div>
+    </div>
+
+    <!-- EX 1: Найди перевод -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">1</div><div class="ex-title">Найди правильный перевод</div></div>
+      <div class="ex-desc">Выбери один правильный вариант</div>
+      <div id="ex1container"></div>
+      <button class="check-btn" id="checkEx1btn" onclick="checkEx1()">Проверить ✓</button>
+      <div class="result-box" id="res1"></div>
+    </div>
+
+    <!-- EX 2: Match -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">2</div><div class="ex-title">Соедини слово и перевод</div></div>
+      <div class="ex-desc">Нажми литовское слово, потом его перевод</div>
+      <div class="match-container">
+        <div class="match-col" id="ltCol2">
+          <div class="match-item" data-id="1" onclick="selectMatch(this,'lt',2)">labas</div>
+          <div class="match-item" data-id="2" onclick="selectMatch(this,'lt',2)">gerai</div>
+          <div class="match-item" data-id="3" onclick="selectMatch(this,'lt',2)">blogai</div>
+          <div class="match-item" data-id="4" onclick="selectMatch(this,'lt',2)">šiaip sau</div>
+          <div class="match-item" data-id="5" onclick="selectMatch(this,'lt',2)">truputį</div>
+          <div class="match-item" data-id="6" onclick="selectMatch(this,'lt',2)">draugas</div>
+          <div class="match-item" data-id="7" onclick="selectMatch(this,'lt',2)">draugė</div>
+          <div class="match-item" data-id="8" onclick="selectMatch(this,'lt',2)">irgi</div>
+        </div>
+        <div class="match-col" id="ruCol2">
+          <div class="match-item" data-id="3" onclick="selectMatch(this,'ru',2)">плохо</div>
+          <div class="match-item" data-id="1" onclick="selectMatch(this,'ru',2)">привет</div>
+          <div class="match-item" data-id="7" onclick="selectMatch(this,'ru',2)">подруга</div>
+          <div class="match-item" data-id="2" onclick="selectMatch(this,'ru',2)">хорошо</div>
+          <div class="match-item" data-id="8" onclick="selectMatch(this,'ru',2)">тоже</div>
+          <div class="match-item" data-id="4" onclick="selectMatch(this,'ru',2)">так себе</div>
+          <div class="match-item" data-id="5" onclick="selectMatch(this,'ru',2)">немного</div>
+          <div class="match-item" data-id="6" onclick="selectMatch(this,'ru',2)">друг</div>
+        </div>
+      </div>
+      <div class="result-box" id="res2"></div>
+    </div>
+
+    <!-- EX 3: Multi-select fill -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">3</div><div class="ex-title">Вставь пропущенное слово</div></div>
+      <div class="ex-desc">Выбери правильный вариант</div>
+      <div id="ex3container"></div>
+      <button class="check-btn" id="checkEx3btn" onclick="checkEx3()">Проверить ✓</button>
+      <div class="result-box" id="res3"></div>
+    </div>
+
+    <!-- GRAMMAR: Šauksmininkas правило окончаний -->
+    <div class="section-card" style="border-left:4px solid #3DAA6E;">
+      <div class="section-title">📣 Šauksmininkas — Звательная форма</div>
+      <div class="tip-box">Когда обращаешься к человеку по имени — окончание меняется! У женских имён обычно ничего не меняется.</div>
+      <table class="ending-table">
+        <tr class="header-row"><td>Окончание</td><td class="arrow"></td><td>Становится</td><td>Пример</td></tr>
+        <tr>
+          <td class="ending-orig">-as</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#e67e22;font-weight:700;">ai</span></td>
+          <td class="ending-ex">Tom<span class="end-change">as</span> → Tom<span class="end-change">ai</span></td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-is</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#e67e22;font-weight:700;">i</span></td>
+          <td class="ending-ex">Ignat<span class="end-change">is</span> → Ignat<span class="end-change">i</span></td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-ys</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#e67e22;font-weight:700;">y</span></td>
+          <td class="ending-ex">Bal<span class="end-change">ys</span> → Bal<span class="end-change">y</span></td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-us</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#e67e22;font-weight:700;">au</span></td>
+          <td class="ending-ex">Pauli<span class="end-change">us</span> → Pauli<span class="end-change">au</span></td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-a</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#888;font-weight:700;">a</span></td>
+          <td class="ending-ex">Lin<span class="end-change">a</span> → Lin<span class="end-change">a</span> ✅</td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-ė</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#e67e22;font-weight:700;">e</span></td>
+          <td class="ending-ex">Egl<span class="end-change">ė</span> → Egl<span class="end-change">e</span></td>
+        </tr>
+        <tr>
+          <td class="ending-orig">-ija</td>
+          <td class="arrow">→</td>
+          <td class="ending-new">-<span style="color:#888;font-weight:700;">ija</span></td>
+          <td class="ending-ex">Viktorij<span class="end-change">a</span> → Viktorij<span class="end-change">a</span> ✅</td>
+        </tr>
+      </table>
+      <div class="info-box">💡 ponas → <b>pone</b> при обращении! Laba diena, <b>pone</b> Jonai!</div>
+    </div>
+
+    <!-- EX 5: Drag & Drop имена (раньше 4го) -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Раздели имена на группы</div></div>
+      <div class="ex-desc">Перетащи имена: мужские в левый столбик, женские в правый</div>
+      <div class="drag-pool" id="dragPool">
+        <div class="drag-chip" data-name="Andrius" data-group="changes" draggable="true">Andrius</div>
+        <div class="drag-chip" data-name="Tomas" data-group="changes" draggable="true">Tomas</div>
+        <div class="drag-chip" data-name="Paula" data-group="same" draggable="true">Paula</div>
+        <div class="drag-chip" data-name="Lina" data-group="same" draggable="true">Lina</div>
+        <div class="drag-chip" data-name="Olegas" data-group="changes" draggable="true">Olegas</div>
+        <div class="drag-chip" data-name="Silvijus" data-group="changes" draggable="true">Silvijus</div>
+        <div class="drag-chip" data-name="Julija" data-group="same" draggable="true">Julija</div>
+        <div class="drag-chip" data-name="Ugnius" data-group="changes" draggable="true">Ugnius</div>
+        <div class="drag-chip" data-name="Saulius" data-group="changes" draggable="true">Saulius</div>
+        <div class="drag-chip" data-name="Oktavija" data-group="same" draggable="true">Oktavija</div>
+        <div class="drag-chip" data-name="Angelė" data-group="changes" draggable="true">Angelė</div>
+        <div class="drag-chip" data-name="Eglė" data-group="changes" draggable="true">Eglė</div>
+        <div class="drag-chip" data-name="Deividas" data-group="changes" draggable="true">Deividas</div>
+      </div>
+      <div class="drop-zones">
+        <div class="drop-zone" id="zone-changes" ondragover="allowDrop(event)" ondrop="dropChip(event,'changes')">
+          <div class="drop-zone-title">🔄 Окончание меняется<br><small style="font-weight:400;color:#888;">Labas, Tomai!</small></div>
+          <div class="dropped-chips" id="chips-changes"></div>
+        </div>
+        <div class="drop-zone" id="zone-same" ondragover="allowDrop(event)" ondrop="dropChip(event,'same')">
+          <div class="drop-zone-title">✅ Не меняется<br><small style="font-weight:400;color:#888;">Labas, Lina!</small></div>
+          <div class="dropped-chips" id="chips-same"></div>
+        </div>
+      </div>
+      <button class="check-btn" id="checkEx5btn" onclick="checkEx5()">Проверить ✓</button>
+      <div class="result-box" id="res5"></div>
+    </div>
+
+    <!-- EX 4: Šauksmininkas выбор -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">4</div><div class="ex-title">Выбери правильное обращение</div></div>
+      <div class="ex-desc">Как правильно обратиться к этому человеку?</div>
+      <div id="ex4container"></div>
+      <button class="check-btn" id="checkEx4btn" onclick="checkEx4()">Проверить ✓</button>
+      <div class="result-box" id="res4"></div>
+    </div>
+
+    <!-- EX 6: Звательная форма выбор -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">6</div><div class="ex-title">Выбери правильную звательную форму</div></div>
+      <div class="ex-desc">Выбери как правильно обратиться</div>
+      <div id="ex6container"></div>
+      <button class="check-btn" id="checkEx6btn" onclick="checkFill('ex6')">Проверить ✓</button>
+      <div class="result-box" id="res6"></div>
+    </div>
+
+
+
+    <!-- EX 7: Sort pronouns -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Соедини местоимения</div></div>
+      <div class="ex-desc">Перетащи русские слова напротив правильного литовского</div>
+      <div style="display:flex;gap:10px;" id="ex7wrap">
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px;" id="ex7left"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px;" id="ex7right"></div>
+      </div>
+      <button class="check-btn" id="checkEx7btn" onclick="checkEx7sort()">Проверить ✓</button>
+      <div class="result-box" id="res7"></div>
+    </div>
+
+    <!-- EX 8: Выбери местоимение -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">8</div><div class="ex-title">Выбери правильное местоимение</div></div>
+      <div id="ex8container"></div>
+      <button class="check-btn" id="checkEx8btn" onclick="checkFill('ex8')">Проверить ✓</button>
+      <div class="result-box" id="res8"></div>
+    </div>
+
+    <!-- EX 9: būti + nebūti объединённое -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">9</div><div class="ex-title">Вставь форму būti или nebūti</div></div>
+      <div class="ex-desc">esu/esi/yra/esame/esate или nesu/nesi/nėra/nesame/nesate?</div>
+      <div id="ex9container"></div>
+      <button class="check-btn" id="checkEx9btn" onclick="checkFill('ex9')">Проверить ✓</button>
+      <div class="result-box" id="res9"></div>
+    </div>
+
+    <!-- GRAMMAR: kalbėti -->
+    <div class="conj-card">
+      <div class="conj-card-title">🗣️ kalbėti — говорить</div>
+      <div class="conj-grid2">
+        <div class="conj-cell">
+          <div class="conj-pro">aš</div>
+          <div class="conj-form">kalbu</div>
+          <div class="conj-example">Aš kalbu lietuviškai.</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">mes</div>
+          <div class="conj-form">kalbame</div>
+          <div class="conj-example">Mes kalbame truputį.</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">tu</div>
+          <div class="conj-form">kalbi</div>
+          <div class="conj-example">Tu kalbi gerai.</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">jūs</div>
+          <div class="conj-form">kalbate</div>
+          <div class="conj-example">Jūs kalbate lėčiau.</div>
+        </div>
+        <div class="conj-cell-wide">
+          <div class="conj-pro">jis / ji / jie / jos</div>
+          <div class="conj-form">kalba</div>
+          <div class="conj-example">Jis kalba lietuviškai. &nbsp;·&nbsp; Ji kalba truputį.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EX 11: kalbėti -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">11</div><div class="ex-title">Вставь форму kalbėti</div></div>
+      <div class="ex-desc">kalbu, kalbi, kalba, kalbame или kalbate?</div>
+      <div id="ex11container"></div>
+      <button class="check-btn" id="checkEx11btn" onclick="checkFill('ex11')">Проверить ✓</button>
+      <div class="result-box" id="res11"></div>
+    </div>
+
+    <!-- GRAMMAR: suprasti -->
+    <div class="conj-card">
+      <div class="conj-card-title">🧠 suprasti — понимать</div>
+      <div class="conj-grid2">
+        <div class="conj-cell">
+          <div class="conj-pro">aš</div>
+          <div class="conj-form">suprantu</div>
+          <div class="conj-example">Aš suprantu.</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">mes</div>
+          <div class="conj-form">suprantame</div>
+          <div class="conj-example">Mes suprantame truputį.</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">tu</div>
+          <div class="conj-form">supranti</div>
+          <div class="conj-example">Ar tu supranti?</div>
+        </div>
+        <div class="conj-cell">
+          <div class="conj-pro">jūs</div>
+          <div class="conj-form">suprantate</div>
+          <div class="conj-example">Ar jūs suprantate?</div>
+        </div>
+        <div class="conj-cell-wide">
+          <div class="conj-pro">jis / ji / jie / jos</div>
+          <div class="conj-form">supranta</div>
+          <div class="conj-example">Jis supranta gerai. &nbsp;·&nbsp; Aš nesuprantu.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EX 12: suprasti -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">12</div><div class="ex-title">Вставь форму suprasti</div></div>
+      <div class="ex-desc">suprantu, supranti, supranta, suprantame или suprantate?</div>
+      <div id="ex12container"></div>
+      <button class="check-btn" id="checkEx12btn" onclick="checkFill('ex12')">Проверить ✓</button>
+      <div class="result-box" id="res12"></div>
+    </div>
+
+    <!-- EX 13: Перевод -->
+    <div class="ex-card">
+      <div class="ex-header"><div class="ex-number">13</div><div class="ex-title">Выбери правильный перевод</div></div>
+      <div class="ex-desc">Литовский → русский и русский → литовский</div>
+      <div id="ex13container"></div>
+      <button class="check-btn" id="checkEx13btn" onclick="checkEx13()">Проверить ✓</button>
+      <div class="result-box" id="res13"></div>
+    </div>
+
+    <!-- ДОМАШНЕЕ ЗАДАНИЕ -->
+    <div class="homework-card">
+      <div class="homework-title">🏠 Упражнение 17 — Домашнее задание</div>
+      <div class="tip-box" style="margin-bottom:12px;">Читай вопросы и готовься отвечать устно — никакой печати не нужно! 🗣️</div>
+      <div class="homework-item"><div class="homework-lt">Aš esu __________________.</div><div class="homework-hint">Кто ты?</div></div>
+      <div class="homework-item"><div class="homework-lt">Mano vardas yra __________________.</div><div class="homework-hint">Как тебя зовут?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš truputį kalbu __________________.</div><div class="homework-hint">На каком языке говоришь?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš suprantu __________________.</div><div class="homework-hint">gerai / truputį / šiaip sau</div></div>
+      <div class="homework-item"><div class="homework-lt">Čia yra mano draugas / draugė __________________.</div><div class="homework-hint">Как зовут друга/подругу?</div></div>
+      <div class="homework-item"><div class="homework-lt">Jis / ji yra __________________.</div><div class="homework-hint">Кто он/она?</div></div>
+      <div class="homework-item"><div class="homework-lt">Aš nesu __________________.</div><div class="homework-hint">Кем ты не являешься?</div></div>
+      <div class="homework-item"><div class="homework-lt">Man šiandien __________________.</div><div class="homework-hint">gerai / blogai / šiaip sau / puikiai</div></div>
+    </div>
+
+  </div>
+
+  <!-- ===== СЛОВАРЬ ===== -->
+  <div id="tab-vocab" style="display:none;">
+    <div class="section-card">
+      <div class="section-title">📚 Новые слова урока 2</div>
+      <div class="vocab-grid">
+        <div class="vocab-item"><div class="vocab-lt">labas</div><div class="vocab-ru">привет</div></div>
+        <div class="vocab-item"><div class="vocab-lt">laba diena</div><div class="vocab-ru">добрый день</div></div>
+        <div class="vocab-item"><div class="vocab-lt">labas rytas</div><div class="vocab-ru">доброе утро</div></div>
+        <div class="vocab-item"><div class="vocab-lt">labas vakaras</div><div class="vocab-ru">добрый вечер</div></div>
+        <div class="vocab-item wide"><div class="vocab-lt">labanakt</div><div class="vocab-ru">спокойной ночи</div></div>
+        <div class="vocab-item wide"><div class="vocab-lt">kaip sekasi?</div><div class="vocab-ru">как дела?</div></div>
+        <div class="vocab-item"><div class="vocab-lt">ačiū</div><div class="vocab-ru">спасибо</div></div>
+        <div class="vocab-item"><div class="vocab-lt">gerai</div><div class="vocab-ru">хорошо</div></div>
+        <div class="vocab-item"><div class="vocab-lt">labai gerai</div><div class="vocab-ru">очень хорошо</div></div>
+        <div class="vocab-item"><div class="vocab-lt">puikiai</div><div class="vocab-ru">отлично</div></div>
+        <div class="vocab-item"><div class="vocab-lt">blogai</div><div class="vocab-ru">плохо</div></div>
+        <div class="vocab-item"><div class="vocab-lt">šiaip sau</div><div class="vocab-ru">так себе</div></div>
+        <div class="vocab-item"><div class="vocab-lt">irgi</div><div class="vocab-ru">тоже / также</div></div>
+        <div class="vocab-item"><div class="vocab-lt">truputį</div><div class="vocab-ru">немного</div></div>
+        <div class="vocab-item"><div class="vocab-lt">bet</div><div class="vocab-ru">но</div></div>
+        <div class="vocab-item"><div class="vocab-lt">aišku</div><div class="vocab-ru">понятно</div></div>
+        <div class="vocab-item"><div class="vocab-lt">neaišku</div><div class="vocab-ru">непонятно</div></div>
+        <div class="vocab-item"><div class="vocab-lt">prašom</div><div class="vocab-ru">пожалуйста</div></div>
+        <div class="vocab-item"><div class="vocab-lt">malonu</div><div class="vocab-ru">приятно (познакомиться)</div></div>
+        <div class="vocab-item"><div class="vocab-lt">draugas / draugė</div><div class="vocab-ru">друг / подруга</div></div>
+        <div class="vocab-item"><div class="vocab-lt">ponas / ponia</div><div class="vocab-ru">господин / госпожа</div></div>
+        <div class="vocab-item wide"><div class="vocab-lt">prašom pakartoti</div><div class="vocab-ru">пожалуйста, повтори</div></div>
+        <div class="vocab-item wide"><div class="vocab-lt">prašom kalbėti lėčiau</div><div class="vocab-ru">пожалуйста, говори медленнее</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ГРАММАТИКА ===== -->
+  <div id="tab-grammar" style="display:none;">
+    <div class="section-card">
+      <div class="grammar-block">
+        <div class="grammar-subtitle">📣 Šauksmininkas — Звательная форма</div>
+        <div class="tip-box">При обращении к мужчине окончание меняется. У женских имён обычно не меняется.</div>
+        <table class="ending-table">
+          <tr class="header-row"><td>Окончание</td><td class="arrow"></td><td>Становится</td><td>Пример</td></tr>
+          <tr><td class="ending-orig">-as</td><td class="arrow">→</td><td class="ending-new">-<span style="color:#e67e22;font-weight:700;">ai</span></td><td class="ending-ex">Tom<span class="end-change">as</span> → Tom<span class="end-change">ai</span></td></tr>
+          <tr><td class="ending-orig">-is</td><td class="arrow">→</td><td class="ending-new">-<span style="color:#e67e22;font-weight:700;">i</span></td><td class="ending-ex">Ignat<span class="end-change">is</span> → Ignat<span class="end-change">i</span></td></tr>
+          <tr><td class="ending-orig">-ys</td><td class="arrow">→</td><td class="ending-new">-<span style="color:#e67e22;font-weight:700;">y</span></td><td class="ending-ex">Bal<span class="end-change">ys</span> → Bal<span class="end-change">y</span></td></tr>
+          <tr><td class="ending-orig">-us</td><td class="arrow">→</td><td class="ending-new">-<span style="color:#e67e22;font-weight:700;">au</span></td><td class="ending-ex">Pauli<span class="end-change">us</span> → Pauli<span class="end-change">au</span></td></tr>
+          <tr><td class="ending-orig">-a</td><td class="arrow">→</td><td class="ending-new" style="color:#888;">-a</td><td class="ending-ex">Lin<span style="color:#888;">a</span> → Lin<span style="color:#888;">a</span> ✅</td></tr>
+          <tr><td class="ending-orig">-ė</td><td class="arrow">→</td><td class="ending-new">-<span style="color:#e67e22;font-weight:700;">e</span></td><td class="ending-ex">Egl<span class="end-change">ė</span> → Egl<span class="end-change">e</span></td></tr>
+        </table>
+        <div class="info-box">ponas → <b>pone</b> при обращении! Laba diena, <b>pone</b> Jonai!</div>
+      </div>
+      <div class="grammar-block">
+        <div class="grammar-subtitle">🗣️ kalbėti — говорить</div>
+        <table class="grammar-table">
+          <tr class="header-row"><td>Местоимение</td><td>Форма</td><td>Пример</td></tr>
+          <tr><td>aš</td><td>kalbu</td><td style="font-size:12px;color:#888;">Aš kalbu lietuviškai.</td></tr>
+          <tr><td>tu</td><td>kalbi</td><td style="font-size:12px;color:#888;">Tu kalbi gerai.</td></tr>
+          <tr><td>jis / ji / jie / jos</td><td>kalba</td><td style="font-size:12px;color:#888;">Jis kalba truputį.</td></tr>
+          <tr><td>mes</td><td>kalbame</td><td style="font-size:12px;color:#888;">Mes kalbame lietuviškai.</td></tr>
+          <tr><td>jūs</td><td>kalbate</td><td style="font-size:12px;color:#888;">Jūs kalbate gerai.</td></tr>
+        </table>
+      </div>
+      <div class="grammar-block">
+        <div class="grammar-subtitle">🧠 suprasti — понимать</div>
+        <table class="grammar-table">
+          <tr class="header-row"><td>Местоимение</td><td>Форма</td><td>Пример</td></tr>
+          <tr><td>aš</td><td>suprantu</td><td style="font-size:12px;color:#888;">Taip, suprantu.</td></tr>
+          <tr><td>tu</td><td>supranti</td><td style="font-size:12px;color:#888;">Ar tu supranti?</td></tr>
+          <tr><td>jis / ji / jie / jos</td><td>supranta</td><td style="font-size:12px;color:#888;">Jis supranta gerai.</td></tr>
+          <tr><td>mes</td><td>suprantame</td><td style="font-size:12px;color:#888;">Mes suprantame truputį.</td></tr>
+          <tr><td>jūs</td><td>suprantate</td><td style="font-size:12px;color:#888;">Ar jūs suprantate?</td></tr>
+        </table>
+        <div class="neg-example-item" style="margin-top:8px;"><div class="example-lt">Aš nesuprantu.</div><div class="example-ru">Я не понимаю.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+var scores={};
+var totalEx=13;
+function setTab(t){
+  ['lesson','vocab','grammar'].forEach(function(id){document.getElementById('tab-'+id).style.display=id===t?'block':'none';});
+  document.querySelectorAll('.tab').forEach(function(el,i){el.classList.toggle('active',['lesson','vocab','grammar'][i]===t);});
+}
+function updateProgress(){
+  var done=Object.keys(scores).length;
+  var pct=Math.round(done/totalEx*100);
+  document.getElementById('mainProgress').style.width=pct+'%';
+  document.getElementById('progressLabel').textContent=done+' из '+totalEx+' упражнений выполнено';
+}
+
+/* MATCH */
+var matchStates={};
+function selectMatch(el,side,exId){
+  if(el.classList.contains('correct'))return;
+  var ms=matchStates[exId]||{lt:null,ltEl:null,ru:null,ruEl:null};
+  matchStates[exId]=ms;
+  if(side==='lt'){if(ms.ltEl)ms.ltEl.classList.remove('selected');ms.lt=el.dataset.id;ms.ltEl=el;el.classList.add('selected');}
+  else{if(ms.ruEl)ms.ruEl.classList.remove('selected');ms.ru=el.dataset.id;ms.ruEl=el;el.classList.add('selected');}
+  if(ms.lt&&ms.ru){
+    if(ms.lt===ms.ru){
+      ms.ltEl.classList.remove('selected');ms.ruEl.classList.remove('selected');
+      ms.ltEl.classList.add('correct');ms.ruEl.classList.add('correct');
+      ms.ltEl.onclick=null;ms.ruEl.onclick=null;
+      var total=document.querySelectorAll('#ltCol'+exId+' .match-item').length;
+      if(document.querySelectorAll('#ltCol'+exId+' .correct').length===total){
+        var r=document.getElementById('res'+exId);
+        r.textContent='🎉 Отлично! Все пары правильно!';r.className='result-box success show';
+        scores['ex'+exId]=100;updateProgress();
+      }
+    } else {
+      ms.ltEl.classList.add('wrong');ms.ruEl.classList.add('wrong');
+      setTimeout(function(){if(ms.ltEl)ms.ltEl.classList.remove('selected','wrong');if(ms.ruEl)ms.ruEl.classList.remove('selected','wrong');ms.lt=null;ms.ru=null;ms.ltEl=null;ms.ruEl=null;},700);return;
+    }
+    ms.lt=null;ms.ru=null;ms.ltEl=null;ms.ruEl=null;
+  }
+}
+
+/* EX1 */
+var ex1data=[
+  {q:'labas',correct:'привет',opts:['привет','спасибо']},
+  {q:'gerai',correct:'хорошо',opts:['плохо','хорошо']},
+  {q:'blogai',correct:'плохо',opts:['плохо','отлично']},
+  {q:'šiaip sau',correct:'так себе',opts:['так себе','очень хорошо']},
+  {q:'truputį',correct:'немного',opts:['немного','тоже']},
+  {q:'irgi',correct:'тоже / также',opts:['тоже / также','но']},
+  {q:'draugas',correct:'друг',opts:['друг','подруга']},
+  {q:'draugė',correct:'подруга',opts:['друг','подруга']},
+  {q:'suprantu',correct:'я понимаю',opts:['я понимаю','я говорю']},
+  {q:'kalbu',correct:'я говорю',opts:['я говорю','я понимаю']},
+];
+var ex1sel={};
+function buildEx1(){
+  ex1sel={};var c=document.getElementById('ex1container');c.innerHTML='';
+  ex1data.forEach(function(d,i){
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence" style="font-weight:700;color:#1E7A4A;">'+d.q+'</div><div class="fill-options" id="ex1opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#ex1opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');ex1sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx1();
+function checkEx1(){
+  var correct=0;
+  ex1data.forEach(function(d,i){
+    document.querySelectorAll('#ex1opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex1sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById('res1');
+  scores['ex1']=Math.round(correct/ex1data.length*100);
+  var cls=correct===ex1data.length?'success':correct>=7?'partial':'fail';
+  r.textContent=correct===ex1data.length?'🎉 Все верно!':'👍 '+correct+' из '+ex1data.length+'.';
+  r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx1()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx1btn').disabled=true;updateProgress();
+}
+function retryEx1(){buildEx1();document.getElementById('res1').className='result-box';document.getElementById('checkEx1btn').disabled=false;}
+
+/* EX3: multi-select */
+var ex3data=[
+  {sentence:'Aš ___ lietuviškai.',blank:'kalbu',opts:['kalbu','draugas','gerai','irgi'],full:'Aš kalbu lietuviškai.',trans:'Я говорю по-литовски.'},
+  {sentence:'Aš ___ truputį.',blank:'suprantu',opts:['suprantu','draugė','ponas','bet'],full:'Aš suprantu truputį.',trans:'Я немного понимаю.'},
+  {sentence:'Čia yra mano ___ Tomas.',blank:'draugas',opts:['draugas','draugė','ponia','truputį'],full:'Čia yra mano draugas Tomas.',trans:'Здесь мой друг Томас.'},
+  {sentence:'Čia yra mano ___ Lina.',blank:'draugė',opts:['draugė','draugas','ponas','aišku'],full:'Čia yra mano draugė Lina.',trans:'Здесь моя подруга Лина.'},
+  {sentence:'Aš kalbu lietuviškai, ___ truputį.',blank:'bet',opts:['bet','ir','draugas','o'],full:'Aš kalbu lietuviškai, bet truputį.',trans:'Я говорю по-литовски, но немного.'},
+  {sentence:'Aš ___ kalbu lietuviškai kaip Tomas.',blank:'irgi',opts:['irgi','draugas','ponia','bet'],full:'Aš irgi kalbu lietuviškai kaip Tomas.',trans:'Я тоже говорю по-литовски, как Томас.'},
+  {sentence:'Taip, ___. Bet prašom kalbėti lėčiau.',blank:'suprantu',opts:['suprantu','kalbu','gerai','draugė'],full:'Taip, suprantu. Bet prašom kalbėti lėčiau.',trans:'Да, понимаю. Но, пожалуйста, говори медленнее.'},
+  {sentence:'Taip, suprantu. Bet prašom ___ lėčiau.',blank:'kalbėti',opts:['kalbėti','suprantu','blogai','irgi'],full:'Taip, suprantu. Bet prašom kalbėti lėčiau.',trans:'Да, понимаю. Но, пожалуйста, говори медленнее.'},
+];
+var ex3sel={};
+function buildEx3(){
+  ex3sel={};var c=document.getElementById('ex3container');c.innerHTML='';
+  ex3data.forEach(function(d,i){
+    ex3sel[i]=null;
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+d.sentence+'</div><div class="fill-options" id="ex3opts'+i+'"></div><div class="ex3-full" id="ex3full'+i+'" style="display:none;margin-top:6px;padding:8px 10px;background:#f0faf4;border-radius:8px;font-size:13px;"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){
+        document.querySelectorAll('#ex3opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});
+        b.classList.add('selected');ex3sel[i]=o;
+      };
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx3();
+function checkEx3(){
+  var correct=0;
+  ex3data.forEach(function(d,i){
+    document.querySelectorAll('#ex3opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.blank)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.blank){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex3sel[i]===d.blank)correct++;
+    var fullEl=document.getElementById('ex3full'+i);
+    fullEl.style.display='block';
+    fullEl.innerHTML='<span style="font-weight:600;color:#1E7A4A;">'+d.full+'</span> <span style="color:#999;">— '+d.trans+'</span>';
+  });
+  var r=document.getElementById('res3');
+  scores['ex3']=Math.round(correct/ex3data.length*100);
+  var cls=correct===ex3data.length?'success':correct>=5?'partial':'fail';
+  r.textContent=correct===ex3data.length?'🎉 Идеально!':'👍 '+correct+' из '+ex3data.length+'.';
+  r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx3()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx3btn').disabled=true;updateProgress();
+}
+function retryEx3(){buildEx3();document.getElementById('res3').className='result-box';document.getElementById('checkEx3btn').disabled=false;}
+
+/* FILL DATA */
+var fillData={
+  ex6:{items:[
+    {sentence:'Labas, ___! (Inga)',blank:'Inga',opts:['Inga','Ingai','Ingau']},
+    {sentence:'Labas, ___! (Paulius)',blank:'Pauliau',opts:['Paulius','Pauliai','Pauliau']},
+    {sentence:'Labas, ___! (Lukas)',blank:'Lukai',opts:['Lukas','Lukai','Lukau']},
+    {sentence:'Labas, ___! (Viktorija)',blank:'Viktorija',opts:['Viktorija','Viktorijau','Viktorijoi']},
+    {sentence:'Labas, ___! (Ignas)',blank:'Ignai',opts:['Ignas','Ignai','Ignau']},
+    {sentence:'Labas, ___! (Dainius)',blank:'Dainiau',opts:['Dainius','Dainiai','Dainiau']},
+    {sentence:'Laba diena, ___ Jonai! (ponas)',blank:'pone',opts:['ponas','pone','ponai']},
+    {sentence:'Labas, ___! (Viktoras)',blank:'Viktorai',opts:['Viktoras','Viktorai','Viktoriau']},
+  ],sel:{},exNum:6},
+  ex8:{items:[
+    {sentence:'Tomas →',blank:'jis',opts:['jis','ji','jie','jos']},
+    {sentence:'Lina →',blank:'ji',opts:['jis','ji','jie','jos']},
+    {sentence:'Tomas ir Andrius →',blank:'jie',opts:['jis','ji','jie','jos']},
+    {sentence:'Lina ir Paula →',blank:'jos',opts:['jis','ji','jie','jos']},
+    {sentence:'Aš ir tu →',blank:'mes',opts:['mes','jūs','jie','jos']},
+    {sentence:'Tu ir Tomas →',blank:'jūs',opts:['mes','jūs','jie','jos']},
+    {sentence:'Ponia Lina →',blank:'ji',opts:['jis','ji','jie','jos']},
+    {sentence:'Ponas Jonas →',blank:'jis',opts:['jis','ji','jie','jos']},
+  ],sel:{},exNum:8},
+  ex9:{items:[
+    {sentence:'Aš ___ Tomas.',blank:'esu',opts:['esu','esi','esame','esate']},
+    {sentence:'Tu ___ Rūta.',blank:'esi',opts:['esu','esi','esame','esate']},
+    {sentence:'Jis ___ mano draugas.',blank:'yra',opts:['esu','esi','yra','esame']},
+    {sentence:'Mes ___ draugai.',blank:'esame',opts:['esame','esate','yra','esu']},
+    {sentence:'Aš ___ mokytojas.',blank:'nesu',opts:['nesu','nesi','nesame','nesate']},
+    {sentence:'Tu ___ studentas.',blank:'nesi',opts:['nesu','nesi','nesame','nesate']},
+    {sentence:'Ji ___ dėstytoja.',blank:'nėra',opts:['nesu','nesi','nėra','nesame']},
+    {sentence:'Mes ___ mokytojai.',blank:'nesame',opts:['nesame','nesate','nėra','nesu']},
+    {sentence:'Jūs ___ studentai.',blank:'nesate',opts:['nesame','nesate','nėra','nesi']},
+  ],sel:{},exNum:9},
+  ex11:{items:[
+    {sentence:'Aš ___ lietuviškai.',blank:'kalbu',opts:['kalbu','kalbi','kalba']},
+    {sentence:'Tu ___ lietuviškai.',blank:'kalbi',opts:['kalbu','kalbi','kalba']},
+    {sentence:'Jis ___ lietuviškai.',blank:'kalba',opts:['kalbu','kalbi','kalba']},
+    {sentence:'Ji ___ truputį.',blank:'kalba',opts:['kalbu','kalbi','kalba']},
+    {sentence:'Mes ___ truputį.',blank:'kalbame',opts:['kalbame','kalbate','kalba']},
+    {sentence:'Jūs ___ gerai.',blank:'kalbate',opts:['kalbame','kalbate','kalba']},
+    {sentence:'Tomas ___ lietuviškai.',blank:'kalba',opts:['kalbu','kalbi','kalba']},
+  ],sel:{},exNum:11},
+  ex12:{items:[
+    {sentence:'Aš ___.',blank:'suprantu',opts:['suprantu','supranti','supranta']},
+    {sentence:'Ar tu ___?',blank:'supranti',opts:['suprantu','supranti','supranta']},
+    {sentence:'Jis ___ truputį.',blank:'supranta',opts:['suprantu','supranti','supranta']},
+    {sentence:'Mes ___.',blank:'suprantame',opts:['suprantame','suprantate','supranta']},
+    {sentence:'Ar jūs ___?',blank:'suprantate',opts:['suprantame','suprantate','supranta']},
+    {sentence:'Lina ___ gerai.',blank:'supranta',opts:['suprantu','supranti','supranta']},
+  ],sel:{},exNum:12}
+};
+
+function buildFill(key){
+  var d=fillData[key];var c=document.getElementById(key+'container');c.innerHTML='';d.sel={};
+  d.items.forEach(function(item,i){
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+item.sentence+'</div><div class="fill-options" id="'+key+'opts'+i+'"></div>';
+    c.appendChild(div);
+    item.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#'+key+'opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');d.sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+function checkFill(key){
+  var d=fillData[key];var correct=0;
+  d.items.forEach(function(item,i){
+    document.querySelectorAll('#'+key+'opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===item.blank)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==item.blank){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(d.sel[i]===item.blank)correct++;
+  });
+  var r=document.getElementById('res'+d.exNum);
+  scores['ex'+d.exNum]=Math.round(correct/d.items.length*100);
+  var cls=correct===d.items.length?'success':correct>=Math.ceil(d.items.length*0.6)?'partial':'fail';
+  var msg=correct===d.items.length?'🎉 Идеально!':correct>=Math.ceil(d.items.length*0.6)?'👍 '+correct+' из '+d.items.length+'. Хорошо!':'💪 '+correct+' из '+d.items.length+'. Загляни в грамматику!';
+  r.textContent=msg;r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryFill(\''+key+'\')">🔄 Попробовать снова</button></div>';
+  var btn=key.charAt(0).toUpperCase()+key.slice(1);
+  document.getElementById('check'+btn+'btn').disabled=true;updateProgress();
+}
+function retryFill(key){
+  buildFill(key);var d=fillData[key];
+  document.getElementById('res'+d.exNum).className='result-box';
+  var btn=key.charAt(0).toUpperCase()+key.slice(1);
+  document.getElementById('check'+btn+'btn').disabled=false;
+}
+['ex6','ex8','ex9','ex11','ex12'].forEach(buildFill);
+
+/* EX4 */
+var ex4data=[
+  {q:'Labas, ___! (Tomas)',correct:'Tomai',opts:['Tomas','Tomai']},
+  {q:'Labas, ___! (Paulius)',correct:'Pauliau',opts:['Paulius','Pauliau']},
+  {q:'Labas, ___! (Eglė)',correct:'Egle',opts:['Eglė','Egle']},
+  {q:'Labas, ___! (Lukas)',correct:'Lukai',opts:['Lukai','Lukas']},
+  {q:'Laba diena, pone ___! (Jonas)',correct:'Jonai',opts:['Jonai','Jonas']},
+  {q:'Laba diena, ponia ___! (Lina)',correct:'Lina',opts:['Lina','Linai']},
+  {q:'Labas, ___! (Dainius)',correct:'Dainiau',opts:['Dainius','Dainiau']},
+  {q:'Labas, ___! (Viktoras)',correct:'Viktorai',opts:['Viktorai','Viktoras']},
+];
+var ex4sel={};
+function buildEx4(){
+  ex4sel={};var c=document.getElementById('ex4container');c.innerHTML='';
+  ex4data.forEach(function(d,i){
+    var div=document.createElement('div');div.className='fill-item';
+    div.innerHTML='<div class="fill-sentence">'+d.q+'</div><div class="fill-options" id="ex4opts'+i+'"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o){
+      var b=document.createElement('button');b.className='fill-btn';b.textContent=o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#ex4opts'+i+' .fill-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');ex4sel[i]=o;};
+      div.querySelector('.fill-options').appendChild(b);
+    });
+  });
+}
+buildEx4();
+function checkEx4(){
+  var correct=0;
+  ex4data.forEach(function(d,i){
+    document.querySelectorAll('#ex4opts'+i+' .fill-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex4sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById('res4');
+  scores['ex4']=Math.round(correct/ex4data.length*100);
+  var cls=correct===ex4data.length?'success':correct>=5?'partial':'fail';
+  r.textContent=correct===ex4data.length?'🎉 Отлично!':'👍 '+correct+' из '+ex4data.length+'.';
+  r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx4()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx4btn').disabled=true;updateProgress();
+}
+function retryEx4(){buildEx4();document.getElementById('res4').className='result-box';document.getElementById('checkEx4btn').disabled=false;}
+
+/* EX5 drag & drop */
+var draggedChip=null;
+document.addEventListener('dragstart',function(e){if(e.target.classList.contains('drag-chip')){draggedChip=e.target;e.target.style.opacity='0.5';}});
+document.addEventListener('dragend',function(e){if(e.target.classList.contains('drag-chip'))e.target.style.opacity='1';});
+function allowDrop(e){e.preventDefault();e.currentTarget.classList.add('drag-over');}
+document.querySelectorAll('.drop-zone').forEach(function(z){z.addEventListener('dragleave',function(){z.classList.remove('drag-over');});});
+function dropChip(e,group){
+  e.preventDefault();
+  document.getElementById('zone-'+group).classList.remove('drag-over');
+  if(!draggedChip||draggedChip.classList.contains('placed'))return;
+  draggedChip.classList.add('placed');
+  var name=draggedChip.dataset.name;
+  var chip=document.createElement('div');
+  chip.className='dropped-chip';chip.textContent=name;
+  chip.dataset.name=name;chip.dataset.group=group;
+  chip.addEventListener('click',function(){
+    if(chip.classList.contains('correct-placed'))return;
+    var orig=document.querySelector('.drag-chip[data-name="'+name+'"]');
+    if(orig)orig.classList.remove('placed');
+    chip.remove();
+  });
+  document.getElementById('chips-'+group).appendChild(chip);
+}
+document.querySelectorAll('.drag-chip').forEach(function(chip){
+  chip.addEventListener('touchstart',function(e){draggedChip=chip;},{passive:true});
+  chip.addEventListener('touchend',function(e){
+    var touch=e.changedTouches[0];
+    var el=document.elementFromPoint(touch.clientX,touch.clientY);
+    var zone=el?el.closest('.drop-zone'):null;
+    if(zone){var group=zone.id.replace('zone-','');dropChip({preventDefault:function(){}},group);}
+    draggedChip=null;
+  });
+});
+function checkEx5(){
+  var allChips=document.querySelectorAll('.dropped-chip');
+  var correct=0;var total=13;
+  allChips.forEach(function(chip){
+    var orig=document.querySelector('.drag-chip[data-name="'+chip.dataset.name+'"]');
+    var correctGroup=orig?orig.dataset.group:'';
+    if(chip.dataset.group===correctGroup){chip.classList.add('correct-placed');correct++;}
+    else chip.classList.add('wrong-placed');
+  });
+  var r=document.getElementById('res5');
+  scores['ex5']=Math.round(correct/total*100);
+  r.textContent=correct===total?'🎉 Все имена разложены правильно!':'👍 '+correct+' из '+total+' правильно.';
+  r.className='result-box '+(correct===total?'success':'partial')+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx5()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx5btn').disabled=true;updateProgress();
+}
+function retryEx5(){
+  document.getElementById('chips-changes').innerHTML='';
+  document.getElementById('chips-same').innerHTML='';
+  document.querySelectorAll('.drag-chip').forEach(function(c){c.classList.remove('placed');});
+  document.getElementById('res5').className='result-box';
+  document.getElementById('checkEx5btn').disabled=false;
+}
+
+/* EX13 */
+var ex13data=[
+  {lt:'Aš kalbu lietuviškai.',correct:'Я говорю по-литовски.',opts:['Я понимаю по-литовски.','Я говорю по-литовски.','Я учитель.']},
+  {lt:'Čia yra mano draugas.',correct:'Здесь мой друг.',opts:['Здесь мой друг.','Здесь моя подруга.','Здесь мой учитель.']},
+  {lt:'Prašom pakartoti.',correct:'Пожалуйста, повтори.',opts:['Пожалуйста, повтори.','Пожалуйста, говори медленнее.','Спасибо, хорошо.']},
+  {lt:'Mes irgi kalbame truputį.',correct:'Мы тоже говорим немного.',opts:['Мы тоже говорим немного.','Мы тоже понимаем немного.','Они тоже говорят немного.']},
+  {lt:'Привет, Томас!',correct:'Labas, Tomai!',opts:['Labas, Tomas!','Labas, Tomai!','Laba diena, Tomai!']},
+  {lt:'Я немного говорю по-литовски.',correct:'Aš truputį kalbu lietuviškai.',opts:['Aš truputį kalbu lietuviškai.','Aš truputį suprantu lietuviškai.','Mes truputį kalbame.']},
+  {lt:'Я не понимаю.',correct:'Aš nesuprantu.',opts:['Aš nesuprantu.','Aš nesu suprantu.','Aš nėra suprantu.']},
+  {lt:'Добрый день, господин Йонас!',correct:'Laba diena, pone Jonai!',opts:['Laba diena, pone Jonai!','Laba diena, ponas Jonas!','Labas, pone Jonai!']},
+];
+var ex13sel={};
+function buildEx13(){
+  ex13sel={};var c=document.getElementById('ex13container');c.innerHTML='';
+  var letters=['А','Б','В'];
+  ex13data.forEach(function(d,i){
+    var div=document.createElement('div');div.style.marginBottom='14px';
+    div.innerHTML='<div class="fill-sentence" style="font-weight:700;color:#1E7A4A;">'+d.lt+'</div><div id="ex13opts'+i+'" style="margin-top:8px;"></div>';
+    c.appendChild(div);
+    d.opts.forEach(function(o,j){
+      var b=document.createElement('button');b.className='option-btn';
+      b.innerHTML='<span class="opt-letter">'+letters[j]+'</span>'+o;b.dataset.val=o;
+      b.onclick=function(){document.querySelectorAll('#ex13opts'+i+' .option-btn').forEach(function(x){x.classList.remove('selected');});b.classList.add('selected');ex13sel[i]=o;};
+      div.querySelector('#ex13opts'+i).appendChild(b);
+    });
+  });
+}
+buildEx13();
+function checkEx13(){
+  var correct=0;
+  ex13data.forEach(function(d,i){
+    document.querySelectorAll('#ex13opts'+i+' .option-btn').forEach(function(b){
+      b.disabled=true;
+      if(b.dataset.val===d.correct)b.classList.add('correct');
+      else if(b.classList.contains('selected')&&b.dataset.val!==d.correct){b.classList.remove('selected');b.classList.add('wrong');}
+    });
+    if(ex13sel[i]===d.correct)correct++;
+  });
+  var r=document.getElementById('res13');
+  scores['ex13']=Math.round(correct/ex13data.length*100);
+  var cls=correct===ex13data.length?'success':correct>=5?'partial':'fail';
+  r.textContent=correct===ex13data.length?'🎉 Браво! Урок 2 пройден!':'👍 '+correct+' из '+ex13data.length+'.';
+  r.className='result-box '+cls+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx13()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx13btn').disabled=true;updateProgress();
+}
+function retryEx13(){buildEx13();document.getElementById('res13').className='result-box';document.getElementById('checkEx13btn').disabled=false;}
+
+/* EX7 SORT */
+var ex7pairs=[
+  {lt:'aš', ru:'я'},
+  {lt:'tu', ru:'ты'},
+  {lt:'jis', ru:'он'},
+  {lt:'ji', ru:'она'},
+  {lt:'mes', ru:'мы'},
+  {lt:'jūs', ru:'вы'},
+  {lt:'jie', ru:'они (м.)'},
+  {lt:'jos', ru:'они (ж.)'},
+];
+var ex7order=[1,3,0,6,4,7,2,5]; // shuffled indices of ru words
+function buildEx7sort(){
+  var left=document.getElementById('ex7left');
+  var right=document.getElementById('ex7right');
+  left.innerHTML=''; right.innerHTML='';
+  // Build left (fixed LT)
+  ex7pairs.forEach(function(p,i){
+    var row=document.createElement('div');row.className='pro-row';
+    var cell=document.createElement('div');cell.className='pro-lt';cell.textContent=p.lt;
+    row.appendChild(cell);left.appendChild(row);
+  });
+  // Build right (shuffled RU) as sortable list
+  var shuffled=ex7order.map(function(i){return ex7pairs[i].ru;});
+  shuffled.forEach(function(ru,i){
+    var row=document.createElement('div');row.className='pro-row';row.dataset.pos=i;
+    var cell=document.createElement('div');cell.className='pro-ru';cell.textContent=ru;
+    cell.draggable=true;
+    cell.addEventListener('dragstart',function(e){
+      draggedPro=cell;draggedRow=row;cell.classList.add('dragging');
+      e.dataTransfer.effectAllowed='move';
+    });
+    cell.addEventListener('dragend',function(){cell.classList.remove('dragging');});
+    cell.addEventListener('dragover',function(e){e.preventDefault();});
+    cell.addEventListener('drop',function(e){
+      e.preventDefault();
+      if(draggedRow&&draggedRow!==row){
+        var rightEl=document.getElementById('ex7right');
+        var rows=Array.from(rightEl.children);
+        var fromIdx=rows.indexOf(draggedRow);
+        var toIdx=rows.indexOf(row);
+        if(fromIdx<toIdx) rightEl.insertBefore(draggedRow,row.nextSibling);
+        else rightEl.insertBefore(draggedRow,row);
+      }
+    });
+    // Touch support
+    var touchStartY=0;
+    cell.addEventListener('touchstart',function(e){
+      draggedPro=cell;draggedRow=row;
+      touchStartY=e.touches[0].clientY;
+    },{passive:true});
+    cell.addEventListener('touchmove',function(e){
+      e.preventDefault();
+      var y=e.touches[0].clientY;
+      var rightEl=document.getElementById('ex7right');
+      var rows=Array.from(rightEl.children);
+      rows.forEach(function(r){
+        var rect=r.getBoundingClientRect();
+        if(y>rect.top&&y<rect.bottom&&r!==draggedRow){
+          var fromIdx=rows.indexOf(draggedRow);
+          var toIdx=rows.indexOf(r);
+          if(fromIdx<toIdx) rightEl.insertBefore(draggedRow,r.nextSibling);
+          else rightEl.insertBefore(draggedRow,r);
+        }
+      });
+    },{passive:false});
+    row.appendChild(cell);right.appendChild(row);
+  });
+}
+var draggedPro=null,draggedRow=null;
+buildEx7sort();
+
+function checkEx7sort(){
+  var right=document.getElementById('ex7right');
+  var rows=Array.from(right.children);
+  var correct=0;
+  rows.forEach(function(row,i){
+    var cell=row.querySelector('.pro-ru');
+    cell.draggable=false;
+    if(cell.textContent===ex7pairs[i].ru){cell.classList.add('correct-pro');correct++;}
+    else cell.classList.add('wrong-pro');
+  });
+  var r=document.getElementById('res7');
+  scores['ex7']=Math.round(correct/ex7pairs.length*100);
+  r.textContent=correct===ex7pairs.length?'🎉 Все пары правильно!':'👍 '+correct+' из '+ex7pairs.length+'. Зелёным — правильные.';
+  r.className='result-box '+(correct===ex7pairs.length?'success':'partial')+' show';
+  r.innerHTML+='\n<div style="margin-top:10px;"><button class="retry-btn" onclick="retryEx7sort()">🔄 Попробовать снова</button></div>';
+  document.getElementById('checkEx7btn').disabled=true;updateProgress();
+}
+function retryEx7sort(){
+  buildEx7sort();
+  document.getElementById('res7').className='result-box';
+  document.getElementById('checkEx7btn').disabled=false;
+}
+</script>
+</body>
+</html>
