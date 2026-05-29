@@ -215,7 +215,7 @@
 
     <!-- EX 1 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">1</div><div class="ex-title">Соедини слова</div></div>
+      <div class="ex-header"><div class="ex-number">1</div><div class="ex-title">Sujunk žodžius — Соедини слова</div></div>
       <div class="ex-desc">Нажми литовское слово, потом его перевод</div>
       <div class="match-container">
         <div class="match-col" id="ltCol1">
@@ -240,7 +240,7 @@
 
     <!-- EX 2 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">2</div><div class="ex-title">Вставь пропущенное слово</div></div>
+      <div class="ex-header"><div class="ex-number">2</div><div class="ex-title">Įrašyk žodį — Вставь пропущенное слово</div></div>
       <div class="ex-desc">Выбери правильный вариант</div>
       <div id="ex2container"></div>
       <button class="check-btn" id="checkEx2btn" onclick="checkFill('ex2')">Проверить ✓</button>
@@ -266,7 +266,7 @@
 
     <!-- EX 3 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">3</div><div class="ex-title">Выбери правильное местоимение</div></div>
+      <div class="ex-header"><div class="ex-number">3</div><div class="ex-title">Pasirink įvardį — Выбери правильное местоимение</div></div>
       <div class="ex-desc">jis, ji, jie или jos?</div>
       <div id="ex3container"></div>
       <button class="check-btn" id="checkEx3btn" onclick="checkFill('ex3')">Проверить ✓</button>
@@ -290,7 +290,7 @@
 
     <!-- EX 4 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">4</div><div class="ex-title">Вставь форму глагола būti</div></div>
+      <div class="ex-header"><div class="ex-number">4</div><div class="ex-title">Įrašyk būti formą — Вставь форму глагола būti</div></div>
       <div class="ex-desc">esu, esi, yra, esame или esate?</div>
       <div id="ex4container"></div>
       <button class="check-btn" id="checkEx4btn" onclick="checkFill('ex4')">Проверить ✓</button>
@@ -314,7 +314,7 @@
 
     <!-- EX 5 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Отрицание</div></div>
+      <div class="ex-header"><div class="ex-number">5</div><div class="ex-title">Neigimas — Отрицание</div></div>
       <div class="ex-desc">Выбери правильную отрицательную форму</div>
       <div id="ex5container"></div>
       <button class="check-btn" id="checkEx5btn" onclick="checkFill('ex5')">Проверить ✓</button>
@@ -323,7 +323,7 @@
 
     <!-- EX 6 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">6</div><div class="ex-title">Исправь ошибку!</div></div>
+      <div class="ex-header"><div class="ex-number">6</div><div class="ex-title">Rask klaidą — Исправь ошибку!</div></div>
       <div class="ex-desc">В каждом предложении есть ошибка — найди правильный вариант</div>
       <div id="ex6container"></div>
       <button class="check-btn" id="checkEx6btn" onclick="checkEx6()">Проверить ✓</button>
@@ -332,7 +332,7 @@
 
     <!-- EX 7 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Что это значит?</div></div>
+      <div class="ex-header"><div class="ex-number">7</div><div class="ex-title">Ką tai reiškia? — Что это значит?</div></div>
       <div class="ex-desc">Выбери правильный перевод с литовского на русский</div>
       <div id="ex7container"></div>
       <button class="check-btn" id="checkEx7btn" onclick="checkEx7()">Проверить ✓</button>
@@ -341,7 +341,7 @@
 
     <!-- EX 8 -->
     <div class="ex-card">
-      <div class="ex-header"><div class="ex-number">8</div><div class="ex-title">Переведи на литовский</div></div>
+      <div class="ex-header"><div class="ex-number">8</div><div class="ex-title">Išversk į lietuvių kalbą — Переведи на литовский</div></div>
       <div class="ex-desc">Выбери правильный перевод с русского на литовский</div>
       <div id="ex8container"></div>
       <button class="check-btn" id="checkEx8btn" onclick="checkEx8()">Проверить ✓</button>
@@ -425,13 +425,17 @@ function setTab(t){
   document.querySelectorAll('.tab').forEach(function(el,i){el.classList.toggle('active',['lesson','vocab','grammar'][i]===t);});
 }
 function saveScoreToIndex(){
-  var total=Object.values(scores).filter(function(v){return v!==null;});
-  if(total.length===0)return;
-  var avg=Math.round(total.reduce(function(a,b){return a+b;},0)/total.length);
+  var done=Object.keys(scores).length;
+  var pct=Math.round(done/totalEx*100);
   try{
     var profiles=JSON.parse(localStorage.getItem('lt_profiles')||'{}');
     var names=Object.keys(profiles);
-    if(names.length>0){var s=names[names.length-1];profiles[s]=profiles[s]||{};profiles[s]['lesson1']=avg;localStorage.setItem('lt_profiles',JSON.stringify(profiles));}
+    if(names.length>0){
+      var s=names[names.length-1];
+      profiles[s]=profiles[s]||{};
+      profiles[s]['lesson1']=pct;
+      localStorage.setItem('lt_profiles',JSON.stringify(profiles));
+    }
   }catch(e){}
 }
 function updateProgress(){
